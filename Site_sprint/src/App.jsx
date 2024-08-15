@@ -1,12 +1,12 @@
 // src/App.jsx
 import React from 'react';
-import Header from './components/header';
-
+import Header from './components/header/header';
+import Main from './components/main';
 const App = () => {
   return (
     <div>
       <Header />
-      {/* Outros componentes do seu site */}
+      <Main />
     </div>
   );
 };
