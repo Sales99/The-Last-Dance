@@ -1,0 +1,40 @@
+/* src/components/Header/Header.css */
+.header {
+    background-color: #E6B64E ;
+    display: flex;
+    align-items: center;
+    padding: 20px 1px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Garante que o header fique sobre outros elementos */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra sutil */
+  }
+  
+  .logo {
+    width: 105px; /* Ajuste o tamanho da logo conforme necessário */
+    height: auto;
+    margin-right: 20px;
+    padding: 1px 120px;
+  }
+  
+  .search-bar {
+    flex: 1;
+    margin-right: 250px;
+    padding: 8px;
+    border-radius: 4px;
+    border: 10px  ;
+  }
+  
+  .icon {
+    font-size: 40px;
+    cursor: pointer;
+    color: black;
+    margin-right: 50px;
+  }
+  
+  .menu-icon {
+    font-size: 40px; /* Ajuste o tamanho do ícone de menu conforme necessário */
+  }
+  
