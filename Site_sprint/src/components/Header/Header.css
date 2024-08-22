@@ -1,0 +1,120 @@
+/* Estilos Globais */
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    box-sizing: border-box;
+    background-color: #2C2C2C;
+}
+
+.header {
+    width: 100%;
+}
+
+.header .mid_header {
+    display: flex;
+    padding: 20px 40px;
+    max-width: 100%;
+    justify-content: space-between;
+}
+
+.header .mid_header .logo img {
+    cursor: pointer;
+    object-fit: cover;
+}
+
+.header .mid_header .search_box {
+    display: flex;
+}
+
+.header .mid_header .search_box input {
+    padding: 10px 10px;
+    outline: none;
+    background: #f6f7f8;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    width: 250px;
+    border: none;
+}
+
+.header .mid_header .search_box button {
+    padding: 10px 10px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border: none;
+    background: #2c2c2c;
+    color: white;
+    cursor: pointer;
+    margin-left: -1px; /* Para remover a borda entre o input e o botão */
+    transition: 0.5s;
+    font-weight: 600;
+}
+
+.header .mid_header .nav {
+    margin-top: 35px;
+}
+
+.header .mid_header .nav ul {
+    display: flex;
+}
+
+.header .mid_header .nav ul li {
+    list-style: none;
+}
+
+.header .mid_header .nav ul li .link {
+    margin-right: 20px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: 600;
+    transition: 0.5s;
+}
+
+.header .mid_header .nav ul li .link:hover {
+    color: red;
+}
+
+.Logo {
+    width: 100px;
+    height: 100px;
+}
+
+/* Responsividade */
+@media (max-width: 992px) {
+    .header .mid_header {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .header .mid_header .logo img {
+        width: 70px; /* Ajuste proporcional */
+        height: 70px;
+    }
+
+    .header .mid_header .search_box input {
+        width: 150px; /* Ajuste proporcional */
+    }
+
+    .header .mid_header .search_box button {
+        width: 40px; /* Ajuste proporcional */
+        height: 40px; /* Ajuste proporcional */
+    }
+
+    .header .mid_header .nav {
+        margin-top: 20px;
+    }
+
+    .header .mid_header .nav ul {
+        display: grid;
+        font-size: 14px;
+    }
+
+    .header .mid_header .nav ul li .link {
+        margin-right: 10px; /* Ajuste proporcional */
+    }
+
+    .search_box {
+        display: none;
+    }
+}
