@@ -1,51 +1,16 @@
+// src/components/Header/Header.jsx
 import React from 'react';
-import { AiOutlineSearch } from 'react-icons/ai';
-import { Link } from 'react-router-dom';
-import './Header.css'; // Alterado para header.css
-import Logo from '../components/images/logo/logo.png';
+import './Header.css';
 
-const Header = ({ search, setSearch, searchproduct }) => {
+const Header = () => {
   return (
-    <div className='header'>
-      <div className='mid_header'>
-        {/* Logo */}
-        <div className='logo'>
-          <img className='Logo' src={Logo} alt='logo' />
-        </div>
-
-        {/* Caixa de pesquisa */}
-        <div className='search_box'>
-          <input
-            type='text'
-            value={search}
-            placeholder='Pesquisar'
-            onChange={(e) => setSearch(e.target.value)}
-          />
-          <button onClick={searchproduct}>
-            <AiOutlineSearch />
-          </button>
-        </div>
-
-        {/* Navegação */}
-        <div className='nav'>
-          <ul>
-            <li>
-              <Link to='/' className='link'>Home</Link>
-            </li>
-            <li>
-              <Link to='/shop' className='link'>Loja</Link>
-            </li>
-            <li>
-              <Link to='/cart' className='link'>Carrinho</Link>
-            </li>
-            <li>
-              <Link to='/contact' className='link'>Contato</Link>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
+    <header className="header">
+      <img src="/path-to-your-logo.png" alt="Logo" className="logo" />
+      <input type="text" placeholder="Search..." className="search-bar" />
+      <div className="icon profile-icon">👤</div>
+      <div className="icon menu-icon">☰</div>
+    </header>
   );
-}
+};
 
 export default Header;
