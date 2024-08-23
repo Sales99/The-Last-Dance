@@ -13,27 +13,25 @@
   }
   
   .logo {
-    width: 50px; /* Ajuste o tamanho da logo conforme necessário */
+    width: 125px; /* Ajuste o tamanho da logo conforme necessário */
     height: auto;
     margin-right: 20px;
   }
   
   .search-bar {
     flex: 1;
-    margin-right: 10px;
+    margin-right: 200px;
+    margin-left: 200px;
     padding: 8px;
     border-radius: 4px;
     border: 1px solid #ccc;
   }
   
   .icon {
-    font-size: 24px;
+    font-size: 33px;
     cursor: pointer;
     color: white;
     margin-right: 10px;
   }
   
-  .menu-icon {
-    font-size: 28px; /* Ajuste o tamanho do ícone de menu conforme necessário */
-  }
   

@@ -5,11 +5,10 @@ import './Header.css';
 const Header = () => {
   return (
     <header className="header">
-      <img src="/path-to-your-logo.png" alt="Logo" className="logo" />
+      <img src="/src/assets/images/logo.png" alt="Logo" className="logo" />
       <input type="text" placeholder="Search..." className="search-bar" />
-      <div className="icon profile-icon">👤</div>
-      <div className="icon menu-icon">☰</div>
-    </header>
+        <img src="/src/assets/images/perfil.png" alt="Perfil" className='icon' />
+      </header>
   );
 };
 
