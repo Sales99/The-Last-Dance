@@ -10,7 +10,7 @@ const Main = () => {
   const scrollRight = () => {
     document.getElementById('carousel').scrollLeft += 100;
   };
-
+ 
   return (
     <main className="main-content">
 
