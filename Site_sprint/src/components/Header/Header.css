@@ -1,15 +1,14 @@
 /* src/components/Header/Header.css */
 .header {
     background-color: orange;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr 1fr;
+    gap: 20px;
     align-items: center;
-    padding: 10px 20px;
+    padding: 12px;
     width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000; /* Garante que o header fique sobre outros elementos */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra sutil */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra sutil */
+    margin-bottom: 32px;
   }
   
   .logo {
@@ -19,19 +18,14 @@
   }
   
   .search-bar {
-    flex: 1;
-    margin-right: 200px;
-    margin-left: 200px;
     padding: 8px;
     border-radius: 4px;
     border: 1px solid #ccc;
   }
   
-  .icon {
-    font-size: 33px;
+  .icon1 {
+    margin-left: 320px;
     cursor: pointer;
-    color: white;
-    margin-right: 10px;
   }
   
   

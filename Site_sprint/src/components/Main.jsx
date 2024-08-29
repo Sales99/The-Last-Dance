@@ -13,51 +13,63 @@ const Main = () => {
 
   return (
     <main className="main-content">
-      <section className="icons-section">
-        <button className="carousel-btn" onClick={scrollLeft}>{'<'}</button>
+
+      <section className="icons-section"> {/* Aqui que começaa sessão de Icons */}
+
+        <button className="carousel-btn" onClick={scrollLeft}>{'<'}</button> {/* Seta para esquerda(move itens para esquerda) */}
         <div className="carousel" id="carousel">
+          {/* _______________________ */}
           <div className="icon-item">
             <img src="/src/assets/images/matematica.png" alt="Matemática" className="icon" />
             <br />
-            <span>matemática</span>
+            <span>Matemática</span>
           </div>
+          {/* _______________________ */}
           <div className="icon-item">
             <img src="/src/assets/images/historia.png" alt="História" className="icon" />
             <br />
-            <span>história</span>
+            <span>História</span>
           </div>
+          {/* _______________________ */}
           <div className="icon-item">
             <img src="/src/assets/images/portugues.png" alt="Português" className="icon" />
             <br />
-            <span>português</span>
+            <span>Português</span>
           </div>
+          {/* _______________________ */}
           <div className="icon-item">
             <img src="/src/assets/images/geografia.png" alt="Geografia" className="icon" />
             <br />
-            <span>geografia</span>
+            <span>Geografia</span>
           </div>
+          {/* _______________________ */}
           <div className="icon-item">
             <img src="/src/assets/images/biologia.png" alt="Biologia" className="icon" />
             <br />
-            <span>biologia</span>
+            <span>Biologia</span>
           </div>
+          {/* _______________________ */}
           <div className="icon-item">
             <img src="/src/assets/images/quimica.png" alt="Química" className="icon" />
             <br />
-            <span>química</span>
+            <span>Química</span>
           </div>
+          {/* _______________________ */}
           <div className="icon-item">
             <img src="/src/assets/images/fisica.png" alt="Física" className="icon" />
             <br />
-            <span>física</span>
+            <span>Física</span>
           </div>
+          {/* _______________________ */}
           <div className="icon-item">
             <img src="/src/assets/images/sociologia.png" alt="Sociologia" className="icon" />
             <br />
-            <span>sociologia</span>
+            <span>Sociologia</span>
           </div>
+          {/* _______________________ */}
         </div>
-        <button className="carousel-btn" onClick={scrollRight}>{'>'}</button>
+
+        <button className="carousel-btn" onClick={scrollRight}>{'>'}</button> {/* Seta para direita(move itens para direita) */}
       </section>
       {/* Outras seções como perguntas e rodapé */}
     </main>

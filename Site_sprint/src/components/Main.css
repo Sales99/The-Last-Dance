@@ -1,54 +1,58 @@
 /* src/components/Main.css */
+
+/* Conteudo principal */
 .main-content {
-    display: flex;
-    justify-content: center; /* Centraliza horizontalmente */
-    align-items: flex-start; /* Alinha o conteúdo no topo, mais próximo ao header */
-    flex-direction: column; /* Organiza o carrossel em uma coluna */
-    min-height: 100vh;
-    margin-top: -40vh; /* Aproxima o carrossel do header */
-    margin-left: 40vh;
-  }
-  
-  .icons-section {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: -20px; /* Reduz a margem superior para aproximar do header */
-  }
-  
-  .carousel {
-    display: flex;
-    overflow-x: scroll;
-    scroll-behavior: smooth;
-    width: 60%; /* Ajuste a largura conforme necessário */
-    max-width: 800px; /* Limita a largura máxima do carrossel */
-    padding: 10px; /* Adiciona um pouco de padding para evitar que os ícones fiquem muito na borda */
-  }
-  
-  .icon-item {
-    flex: 0 0 auto;
-    text-align: center;
-    margin: 0 15px; /* Ajusta a margem entre os ícones */
-  }
-  
-  .icon {
-    width: 50px;
-    height: 50px;
-    margin-bottom: 5px;
-  }
-  
-  .carousel-btn {
-    background-color: #fce4ec;
-    border: none;
-    padding: 10px;
-    font-size: 18px;
-    cursor: pointer;
-    border-radius: 50%;
-    margin: 0 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  }
-  
-  .carousel::-webkit-scrollbar {
-    display: none; /* Remove a barra de rolagem */
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Alinha no topo */
+  flex-direction: column; /* Itens organizados em coluna */
+  max-width: 100%;
+}
+
+.icons-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -20px; /* Aproxima os ícones do header */
+  max-width: 100%;
+}
+
+.carousel {
+  display: flex;
+  overflow-x: scroll; /* Rolagem horizontal */
+  scroll-behavior: smooth; /* Rolagem suave */
+  width: 60%;
+  max-width: 800px;
+  padding: 10px;
+}
+
+.icon-item {
+  text-align: center;
+  margin: 10px;
+}
+
+.icon-item span {
+  font-size: 16px;
+  color: black;
+}
+
+.icon {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 5px;
+}
+
+.carousel-btn {
+  background-color: #fce4ec;
+  border: none;
+  padding: 10px;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 50%;
+  margin: 0 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Adiciona sombra suave */
+}
+
+.carousel::-webkit-scrollbar {
+  display: none; /* Remove a barra de rolagem */
+}
