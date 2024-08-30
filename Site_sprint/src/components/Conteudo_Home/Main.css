@@ -31,7 +31,11 @@
   text-align: center;
   margin: 10px;
   cursor: pointer;
-  transition: ;
+  transition: background-color 0.8s ease;
+}
+
+.icon-item:hover {
+  background-color: rgba(0, 0, 0, 0.149);
 }
 
 .icon-item span {
