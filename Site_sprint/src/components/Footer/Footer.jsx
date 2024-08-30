@@ -32,6 +32,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
+      <br />
       <div className="footer-bottom">
         <p>© Copyright 2024 Copyright.com.br - All Rights Reserved</p>
       </div>

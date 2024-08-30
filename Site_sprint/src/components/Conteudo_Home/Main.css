@@ -3,9 +3,9 @@
 /* Conteudo principal */
 .main-content {
   display: flex;
-  justify-content: center;
   align-items: flex-start; /* Alinha no topo */
   flex-direction: column; /* Itens organizados em coluna */
+  height: 400px;
   width: 100%;
 }
 
