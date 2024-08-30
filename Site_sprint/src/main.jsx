@@ -1,7 +1,8 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import App from './App.jsx'
+import App from './Pages/Home/Home.jsx'
 import './index.css'
+import Chatbot from './components/Chatbot/Bot.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
