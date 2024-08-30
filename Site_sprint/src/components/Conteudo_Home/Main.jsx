@@ -69,7 +69,7 @@ const Main = () => {
           {/* _______________________ */}
         </div>
 
-        <button className="carousel-btn" onClick={scrollRight}>{'>'}</button> {/* Seta para direita(move itens para direita) */}
+        <button className="carousel-btn" onClick={scrollRight}>{'>'}</button> {/* Seta para direita(move itens para direita)   */}
       </section>
       {/* Outras seções como perguntas e rodapé */}
     </main>
