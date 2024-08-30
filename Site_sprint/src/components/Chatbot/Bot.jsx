@@ -10,7 +10,7 @@ const Chatbot = () => {
   }, []);
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', backgroundColor: '#f4f4f4', position: 'relative' }}>
+    <div style={{ height: '80vh', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#f4f4f4' }}>
       {/* Chatbot do Dialogflow */}
       <df-messenger
         chat-title="BrainlyPirata"
