@@ -1,20 +1,18 @@
-// src/App.jsx
 import React from 'react';
-import Header from '../../components/Header/Header';
+import Header from '../../components/Header/Header'; // Verifique os caminhos
 import Main from '../../components/Conteudo_Home/Main';
 import Footer from '../../components/Footer/Footer';
 import Chatbot from '../../components/Chatbot/Bot';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-const App = () => {
+const HomePage = () => {
   return (
     <div>
       <Header />
       <Main />
-      <Chatbot/>
-      <Footer/>
+      <Chatbot />
+      <Footer />
     </div>
   );
 };
 
-export default App;
+export default HomePage;

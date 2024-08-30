@@ -31,7 +31,9 @@
   text-align: center;
   margin: 10px;
   cursor: pointer;
-  transition: background-color 0.8s ease;
+  transition: background-color 1s ease;
+  padding: 12px 12px;
+  border-radius: 16px;
 }
 
 .icon-item:hover {
@@ -61,7 +63,10 @@
   border-radius: 50%;
   box-shadow: none;
   margin: 10px;
+  transition: width 0.8s ease;
 }
+
+.carousel-btn
 
 .carousel-btn:focus {
   outline: none;

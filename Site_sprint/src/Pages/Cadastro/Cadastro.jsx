@@ -4,7 +4,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth, fetchSignInMethodsForEmail, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import Alert from 'react-bootstrap/Alert';
 import Spinner from 'react-bootstrap/Spinner';
-import Image from '../../images/Mulher_Abrindo_Porta_Prime.png'
+// import Image from '../../images/Mulher_Abrindo_Porta_Prime.png'
 import './Cadastro.css';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
@@ -83,7 +83,7 @@ export function Cadastro() {
             <br /><br /><br /><br />
             <div className="Cadastro_container">
                 <div className="Cadastro_Esquerda">
-                    <img src={Image} className="Imagem_Cadastro" alt="Image_Login"></img>
+                    {/* <img src={Image} className="Imagem_Cadastro" alt="Image_Login"></img> */}
                 </div>
                 <div className="Cadastro_Direita">
                     <div className="Cadastro_TItulo">
