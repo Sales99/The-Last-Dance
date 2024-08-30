@@ -30,6 +30,12 @@
 .icon-item {
   text-align: center;
   margin: 10px;
+  cursor: pointer;
+  transition: background-color 0.8s ease;
+}
+
+.icon-item:hover {
+  background-color: rgba(0, 0, 0, 0.149);
 }
 
 .icon-item span {
@@ -44,14 +50,22 @@
 }
 
 .carousel-btn {
-  background-color: #fce4ec;
+  background: none;
+  color: black;
+  font-weight: 600;
+  outline: none;
   border: none;
   padding: 10px;
-  font-size: 18px;
+  font-size: 20px;
   cursor: pointer;
   border-radius: 50%;
-  margin: 0 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Adiciona sombra suave */
+  box-shadow: none;
+  margin: 10px;
+}
+
+.carousel-btn:focus {
+  outline: none;
+  box-shadow: none;
 }
 
 .carousel::-webkit-scrollbar {

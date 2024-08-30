@@ -13,7 +13,7 @@ const Chatbot = () => {
     <div>
       {/* Chatbot do Dialogflow */}
       <df-messenger
-        chat-title="BrainlyPirata"
+        chat-title="PrimeBot"
         agent-id="1d841dbd-df65-48e2-a641-64c8e7fcbae9"
         language-code="pt-br"
         style={{ position: 'relative', zIndex: 2 }}  // Certificando que o chatbot está acima dos outros elementos
