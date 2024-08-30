@@ -18,14 +18,21 @@
   }
   
   .search-bar {
-    padding: 8px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
+    padding: 16px;
+    font-size: 14px;
+    border-radius: 12px;
+    outline: none;
+    border: none;
   }
   
   .icon1 {
     margin-left: 320px;
+    height: 52px;
     cursor: pointer;
+    transition: color 0.8s ease;
   }
   
+  .icon1:hover {
+    color: rgb(0, 0, 0);
+  }
   
