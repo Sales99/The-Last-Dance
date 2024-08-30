@@ -10,12 +10,13 @@ const Chatbot = () => {
   }, []);
 
   return (
-    <div style={{ height: '80vh', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#f4f4f4' }}>
+    <div>
       {/* Chatbot do Dialogflow */}
       <df-messenger
         chat-title="BrainlyPirata"
         agent-id="1d841dbd-df65-48e2-a641-64c8e7fcbae9"
         language-code="pt-br"
+        style={{ position: 'relative', zIndex: 2 }}  // Certificando que o chatbot está acima dos outros elementos
       ></df-messenger>
     </div>
   );

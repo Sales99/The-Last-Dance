@@ -2,16 +2,15 @@
 .footer {
     background-color: #034F71;
     color: #fff;
-    padding: 20px 0;
+    padding: 26px 12px;
     width: 100%;
-    position: fixed;
   }
   
   .footer-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
+    /* max-width: 1200px; */
     margin: 0 auto;
     padding: 0 20px;
   }
@@ -36,9 +35,10 @@
     text-decoration: none;
     font-size: 16px;
   }
-  
-  .footer-social h4 {
-    margin-bottom: 10px;
+
+  .footer-social {
+    text-align: center;
+    margin-right: 50px;
   }
   
   .social-icons {

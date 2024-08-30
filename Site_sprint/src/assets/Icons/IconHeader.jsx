@@ -1,6 +1,6 @@
 import React from 'react';
 
-const IconH = (props) => (
+const IconHeader = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     className='icon1'
@@ -14,4 +14,4 @@ const IconH = (props) => (
   </svg>
 );
 
-export default IconH;
+export default IconHeader;
