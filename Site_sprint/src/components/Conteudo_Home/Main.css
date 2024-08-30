@@ -63,10 +63,12 @@
   border-radius: 50%;
   box-shadow: none;
   margin: 10px;
-  transition: width 0.8s ease;
+  transition: font-size 0.5s ease;
 }
 
-.carousel-btn
+.carousel-btn:hover {
+  font-size: 26px;
+}
 
 .carousel-btn:focus {
   outline: none;
