@@ -1,0 +1,266 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+
+.Cadastro_container {
+    /* border: 1px solid black; */
+    width: 100%;
+    display: flex;
+    /* margin-top: 20px; */
+}
+
+.Cadastro_Esquerda {
+    /* border: 1px solid black; */
+    margin-top: 70px;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    /* border: 1px solid black; */
+    justify-content: center;
+}
+
+.Imagem_Cadastro{
+    width: 80%;
+    height: 80%;
+    display: flex;
+    justify-self: center;
+    /* border: 1px solid black; */
+}
+
+.Cadastro_Direita {
+    /* border: 1px solid black; */
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 50px;
+}
+
+.Cadastro_TItulo {
+    /* border: 1px solid black; */
+    width: 100%;
+    display: flex;
+    margin-bottom: 3vw;
+    
+}
+
+.Cadastro_TItulo h1 {
+    /* border: 1px solid black; */
+
+    font-size: 4vw;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    font-weight: bold;
+}
+
+.Formulario_Cadastro {
+    /* border: 1px solid black; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 10px 20px 10px;
+    width: 100%;
+    height: 370px;
+}
+
+.Inputs_Cadastro {
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid black; */
+    width: 100%;
+    
+}
+
+.Inputs_email_cadastro {
+    display: flex;
+    flex-direction: column;
+}
+
+.Inputs_email_cadastro label, .Inputs_senha_cadastrar label {
+    font-size: medium;
+    color: black;
+    font-weight: bold;
+}
+
+.Inputs_email_cadastro input, .Inputs_senha_cadastrar input {
+    border-radius: 10px 0 10px 0;
+    padding: 2px;
+    border: 1px solid block;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Adiciona uma sombra */
+    height: 4vw;
+    width: 100%;
+}
+
+.Inputs_senha_cadastrar {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.EnviarFormularioCadastro {
+    /* border: 1px solid black; */
+    gap: 20px;
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.EnviarFormularioCadastro .Spinner{
+    display: block;
+    width: 50px;
+    height: 50px;
+}
+
+.Btn_EnviarFormulario_cadastro {
+    padding: 2px;
+    border-radius: 5px 20px 5px 20px;
+    width: 50%;
+    height: 50px;
+    transition: 0.5s ease;
+    background-color: #88B8DA;
+    display: block;
+}
+
+.Btn_EnviarFormulario_cadastro:hover {
+    border-radius: 20px 5px 20px 5px;
+}
+
+.Aviso_de_erro_cadastro {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+
+.Entrar {
+    font-size: 20px;
+}
+
+.Txt_Login {
+    font-size: 30px;
+
+}
+
+.Txt_Login .Btn_Login {
+    margin-left: 10px;
+    text-decoration: none;
+}
+
+.Txt_Login .Btn_Login:hover{
+    text-decoration: underline;
+}
+
+.Login_Google {
+    /* border: 1px solid black; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.Login_Google p{
+    font-size: 2vw;
+}
+
+.Fundo_Google {
+    background: linear-gradient(to bottom, #4d90fe, #357ae8 40%, #357ae8 60%, #4d90fe);
+    /* Adicione outras propriedades de estilo conforme necessário */
+    background-clip: text;
+    color: transparent;
+    transition: background 0.5s ease;
+  }
+
+  .bi-google {
+    font-size: 50px;
+  }
+  
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 992px) {
+    .Inputs_Cadastro {
+        flex-direction: column;
+        justify-content: center;
+        width: 500px;
+    }
+    .Cadastro_container {
+        flex-direction: column;
+    }
+    .Cadastro_Esquerda {
+        margin-top: 0;
+        width: 100%;
+    }
+    .Imagem_Cadastro {
+        width: 50%;
+        height: 50%;
+    }
+
+    .Cadastro_Direita {
+        width: 100%;
+    }
+
+    .Cadastro_Direita {
+        padding-top: 20px
+    }
+
+    .Cadastro_TItulo {
+        margin-bottom: 1vw;
+    }
+    .Inputs_email_cadastro input, .Inputs_senha_cadastrar input {
+        height: 30px;
+    }
+    .Formulario_Cadastro {
+        height: 200px;
+    }
+    .Login_Google p{
+        font-size: 4vw;
+    }
+  }
+
+  @media (max-width: 632px) {
+    .Inputs_Cadastro {
+        flex-direction: column;
+        width: 50%;
+    }
+
+    .Formulario_Cadastro {
+        height: 300px;
+    }
+
+    .Opcoes_adicionais {
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+    }
+    .Txt_Login {
+        font-size: 20px;
+    
+    }
+  }
+  
+  .Inputs_senha_cadastrar i {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+
+  .Input_senha_container {
+    position: relative;
+  }
+
+  .olho-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
