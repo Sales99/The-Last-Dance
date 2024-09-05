@@ -1,4 +1,4 @@
-/* Conteudo principal */
+/* Conteúdo principal */
 .main-content {
   display: flex;
   align-items: flex-start; /* Alinha no topo */
@@ -86,10 +86,4 @@
 .icon-title {
   color: black;
   margin-left: 120px;
-  transition: opacity 0.3s ease; /* Transição suave para a mudança de opacidade */
-}
-
-/* Se o título não estiver visível, mantém a opacidade */
-.icon-title.hidden {
-  opacity: 0;
 }
