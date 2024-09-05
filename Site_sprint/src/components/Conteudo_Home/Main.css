@@ -1,9 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@400;700&display=swap');
+
 /* Conteúdo principal */
 .main-content {
   display: flex;
   align-items: flex-start; /* Alinha no topo */
   flex-direction: column; /* Itens organizados em coluna */
-  height: 400px;
+  /* height: 400px; */
   width: 100%;
 }
 
@@ -86,4 +88,95 @@
 .icon-title {
   color: black;
   margin-left: 120px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-size: 46px;
+  font-weight: 400;
+}
+
+/* ____________________________________________ */
+
+.ContainerQ {
+  background-color: #97BF41;
+  margin-left: 130px;
+  padding: 14px;
+  display: flex;
+  border-radius: 12px;
+  flex-direction: column; /* Muda a direção para coluna */
+  width: 63%; /* Defina uma largura adequada para o layout */
+  margin-bottom: 40px;
+  box-shadow: -5px 6px 8px rgba(0, 0, 0, 0.5);
+}
+
+.ParteCima {
+  display: flex;
+  justify-content: space-between; /* Alinha as colunas à esquerda e à direita */
+  align-items: center; /* Centraliza verticalmente os elementos */
+  width: 100%;
+}
+
+.Esquerda {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.FotoPerfil {
+  width: 62px;
+  height: 62px;
+  max-height: 62px;
+  max-width: 62px;
+  border-radius: 100%;
+  margin-right: 16px;
+  margin-left: 8px;
+  margin-top: 6px;
+  border: 3px solid black;
+}
+
+.NomePerfil {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+  font-family: 'Inknut Antiqua', serif;
+}
+
+.Direita {
+  font-size: 17px;
+  font-weight: 700;
+  margin-right: 30px;
+  color: rgb(83, 83, 83);
+}
+
+.ParteMeio {
+  margin-top: 8px; /* Espaçamento para separar da parte de cima */
+  font-size: 14px;
+  text-align: justify;
+  font-family: 'Inknut Antiqua', serif;
+  font-weight: 500;
+  color: black;
+  margin-left: 72px;
+  margin-right: 26px;
+}
+
+.ParteBaixo {
+  display: flex;
+  justify-content: space-between; /* Alinha os itens às extremidades */
+  margin-top: 16px; /* Espaçamento acima */
+  font-size: 16px; /* Ajuste o tamanho da fonte conforme necessário */
+  font-family: 'Inknut Antiqua', serif; /* Fonte para os itens */
+}
+
+.Responder {
+  margin-left: 72px;
+  cursor: pointer;
+  transition: color 0.5s ease;
+}
+
+.Respostas {
+  margin-right: 26px;
+  cursor: pointer;
+  transition: color 1s ease;
+}
+
+.Responder:hover, .Respostas:hover {
+  color: rgb(88, 88, 88);
 }
