@@ -1,5 +1,3 @@
-/* src/components/Main.css */
-
 /* Conteudo principal */
 .main-content {
   display: flex;
@@ -31,12 +29,17 @@
   text-align: center;
   margin: 10px;
   cursor: pointer;
-  transition: background-color 1s ease;
+  transition: background-color 0.3s ease; /* Transição mais rápida */
   padding: 12px 12px;
   border-radius: 16px;
 }
 
 .icon-item:hover {
+  background-color: rgba(0, 0, 0, 0.149);
+}
+
+/* Fundo mais escuro ao selecionar */
+.icon-item.selected {
   background-color: rgba(0, 0, 0, 0.149);
 }
 
@@ -77,4 +80,16 @@
 
 .carousel::-webkit-scrollbar {
   display: none; /* Remove a barra de rolagem */
+}
+
+/* Estilo para o título */
+.icon-title {
+  color: black;
+  margin-left: 120px;
+  transition: opacity 0.3s ease; /* Transição suave para a mudança de opacidade */
+}
+
+/* Se o título não estiver visível, mantém a opacidade */
+.icon-title.hidden {
+  opacity: 0;
 }
