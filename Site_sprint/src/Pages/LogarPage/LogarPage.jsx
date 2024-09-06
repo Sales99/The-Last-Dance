@@ -74,7 +74,7 @@ export function LogarPage() {
             const result = await signInWithPopup(auth, provider);
             const user = result.user;
             console.log("Usuário autenticado com sucesso:", user);
-            navigate("/HomePage"); // Redireciona após o login
+            navigate("/Home"); // Redireciona após o login
         } catch (error) {
             console.error(error.message);
             setLatestError("Erro ao fazer login com o Google. Por favor, tente novamente mais tarde.");
