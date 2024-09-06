@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Main.css';
-import { questionsData } from '../../assets/Questions/perguntas'; // Importe os dados do assets.jsx
+import { questionsData } from '../../assets/Dados/perguntas'; // Importe os dados do assets.jsx
 import PlayFoto from '../../assets/images/PlayStore.png';
 
 const Main = () => {
