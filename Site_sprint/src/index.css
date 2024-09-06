@@ -8,9 +8,12 @@ a {
   text-decoration: inherit;
 }
 
-body {
+body, html {
   margin: 0;
-  place-items: center;
+  padding: 0;
+  height: 100%; /* Garantir que ocupem toda a altura */
+  width: 100%;
+  box-sizing: border-box;
   background-color: white;
 }
 
@@ -33,4 +36,11 @@ button {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+/* Adicionar altura mínima para o conteúdo principal */
+.main-content {
+  min-height: calc(100vh - 200px); /* Ajuste conforme a altura do footer */
+  padding-bottom: 20px; /* Espaço para o footer */
+  box-sizing: border-box;
 }
