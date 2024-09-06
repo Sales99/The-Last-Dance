@@ -1,286 +1,272 @@
-body {
-    margin: 0;
-    padding: 0;
-}
+/* Importa a fonte Inknut Antiqua */
+@import url('https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@400;700&display=swap');
 
-
-.Login_container {
-    /* border: 1px solid black; */
+/* Estilo para o container da página de login */
+.login-page {
+    background-color: #025373; /* Cor de fundo azul */
     width: 100%;
+    min-height: 100vh; /* Garantir que ocupe toda a altura da tela */
     display: flex;
-    /* margin-top: 20px; */
-}
-
-.Login_Esquerda {
-    /* border: 1px solid black; */
-    width: 50%;
-    height: 100%;
-    display: flex;
-    /* border: 1px solid black; */
     justify-content: center;
+    align-items: center;
+    font-family: 'Inknut Antiqua', serif; /* Aplica a fonte Inknut Antiqua */
 }
 
-.Imagem_Login{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-self: center;
-}
-
-.Login_Direita {
-    /* border: 1px solid black; */
-    width: 50%;
-    height: 100%;
+/* Estilo para o quadrado amarelo centralizado */
+.Login_Container_Central {
+    background-color: #FFEC5C; /* Cor de fundo amarelo */
+    width: 400px; /* Largura do quadrado */
+    padding: 20px; /* Espaçamento interno ajustado */
+    border-radius: 8px; /* Bordas arredondadas */
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2); /* Sombra do quadrado */
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 50px;
+    position: relative; /* Para posicionamento absoluto da imagem da logo */
+    font-family: 'Inknut Antiqua', serif; /* Aplica a fonte Inknut Antiqua */
+    overflow: hidden; /* Oculta qualquer overflow para evitar barras de rolagem */
 }
 
-.Login_Titulo {
-    /* border: 1px solid black; */
+/* Estilo do container principal de login */
+.Login_container {
     width: 100%;
     display: flex;
-    margin-bottom: 3vw;
-    
+    flex-direction: column; /* Ajusta para coluna para garantir melhor alinhamento */
+    font-family: 'Inknut Antiqua', serif; /* Aplica a fonte Inknut Antiqua */
+}
+
+/* Estilo para a seção direita */
+.Login_Direita {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px; /* Margem do topo */
+    font-family: 'Inknut Antiqua', serif; /* Aplica a fonte Inknut Antiqua */
+}
+
+/* Estilo do título de login */
+.Login_Titulo {
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Alinha o título no centro */
+    margin-bottom: 0.5rem; /* Margem ajustada */
+    font-family: 'Inknut Antiqua', serif; /* Aplica a fonte Inknut Antiqua */
 }
 
 .Login_Titulo h1 {
-    /* border: 1px solid black; */
-
-    font-size: 4vw;
+    font-size: 24px;
     text-align: center;
     width: 100%;
-    height: 100%;
     font-weight: bold;
 }
 
+/* Estilo do formulário de login */
 .Formulario_Login {
-    /* border: 1px solid black; */
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px 10px 20px 10px;
+    padding: 20px; /* Padding ajustado */
     width: 100%;
-    height: 370px;
+    font-family: 'Inknut Antiqua', serif; /* Aplica a fonte Inknut Antiqua */
 }
 
+/* Estilo dos campos de entrada */
 .Inputs {
-    gap: 20px;
+    gap: 10px; /* Espaço entre os campos aumentado */
     display: flex;
     flex-direction: column;
-    /* border: 1px solid black; */
     width: 100%;
-    
 }
 
-.Inputs_email {
-    display: flex;
-    flex-direction: column;
-}
-
+/* Estilo dos labels dos campos de entrada */
 .Inputs_email label, .Inputs_senha label {
-    font-size: medium;
+    font-size: medium; /* Tamanho da fonte ajustado */
     color: black;
     font-weight: bold;
+    font-family: 'Inknut Antiqua', serif; /* Aplica a fonte Inknut Antiqua */
 }
 
+/* Estilo dos campos de entrada */
 .Inputs_email input, .Inputs_senha input {
-    border-radius: 10px 0 10px 0;
-    padding: 2px;
-    border: 1px solid block;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Adiciona uma sombra */
-    height: 4vw;
-    width: 100%;
+    border-radius: 10px;
+    padding: 10px;
+    border: 1px solid black;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    height: 40px;
+    width: calc(100% - 20px); /* Ajusta a largura para incluir padding */
 }
 
-.Inputs_senha {
-    display: flex;
-    flex-direction: column;
-}
-
+/* Estilo para opções adicionais */
 .Opcoes_adicionais {
-    margin-top: 20px;
+    margin-top: 10px; /* Margem ajustada */
     width: 100%;
     display: flex;
-    gap: 30px;
-    /* border: 1px solid black; */
-    justify-content: center;
+    align-items: center; /* Alinha os itens verticalmente */
+    font-family: 'Inknut Antiqua', serif; /* Aplica a fonte Inknut Antiqua */
+    position: relative; /* Para posicionar o botão "Esqueci a Senha" */
 }
 
-/* Estilizando a caixa de seleção */
+/* Estilo para a caixa de seleção "Lembrar de mim" */
+.LembrarDeMim {
+    display: flex;
+    align-items: center; /* Alinha verticalmente a caixa de seleção e o texto */
+    margin-top: 5px;
+    flex: 1; /* Faz com que ocupe todo o espaço disponível */
+}
+
+/* Estilo para a caixa de seleção */
 .LembrarDeMim input[type="checkbox"] {
-    transform: scale(1.7); /* Ajusta o tamanho da caixa */
-    /* Outras propriedades de estilo, se necessário */
+    transform: scale(1.1); /* Ajusta o tamanho da caixa de seleção */
 }
 
-.LembrarDeMim label{
-    font-size: 20px;
-    margin-left: 6px;
+/* Estilo para o label "Lembrar de mim" */
+.LembrarDeMim label {
+    font-size: 0.65rem; /* Tamanho da fonte reduzido */
+    margin-left: 5px; /* Margem ajustada */
 }
 
+/* Estilo para o botão "Esqueci a Senha" */
 .Btn_EsqueceuSenha {
+    position: absolute; /* Para posicionar o botão no canto direito */
+    right: 0; /* Alinha o botão à direita */
+    top: 0; /* Alinha o botão ao topo */
+    padding: 8px; /* Ajusta o espaçamento interno */
+    border-radius: 5px; /* Bordas arredondadas */
+    text-align: center; /* Garante que o texto esteja centralizado */
+    text-decoration: none; /* Remove o sublinhado do link, se for um link */
+    display: inline-flex; /* Usa Flexbox para alinhamento */
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+    font-size: 0.7rem; /* Tamanho da fonte */
+    transition: 0.3s ease; /* Transição suave para o hover */
+    margin-top: -4.5px;
     cursor: pointer;
-    text-decoration: none;
-    font-size: 20px;
 }
 
+/* Estilo para o botão de envio */
 .EnviarFormulario {
-    /* border: 1px solid black; */
-    gap: 20px;
-    margin-top: 20px;
+    margin-top: 10px; /* Margem ajustada */
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: row;
+    flex-direction: column; /* Ajusta a direção para coluna */
 }
 
-.EnviarFormulario .Spinner{
-    display: block;
-    width: 50px;
-    height: 50px;
+.EnviarFormulario .Spinner {
+    width: 25px; /* Tamanho reduzido do spinner */
+    height: 25px;
 }
 
 .Btn_EnviarFormulario {
-    padding: 2px;
-    border-radius: 5px 20px 5px 20px;
-    width: 50%;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    text-align: center;
+    width: 100%;
     height: 50px;
     transition: 0.5s ease;
-    background-color: #88B8DA;
-    display: block;
+    background-color: #025373;
+    border: none;
+    color: white;
+    font-size: 16px;
 }
 
-.Btn_EnviarFormulario:hover {
-    border-radius: 20px 5px 20px 5px;
+ .Btn_EnviarFormulario:hover{ 
+    background-color: #6ba8d9;
+} 
+
+/* Estilo para a mensagem de erro e sucesso */
+.Aviso_de_erro, .Aviso_de_info {
+    margin-top: 10px; /* Margem ajustada */
+    width: 100%;
+    font-family: 'Inknut Antiqua', serif; /* Aplica a fonte Inknut Antiqua */
 }
 
-.Aviso_de_erro {
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-
+/* Estilo para o texto de cadastro */
 .Cadastre-se {
-    font-size: 20px;
+    font-size: 0.65rem; /* Tamanho da fonte reduzido */
+    font-family: 'Inknut Antiqua', serif; /* Aplica a fonte Inknut Antiqua */
 }
 
+/* Estilo para o link de cadastro */
 .Txt_Cadastro {
-    font-size: 30px;
+    font-size: 16px;
 }
 
 .Txt_Cadastro .Btn_Cadastro {
-    margin-left: 10px;
+    margin-left: 5px;
     text-decoration: none;
 }
 
-.Txt_Cadastro .Btn_Cadastro:hover{
+.Txt_Cadastro .Btn_Cadastro:hover {
     text-decoration: underline;
 }
 
+/* Estilo para login com Google */
 .Login_Google {
-    /* border: 1px solid black; */
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    width: 100%; /* Ajusta a largura para ser igual às caixas de texto */
 }
 
-.Login_Google p{
-    font-size: 2.5vw;
+.Login_Google p {
+    font-size: 0.6rem; /* Diminui o tamanho do texto "Logar também com" */
+    margin-bottom: 8px; /* Aumenta a distância entre o texto e o botão */
 }
 
-.Fundo_Google {
-    background: linear-gradient(to bottom, #4d90fe, #357ae8 40%, #357ae8 60%, #4d90fe);
-    /* Adicione outras propriedades de estilo conforme necessário */
-    background-clip: text;
-    color: transparent;
-    transition: background 0.5s ease;
-  }
+.Btn_EntrarGoogle {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff; /* Cor de fundo do botão */
+    border: 1px solid #ddd; /* Borda do botão */
+    border-radius: 4px; /* Bordas arredondadas */
+    padding: 8px 12px; /* Espaçamento interno do botão */
+    font-size: 0.65rem; /* Tamanho da fonte ajustado */
+    cursor: pointer; /* Muda o cursor para pointer */
+    transition: background-color 0.3s ease; /* Transição suave para a cor de fundo */
+    gap: 8px; /* Espaçamento entre o ícone e o texto */
+}
 
-  .bi-google {
-    font-size: 50px;
-  }
-  
+.Btn_EntrarGoogle:hover {
+    background-color: #f0f0f0; /* Cor de fundo ao passar o mouse */
+}
 
-/* RESPONSIVIDADE */
+.Btn_EntrarGoogle svg {
+    margin-bottom: 0; /* Ajusta a posição do ícone para alinhamento */
+}
 
-@media (max-width: 992px) {
+@media (max-width: 632px) {
     .Inputs {
-        flex-direction: row;
-        justify-content: center;
-    }
-    .Login_container {
         flex-direction: column;
-    }
-    .Login_Esquerda {
-        width: 100%;
-    }
-    .Imagem_Login {
-        width: 50%;
-        height: 50%;
-    }
-
-    .Login_Direita {
         width: 100%;
     }
 
-    .Login_Direita {
-        padding-top: 20px
-    }
-
-    .Login_Titulo {
-        margin-bottom: 1vw;
-    }
-    .Inputs_email input, .Inputs_senha input {
-        height: 30px;
-    }
     .Formulario_Login {
-        height: 200px;
-    }
-    .Login_Google p{
-        font-size: 4vw;
-    }
-  }
-
-  @media (max-width: 632px) {
-    .Inputs {
-        flex-direction: column;
-        width: 50%;
-    }
-
-    .Formulario_Login {
-        height: 300px;
+        height: auto; /* Ajusta a altura do formulário */
     }
 
     .Opcoes_adicionais {
-        flex-direction: column;
-        align-items: center;
-        gap: 0;
+        gap: 5px; /* Reduz o espaço entre os itens */
     }
+
     .Txt_Cadastro {
-        font-size: 20px;
-    }    
-  }
-  
-  .Inputs_senha i {
-    position: absolute;
-    right: 100px;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    border: 1px solid black;
-  }
+        font-size: 0.75rem; /* Tamanho da fonte ajustado */
+    }
 
-  .olho-icon {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-  }
+    /* Ajusta o padding e a largura dos campos de input para telas menores */
+    .Inputs_email input, .Inputs_senha input {
+        width: calc(100% - 20px); /* Ajusta a largura para incluir padding */
+        padding: 8px; /* Ajusta o padding dos inputs */
+    }
 
-  .Input_senha_container {
-    position: relative;
-  }
+    .Login_Container_Central {
+        width: 90%; /* Ajusta a largura do container em telas menores */
+        padding: 15px; /* Ajusta o padding do container */
+    }
+}
