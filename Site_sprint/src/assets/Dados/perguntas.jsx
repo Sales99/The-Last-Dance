@@ -7,7 +7,7 @@ export const questionsData = [
     fotoPerfil: FotoPerfil1,
     nome: 'Neymar Crackudo',
     tempo: '2 dias',
-    descricao: 'Lorem ipsum dolor sit amet consectetur adipisicing elit...',
+    descricao: 'Da ban no bruno esse corno',
     materia: 'Matemática',
   },
   {
