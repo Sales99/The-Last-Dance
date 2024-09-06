@@ -1,10 +1,11 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import App from './Pages/Home/App.jsx'
-import './index.css'
+import React from 'react';
+import ReactDOM from 'react-dom/client'; // Importando ReactDOM
+import './index.css';
+import Rotas from './Rotas';
+import { BrowserRouter } from 'react-router-dom';
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-)
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <BrowserRouter>
+    <Rotas />
+  </BrowserRouter>
+);
