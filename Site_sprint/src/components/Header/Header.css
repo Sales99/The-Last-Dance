@@ -28,6 +28,7 @@
   .icon1 {
     margin-left: 320px;
     height: 52px;
+    color: white;
     cursor: pointer;
     transition: color 0.8s ease;
   }

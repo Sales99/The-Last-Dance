@@ -7,7 +7,7 @@ export const questionsData = [
     fotoPerfil: FotoPerfil1,
     nome: 'Neymar Crackudo',
     tempo: '2 dias',
-    descricao: 'Da ban no bruno esse corno',
+    descricao: 'Bruno, quanto é 3 Páginas nossa -1 do Juan?',
     materia: 'Matemática',
   },
   {
