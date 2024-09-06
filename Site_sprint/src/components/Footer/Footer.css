@@ -3,7 +3,7 @@
   background-color: #034F71;
   color: #fff;
   padding: 26px 12px;
-  width: 100%;
+  width: 1495px;
   margin-top: 80px;
   min-height: 200px; /* Usa min-height em vez de height */
   display: flex;
@@ -53,6 +53,12 @@
 .social-icons img {
   width: 40px;
   height: 40px;
+  transition: width 0.5s ease, height 0.5s ease;
+}
+
+.social-icons img:hover {
+  width: 45px;
+  height: 45px;
 }
 
 .footer-bottom {
@@ -60,4 +66,9 @@
   margin-top: 20px;
   font-size: 14px;
   color: #fff;
+}
+
+.faceI {
+  background-color: white;
+  border-radius: 100%;
 }
