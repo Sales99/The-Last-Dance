@@ -2,13 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import { initializeApp } from "firebase/app";
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, sendPasswordResetEmail } from 'firebase/auth';
-import { collection, getFirestore, query, where, getDocs } from 'firebase/firestore';
 import { getAnalytics } from "firebase/analytics";
 import Alert from 'react-bootstrap/Alert';
 import Spinner from 'react-bootstrap/Spinner';
 import './Logar.css';
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import { FaGoogle } from 'react-icons/fa';
+import { FaEye, FaEyeSlash, FaGoogle } from 'react-icons/fa';
 
 const firebaseConfig = {
     apiKey: "AIzaSyDYdvgk_Z3pYP-Lt_xpSwsvRyNghsSlS-4",
@@ -22,7 +20,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth();
-const db = getFirestore();
 
 export function LogarPage() {
     const [email, setEmail] = useState("");
@@ -42,25 +39,16 @@ export function LogarPage() {
         return () => unsubscribe();
     }, [auth, navigate]);
 
-    const userCollectionRef = collection(db, 'users');
-
     const handleLogin = async (e) => {
         e.preventDefault();
         setLoading(true);
 
         try {
-            const q = query(userCollectionRef, where("email", "==", email));
-            const querySnapshot = await getDocs(q);
-
-            if (!querySnapshot.empty) {
-                await signInWithEmailAndPassword(auth, email, senha);
-                navigate("/");
-            } else {
-                setLatestError("Usuário não encontrado. Por favor, verifique suas credenciais.");
-            }
+            await signInWithEmailAndPassword(auth, email, senha);
+            navigate("/");
         } catch (error) {
             console.error("Erro ao fazer login:", error);
-            setLatestError("Erro ao fazer login. Por favor, tente novamente mais tarde.");
+            setLatestError("Usuário não encontrado ou senha incorreta. Por favor, verifique suas credenciais.");
         } finally {
             setLoading(false);
         }
