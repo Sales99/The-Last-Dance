@@ -35,7 +35,7 @@ export function Cadastro() {
         setLoading(true);
         try {
             const result = await signInWithPopup(auth, googleProvider);
-            navigate("/LogarPage");
+            navigate("/login");
         } catch (error) {
             setLatestError("Erro ao fazer login com Google. Por favor, tente novamente mais tarde.");
         } finally {
@@ -47,7 +47,7 @@ export function Cadastro() {
         e.preventDefault();
 
         if (senha !== confirmarSenha) {
-            setLatestError("As senhas não coincidem.");
+            setLatestError("As senhas não estão iguais..");
             return;
         }
 
@@ -62,7 +62,7 @@ export function Cadastro() {
             }
 
             await createUserWithEmailAndPassword(auth, email, senha);
-            navigate("/LogarPage");
+            navigate("/login");
         } catch (error) {
             setLatestError("Erro ao fazer cadastro. Por favor, tente novamente mais tarde.");
         } finally {
