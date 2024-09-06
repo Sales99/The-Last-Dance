@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import './Main.css';
 import { questionsData } from '../../assets/Questions/perguntas'; // Importe os dados do assets.jsx
+import PlayFoto from '../../assets/images/PlayStore.png';
 
 const Main = () => {
   const [selectedIconName, setSelectedIconName] = useState('Início - Melhores Perguntas');
   const [selectedIcon, setSelectedIcon] = useState(null);
 
   const scrollLeft = () => {
-    document.getElementById('carousel').scrollLeft -= 100;
+    document.getElementById('carousel').scrollLeft -= 110;
   };
 
   const scrollRight = () => {
-    document.getElementById('carousel').scrollLeft += 100;
+    document.getElementById('carousel').scrollLeft += 110;
   };
 
   const handleIconClick = (iconName) => {
@@ -24,28 +25,34 @@ const Main = () => {
     }
   };
 
-  // Renderiza as perguntas a partir dos dados do assets.jsx
+  // Renderiza as perguntas com base no ícone selecionado
   const renderQuestions = () => {
-    return questionsData.map((question, index) => (
-      <div key={index} className="ContainerQ">
-        <div className="ParteCima">
-          <div className="Esquerda">
-            {question.fotoPerfil && <img src={question.fotoPerfil} className='FotoPerfil' alt="Foto de perfil" />}
-            {question.nome && <h2 className='NomePerfil'>{question.nome}</h2>}
+    const filteredQuestions = selectedIcon
+      ? questionsData.filter((question) => question.materia === selectedIcon)
+      : questionsData;
+
+    return filteredQuestions.length > 0 ? (
+      filteredQuestions.map((question, index) => (
+        <div key={index} className="ContainerQ">
+          <div className="ParteCima">
+            <div className="Esquerda">
+              {question.fotoPerfil && <img src={question.fotoPerfil} className="FotoPerfil" alt="Foto de perfil" />}
+              {question.nome && <h2 className="NomePerfil">{question.nome}</h2>}
+            </div>
+            <div className="Direita">
+              {question.tempo && <p>{question.tempo}</p>}
+            </div>
           </div>
-          <div className="Direita">
-            {question.tempo && <p>{question.tempo}</p>}
+          <div className="ParteMeio">{question.descricao && <p>{question.descricao}</p>}</div>
+          <div className="ParteBaixo">
+            <p className="Responder">Responder</p>
+            <p className="Respostas">Ver Respostas</p>
           </div>
         </div>
-        <div className="ParteMeio">
-          {question.descricao && <p>{question.descricao}</p>}
-        </div>
-        <div className="ParteBaixo">
-          <p className='Responder'>Responder</p>
-          <p className='Respostas'>Ver Respostas</p>
-        </div>
-      </div>
-    ));
+      ))
+    ) : (
+      <p>Nenhuma pergunta disponível para {selectedIcon}</p>
+    );
   };
 
   return (
@@ -125,14 +132,20 @@ const Main = () => {
             <span>Sociologia</span>
           </div>
         </div>
-
         <button className="carousel-btn" onClick={scrollRight}>{'>'}</button>
       </section>
 
       <h1 className={`icon-title ${selectedIcon ? 'fade-in' : 'fade-out'}`}>{selectedIconName}</h1>
 
       {/* Exibe as perguntas se houver dados disponíveis */}
-      {questionsData.length > 0 ? renderQuestions() : <p>Nenhuma pergunta disponível</p>}
+      {renderQuestions()}
+
+      <hr />
+      <h1 className="PlayTitulo">
+        Curta todas às novidades em nosso aplicativo Mobile!
+        <br /> Baixe agora e teste as novidades!
+      </h1>
+      <img src={PlayFoto} alt="" className="PlayFoto" />
     </main>
   );
 };

@@ -12,11 +12,8 @@ body, html {
   margin: 0;
   padding: 0;
   height: 100%; /* Garantir que ocupem toda a altura */
+  width: 100%;
   box-sizing: border-box;
-}
-
-body {
-  place-items: center;
   background-color: white;
 }
 

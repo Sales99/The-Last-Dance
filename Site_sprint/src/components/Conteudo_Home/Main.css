@@ -22,8 +22,8 @@
   display: flex;
   overflow-x: scroll; /* Rolagem horizontal */
   scroll-behavior: smooth; /* Rolagem suave */
-  width: 60%;
-  max-width: 800px;
+  width: 100%;
+  max-width: 650px;
   padding: 10px;
 }
 
@@ -120,23 +120,35 @@
   cursor: pointer;
 }
 
-.FotoPerfil {
-  width: 62px;
-  height: 62px;
-  max-height: 62px;
-  max-width: 62px;
-  border-radius: 100%;
-  margin-right: 16px;
-  margin-left: 8px;
-  margin-top: 6px;
-  border: 3px solid black;
+/* Altera apenas a cor dos itens ao passar o mouse */
+.Esquerda:hover .NomePerfil,
+.Esquerda:hover .FotoPerfil {
+  color: rgba(0, 0, 0, 0.7); /* Cor mais escura ao passar o mouse */
+  filter: brightness(0.7); /* Escurece a imagem da foto de perfil */
 }
 
+/* Estilo padrão para o nome */
 .NomePerfil {
   font-size: 18px;
   font-weight: 700;
   margin: 0;
   font-family: 'Inknut Antiqua', serif;
+  color: rgb(255, 255, 255); /* Cor padrão */
+  transition: filter, color 0.6s ease;
+}
+
+/* Estilo padrão para a foto de perfil */
+.FotoPerfil {
+  width: 62px;
+  height: 62px;
+  max-height: 52px;
+  max-width: 52px;
+  border-radius: 100%;
+  margin-right: 16px;
+  margin-left: 8px;
+  margin-top: 6px;
+  /* border: 1px solid black; */
+  transition: filter 0.6s ease; /* Transição suave ao escurecer a imagem */
 }
 
 .Direita {
@@ -179,4 +191,30 @@
 
 .Responder:hover, .Respostas:hover {
   color: rgb(88, 88, 88);
+}
+
+/* ________________________________________ */
+
+hr {
+  border: 1px solid rgb(116, 116, 116);
+  width: 90%;
+}
+
+.PlayTitulo {
+  color: black;
+  align-self: center;
+  text-align: center;
+  font-size: 40px;
+}
+
+.PlayFoto {
+  align-self: center;
+  cursor: pointer;
+  width: 260px;
+  max-width: 280px;
+  transition: 0.5s;
+}
+
+.PlayFoto:hover {
+  transform: scale(1.05);
 }
