@@ -35,7 +35,7 @@ export function LogarPage() {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
-                navigate("/HomePage");
+                navigate("/");
             }
         });
 
@@ -54,7 +54,7 @@ export function LogarPage() {
 
             if (!querySnapshot.empty) {
                 await signInWithEmailAndPassword(auth, email, senha);
-                navigate("/HomePage");
+                navigate("/");
             } else {
                 setLatestError("Usuário não encontrado. Por favor, verifique suas credenciais.");
             }
