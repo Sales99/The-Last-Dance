@@ -1,95 +1,36 @@
-import React, { useState } from 'react'
-import './Quemsomos.css'
+import React from 'react';
+import Header from '../../components/Header/Header';
+import Footer from '../../components/Footer/Footer';
+import Livrinho from '../../assets/images/livrinho.png';
+
+import './Quemsomos.css';
+
 const Quemsomos = () => {
-
-    const[user, setUser] = useState(
-        {
-            Name:'', email:'', subject: '', Message: ''
-        }
-    )
-    let values, names
-    const data = (e) => 
-    {
-        values = e.target.value
-        names = e.target.name
-        setUser({...user, [names]: values})
-    }
-
-    const send = async (e) => 
-    {
-        const {Name, email, subject, Message} = user
-        e.preventDefault()
-        const option = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'aplication/json'
-            },
-            body: JSON.stringify({
-                Name, email, subject, Message
-            })
-        }
-
-        const send = await fetch(
-            'https://sprint-teste-1-default-rtdb.firebaseio.com/Message.json', option
-            )
-
-        if (send) {
-            alert("Mensagem enviada com sucesso!")
-        }
-        else
-        {
-            alert("Erro. Mensagem não enviada.")
-        }
-
-    }
-
   return (
-    <>
-    <div className='contact'>
-        <div className='container'>
-            <div className='form'>
-            <form method='POST'>
-                <h2>Contato</h2>
-                
-                    <div className='box'>
-                        <div className='lable'>
-                            <h4>Nome</h4>
-                        </div>
-                        <div className='input'>
-                            <input type='text' placeholder='Nome' value={user.Name} name='Name' onChange={data}></input>
-                        </div>
-                    </div>
-                    <div className='box'>
-                        <div className='lable'>
-                            <h4>E-mail</h4>
-                        </div>
-                        <div className='input'>
-                            <input type='email' placeholder='E-mail' value={user.email} name='email' onChange={data}></input>
-                        </div>
-                    </div>
-                    <div className='box'>
-                        <div className='lable'>
-                            <h4>Assunto</h4>
-                        </div>
-                        <div className='input'>
-                            <input type='text' placeholder='Assunto' value={user.subject} name='subject' onChange={data}></input>
-                        </div>
-                    </div>
-                    <div className='box'>
-                        <div className='lable'>
-                            <h4>Mensagem</h4>
-                        </div>
-                        <div className='input'>
-                            <textarea placeholder='Mensagem' value={user.Message} name='Message' onChange={data}></textarea>
-                        </div>
-                    </div>
-                    <button type='sublit' onClick={send}>Enviar</button>
-                </form>
-            </div>
+    <div className="quemsomos-container">
+      <Header />
+      <main className="main-content">
+        <div className="content-box">
+          <div className="title">
+            <img src={Livrinho} alt="livrinho" className="livrinho" />
+            <h1>Quem Somos?</h1>
+          </div>
+          <div className="description">
+            <p>
+              Somos a <strong>[Nome da Empresa]</strong>, uma empresa dedicada à <strong>[área de atuação]</strong>, comprometida com a excelência e inovação em tudo o que fazemos.
+            </p>
+            <p>
+              Com uma equipe de profissionais experientes e apaixonados, buscamos transformar desafios em oportunidades, sempre com foco em resultados sustentáveis e no desenvolvimento contínuo.
+            </p>
+            <p>
+              Acreditamos que o sucesso vem de um atendimento personalizado, da utilização de tecnologias avançadas e da construção de relacionamentos de confiança.
+            </p>
+          </div>
         </div>
+      </main>
+      <Footer />
     </div>
-    </>
-  )
-}
+  );
+};
 
-export default Quemsomos
+export default Quemsomos;
