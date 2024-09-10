@@ -1,0 +1,69 @@
+.ajuda-container {
+    padding: 20px;
+    background-color: #fff;
+    text-align: center;
+    margin-top: 100px;
+    width: 1495px;
+  }
+
+  .Banner {
+    width: 1520px;
+    height: 300px;
+    margin-top: 00px;
+    
+
+  }
+  
+  .ajuda-title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #1f3c88;
+  }
+  
+  .ajuda-sections {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  .ajuda-section {
+    border: 2px solid #1f3c88;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .ajuda-button {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    background-color: #f9f9f9;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .ajuda-button.active,
+  .ajuda-button:hover {
+    background-color: #e0f7fa;
+  }
+  
+  .ajuda-content {
+    margin-top: 15px;
+    font-size: 1rem;
+    color: #333;
+    text-align: left;
+  }
+  
+  @media (max-width: 768px) {
+    .ajuda-sections {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  /*  */
+  /*  */
+  /*  */
+  /*  */
+
+
