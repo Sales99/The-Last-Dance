@@ -102,7 +102,7 @@
   display: flex;
   border-radius: 12px;
   flex-direction: column; /* Muda a direção para coluna */
-  width: 63%; /* Defina uma largura adequada para o layout */
+  width: 70%; /* Defina uma largura adequada para o layout */
   margin-bottom: 40px;
   box-shadow: -5px 6px 8px rgba(0, 0, 0, 0.5);
 }
