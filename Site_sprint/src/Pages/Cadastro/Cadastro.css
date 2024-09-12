@@ -194,3 +194,29 @@
     transform: translateY(-50%);
     cursor: pointer;
 }
+
+/* Estilo para os campos de entrada */
+.Inputs_nome_cadastro {
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+/* Estilo para o campo de entrada do nome de perfil */
+.Inputs_nome_cadastro label {
+    font-size: medium;
+    color: black;
+    font-weight: bold;
+    font-family: 'Inknut Antiqua', serif; /* Aplica a fonte Inknut Antiqua */
+}
+
+.Inputs_nome_cadastro input {
+    border-radius: 10px;
+    padding: 10px;
+    border: 1px solid black;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    height: 40px;
+    width: calc(100% - 22px); /* Ajusta a largura para considerar a margem */
+    margin: 10px 0; /* Margem adicionada acima e abaixo dos inputs */
+}

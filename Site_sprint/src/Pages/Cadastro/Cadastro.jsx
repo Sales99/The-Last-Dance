@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import { initializeApp } from "firebase/app";
-import { getAuth, fetchSignInMethodsForEmail, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { getAuth, fetchSignInMethodsForEmail, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, updateProfile } from 'firebase/auth';
 import Alert from 'react-bootstrap/Alert';
 import Spinner from 'react-bootstrap/Spinner';
 import './Cadastro.css';
@@ -23,6 +23,7 @@ export function Cadastro() {
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
     const [confirmarSenha, setConfirmarSenha] = useState("");
+    const [nomePerfil, setNomePerfil] = useState(""); // Novo estado para nome de perfil
     const [latestError, setLatestError] = useState("");
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
@@ -61,7 +62,12 @@ export function Cadastro() {
                 return;
             }
 
-            await createUserWithEmailAndPassword(auth, email, senha);
+            const userCredential = await createUserWithEmailAndPassword(auth, email, senha);
+            const user = userCredential.user;
+            
+            // Atualiza o perfil do usuário com o nome fornecido
+            await updateProfile(user, { displayName: nomePerfil });
+
             navigate("/login");
         } catch (error) {
             setLatestError("Erro ao fazer cadastro. Por favor, tente novamente mais tarde.");
@@ -76,6 +82,18 @@ export function Cadastro() {
                 <h1 className="Cadastro_Titulo">Cadastro</h1>
                 <form onSubmit={handleCadastro} className="Formulario_Cadastro">
                     <div className="Inputs_Cadastro">
+                        <div className="Inputs_nome_cadastro">
+                            <label>Nome de Perfil</label>
+                            <input
+                                type="text"
+                                className="Input_Inserir"
+                                id="Input_NomePerfil"
+                                placeholder="Seu nome de perfil"
+                                required
+                                value={nomePerfil}
+                                onChange={(e) => setNomePerfil(e.target.value)}
+                            />
+                        </div>
                         <div className="Inputs_email_cadastro">
                             <label>Email</label>
                             <input
