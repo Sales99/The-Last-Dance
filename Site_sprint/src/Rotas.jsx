@@ -5,6 +5,7 @@ import LogarPage from './Pages/LogarPage/LogarPage';
 import CadastroPage from './Pages/Cadastro/Cadastro';
 import Quemsomos from './Pages/Quemsomos/Quemsomos';
 import Ajuda from './Pages/CentralDeAjuda/Ajuda';
+import Perfil from './Pages/Perfil/Perfil'
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <Route path='/cadastro' element={<CadastroPage />} />
         <Route path='/quemsomos' element={<Quemsomos />} />
         <Route path='/ajuda' element={<Ajuda />}/>
+        <Route path='/perfil' element={<Perfil/>}/>
       </Routes>
     </div>
   );

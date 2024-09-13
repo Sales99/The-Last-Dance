@@ -11,11 +11,11 @@ const Header = () => {
        <Link to="/"> 
         <img src="/src/assets/images/logo.png" alt="Logo" className="logo" />
       </Link>
-
-
       
         <input type="text" placeholder="Procurar..." className="search-bar" />
-        <IconHeader/>
+        <Link to="/perfil">
+          <IconHeader/>
+        </Link>
     </header>
   );
 };
