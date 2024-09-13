@@ -8,19 +8,24 @@
     color: #333;
   }
   
-  /* .main-content {
+  .ConteudoCentro {
     flex-grow: 1;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-  } */
+  }
   
   .content-box {
     background-color: #d3f4a6;
+    align-self: center;
+    right: 600px;
     border-radius: 10px;
-    padding: 20px;
+    padding: 30px;
     max-width: 600px;
+    margin-top: 60px;
+    margin-bottom: 40px;
+    box-shadow: -5px 5px 20px black;
     text-align: left;
   }
   
