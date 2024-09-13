@@ -39,8 +39,4 @@ button:focus-visible {
 }
 
 /* Adicionar altura mínima para o conteúdo principal */
-.main-content {
-  min-height: calc(100vh - 200px); /* Ajuste conforme a altura do footer */
-  padding-bottom: 20px; /* Espaço para o footer */
-  box-sizing: border-box;
-}
+

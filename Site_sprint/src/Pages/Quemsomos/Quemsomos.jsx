@@ -9,7 +9,7 @@ const Quemsomos = () => {
   return (
     <div className="quemsomos-container">
       <Header />
-      <main className="main-content">
+      <main className="ConteudoCentro">
         <div className="content-box">
           <div className="title">
             <img src={Livrinho} alt="livrinho" className="livrinho" />
