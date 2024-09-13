@@ -3,6 +3,7 @@ import React from 'react';
 import './Header.css';
 import IconHeader from '../../assets/Icons/IconHeader';
 import { Link } from 'react-router-dom'; // Importando o Link
+// import pesquisar from '../../assets/Icons/pesquisa-icon.png'
 
 
 const Header = () => {
