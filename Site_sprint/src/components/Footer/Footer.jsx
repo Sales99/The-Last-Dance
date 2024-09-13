@@ -25,10 +25,18 @@ const Footer = () => {
         <div className="footer-social">
           <h4>Redes sociais</h4>
           <div className="social-icons">
-            <a href="#instagram"><img src={instagramIcon} alt="Instagram" /></a>
-            <a href="#twitter"><img src={twitterIcon} alt="Twitter" /></a>
-            <a href="#facebook"><img src={facebookIcon} alt="Facebook" className='faceI'/></a>
-            <a href="#whatsapp"><img src={whatsappIcon} alt="Whatsapp" /></a>
+            <a href="https://www.instagram.com/prime_zone3?igsh=MWppZTVkZDF1N21iMw==" target="_blank" rel="noopener noreferrer">
+              <img src={instagramIcon} alt="Instagram" />
+            </a>
+            <a href="#twitter">
+              <img src={twitterIcon} alt="Twitter" />
+            </a>
+            <a href="#facebook">
+              <img src={facebookIcon} alt="Facebook" className='faceI'/>
+            </a>
+            <a href="#whatsapp">
+              <img src={whatsappIcon} alt="Whatsapp" />
+            </a>
           </div>
         </div>
       </div>
