@@ -6,7 +6,7 @@
   align-items: flex-start; /* Alinha no topo */
   flex-direction: column; /* Itens organizados em coluna */
   /* height: 400px; */
-  width: 1275px;
+  /* width: 1275px; */
 }
 
 .icons-section {
@@ -102,7 +102,7 @@
   display: flex;
   border-radius: 12px;
   flex-direction: column; /* Muda a direção para coluna */
-  width: 70%; /* Defina uma largura adequada para o layout */
+  width: 60%; /* Defina uma largura adequada para o layout */
   margin-bottom: 40px;
   box-shadow: -5px 6px 8px rgba(0, 0, 0, 0.5);
 }
