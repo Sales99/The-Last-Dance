@@ -2,7 +2,7 @@
 .header {
     background-color: orange;
     display: grid;
-    grid-template-columns: 1fr 1.2fr 1fr;
+    grid-template-columns: 0.8fr 4fr 1fr 0.3fr;
     gap: 20px;
     align-items: center;
     padding: 12px;
@@ -26,7 +26,6 @@
   }
   
   .icon1 {
-    margin-left: 320px;
     height: 52px;
     color: white;
     cursor: pointer;

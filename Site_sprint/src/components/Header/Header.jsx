@@ -14,6 +14,7 @@ const Header = () => {
       </Link>
       
         <input type="text" placeholder="Procurar..." className="search-bar" />
+        <h3>FAÇA SUA PERGUNTA</h3>
         <Link to="/perfil">
           <IconHeader/>
         </Link>
