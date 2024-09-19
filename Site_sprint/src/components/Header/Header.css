@@ -1,45 +1,143 @@
-/* src/components/Header/Header.css */
 .header {
-    background-color: orange;
-    display: grid;
-    grid-template-columns: 0.8fr 4fr 1fr 0.3fr;
-    gap: 20px;
-    align-items: center;
-    padding: 12px;
-    width: 1495px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra sutil */
-    margin-bottom: 32px;
-  }
-  
-  .logo {
-    width: 125px; /* Ajuste o tamanho da logo conforme necessário */
-    height: auto;
-    margin-right: 20px;
-  }
-  
-  .search-bar {
-    padding: 16px;
-    font-size: 14px;
-    border-radius: 12px;
-    outline: none;
-    border: none;
-  }
-  
-  .icon1 {
-    height: 52px;
-    color: white;
-    cursor: pointer;
-    transition: color 0.8s ease;
-  }
-  
-  .icon1:hover {
-    color: rgb(0, 0, 0);
-  }
-  
-  /* __________________________ */
-  @media (max-width: 632px) {
-    .logo {
-      width: 100px;
-    }
-    
-  }
+  background-color: orange;
+  display: grid;
+  grid-template-columns: 0.6fr 1.6fr 0.55fr 0.3fr;
+  gap: 60px;
+  align-items: center;
+  padding: 12px;
+  width: 1495px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 32px;
+}
+
+.logo {
+  width: 125px;
+  height: auto;
+  margin-right: 20px;
+}
+
+.search-bar {
+  padding: 16px;
+  font-size: 14px;
+  border-radius: 12px;
+  outline: none;
+  border: none;
+}
+
+.icon1 {
+  height: 52px;
+  color: white;
+  cursor: pointer;
+  transition: color 0.8s ease;
+}
+
+.icon1:hover {
+  color: rgb(0, 0, 0);
+}
+
+.QuestionMaker {
+  text-align: center;
+  font-size: 18px;
+  padding: 12px 10px;
+  border: 3px solid black;
+  border-radius: 32px;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+.QuestionMaker:hover {
+  background-color: rgba(0, 0, 0, 0.123);
+  font-size: 19px;
+}
+
+/* _________________________________________ */
+/* Question Maker */
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* Fundo escurecido */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-box {
+  background-color: rgba(255, 255, 255, 0.877);
+  width: 800px;
+  height: 450px;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  padding: 0px 6px;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  cursor: pointer;
+  color: black;
+  background: none;
+  border: none;
+}
+
+.close-btn:hover {
+  color: red; /* Opcional: cor de hover para o botão de fechar */
+}
+
+.QuestionMaker-Tittle {
+  max-width: 95%;
+  font-size: 30px;
+}
+
+.question-input {
+  background-color: rgba(255, 255, 255, 0.897);
+  font-size: 18px ;
+  padding: 0;
+  text-align: left;
+  vertical-align: text-top;
+  width: 93%;
+  height: 200px;
+  border: 2px solid rgb(156, 156, 156);
+  padding: 12px;
+  margin: 12px 0px 12px 0px; /* A ordem é cima, esquerda, baixo, direita */
+}
+
+.seletor-materia {
+  width: 190px;
+  height: 40px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 545;
+}
+
+.linha-enviar-popup{
+  display: flex; /* Utiliza flexbox para o layout */
+  justify-content: space-between; /* Coloca os itens nos extremos (esquerda e direita) */
+  align-items: center; /* Alinha os itens verticalmente */
+  width: 96.5%; /* Define o tamanho total da linha */
+}
+
+.enviar-pergunta {
+  background-color: #E6B64E;
+  border: 1px solid black;
+  font-size: 18px;
+  transition: all 0.5s ease;
+}
+
+.enviar-pergunta:hover {
+  background-color: #cda246;
+}
+
+/* _________________________________________ */
+/* Responsividade */
+@media (max-width: 632px) {
+  /* Nada ainda */
+}
