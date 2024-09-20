@@ -17,10 +17,10 @@ const Ajuda = () => {
   return (
     <>
       <Header />
-    
+          <img src={BannerPrime} alt="" className='Banner' />
+
 
       <div className="ajuda-container">
-      <img src={BannerPrime} alt="" className='Banner' />
 
         <h1 className="ajuda-title">Central de Ajuda</h1>
         <div className="ajuda-sections">
