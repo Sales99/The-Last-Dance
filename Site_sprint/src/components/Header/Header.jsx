@@ -6,23 +6,26 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 const Header = ({ adicionarPergunta }) => {
   const [showBox, setShowBox] = useState(false);
-  const [showLoginPopup, setShowLoginPopup] = useState(false); // Estado para exibir o popup de login
-  const [isAuthenticated, setIsAuthenticated] = useState(false); // Verifica se está logado
+  const [showLoginPopup, setShowLoginPopup] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [pergunta, setPergunta] = useState('');
   const [materia, setMateria] = useState('');
 
   const auth = getAuth();
 
-  // Verificar o estado de autenticação
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setIsAuthenticated(!!user); // Se o usuário estiver logado, isAuthenticated será true
+      setIsAuthenticated(!!user);
     });
     return () => unsubscribe();
   }, [auth]);
 
-  const handleClick = () => {
-    setShowBox(true);
+  const handleClickPergunta = () => {
+    if (isAuthenticated) {
+      setShowBox(true);
+    } else {
+      setShowLoginPopup(true); // Exibe o popup de login se não estiver autenticado
+    }
   };
 
   const handleClose = () => {
@@ -31,19 +34,17 @@ const Header = ({ adicionarPergunta }) => {
 
   const handleEnviarPergunta = () => {
     if (pergunta && materia) {
-      adicionarPergunta(pergunta, materia); // Passa a pergunta e a matéria para o Main
-      setPergunta(''); // Limpa a pergunta após o envio
+      adicionarPergunta(pergunta, materia);
+      setPergunta('');
       setMateria('');
-      setShowBox(false); // Fecha o popup
+      setShowBox(false);
     }
   };
 
   const handleProfileClick = () => {
     if (isAuthenticated) {
-      // Se o usuário estiver logado, redirecionar para a página de perfil
       window.location.href = '/perfil';
     } else {
-      // Se não estiver logado, mostrar o popup de login
       setShowLoginPopup(true);
     }
   };
@@ -59,7 +60,7 @@ const Header = ({ adicionarPergunta }) => {
       </Link>
       
       <input type="text" placeholder="Procurar..." className="search-bar" />
-      <h3 className="QuestionMaker" onClick={handleClick}>FAÇA SUA PERGUNTA</h3>
+      <h3 className="QuestionMaker" onClick={handleClickPergunta}>FAÇA SUA PERGUNTA</h3>
       <div onClick={handleProfileClick}>
         <IconHeader />
       </div>
@@ -105,7 +106,7 @@ const Header = ({ adicionarPergunta }) => {
           <div className="popup-box-login">
             <button className="close-btn" onClick={handleCloseLoginPopup}>&times;</button>
             <h1>Você não está logado em nenhuma conta!</h1>
-            <h4>Parece que você ainda não logou ainda na <b>PrimeZone!</b> Siga o link abaixo para entrar na sua conta, ou faça sua conta agora mesmo!</h4>
+            <h4>Parece que você ainda não logou na <b>PrimeZone!</b> Siga o link abaixo para entrar na sua conta, ou faça sua conta agora mesmo!</h4>
             <Link to="/login">
               <button className="login-btn">Entrar em uma conta</button>
             </Link><br />
