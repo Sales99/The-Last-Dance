@@ -169,6 +169,10 @@
   margin-right: 26px;
 }
 
+.ParteMeio p {
+  margin-bottom: 0px;
+}
+
 .ParteBaixo {
   display: flex;
   justify-content: space-between; /* Alinha os itens às extremidades */
@@ -217,4 +221,21 @@ hr {
 
 .PlayFoto:hover {
   transform: scale(1.05);
+}
+
+.lerMais {
+  background: none;
+  border: none;
+  color: rgb(88, 88, 88);
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: -18px;
+  margin-top: 8px;
+  /* margin-left: 72px; */
+  /* margin-top: 5px; */
+  text-decoration: underline;
+}
+
+.lerMais:focus {
+  outline: none;
 }

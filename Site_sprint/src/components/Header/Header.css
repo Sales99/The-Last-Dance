@@ -1,10 +1,11 @@
 .header {
-  background-color: orange;
+  background-color: #FFEC5C;
   display: grid;
   grid-template-columns: 0.6fr 1.6fr 0.55fr 0.3fr;
   gap: 60px;
   align-items: center;
   padding: 12px;
+  padding-top: 14px;
   width: 1495px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
   margin-bottom: 32px;
@@ -86,7 +87,12 @@
   cursor: pointer;
   color: black;
   background: none;
+  outline: none;
   border: none;
+}
+
+.close-btn:focus {
+  outline: none;
 }
 
 .close-btn:hover {

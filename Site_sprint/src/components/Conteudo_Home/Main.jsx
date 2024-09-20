@@ -6,6 +6,7 @@ import PlayFoto from '../../assets/images/PlayStore.png';
 const Main = () => {
   const [selectedIconName, setSelectedIconName] = useState('Início - Melhores Perguntas');
   const [selectedIcon, setSelectedIcon] = useState(null);
+  const [expandedQuestions, setExpandedQuestions] = useState({});
 
   const scrollLeft = () => {
     document.getElementById('carousel').scrollLeft -= 110;
@@ -25,6 +26,13 @@ const Main = () => {
     }
   };
 
+  const toggleExpand = (index) => {
+    setExpandedQuestions((prevState) => ({
+      ...prevState,
+      [index]: !prevState[index], // Alterna entre expandido e contraído
+    }));
+  };
+
   // Renderiza as perguntas com base no ícone selecionado
   const renderQuestions = () => {
     const filteredQuestions = selectedIcon
@@ -32,24 +40,37 @@ const Main = () => {
       : questionsData;
 
     return filteredQuestions.length > 0 ? (
-      filteredQuestions.map((question, index) => (
-        <div key={index} className="ContainerQ">
-          <div className="ParteCima">
-            <div className="Esquerda">
-              {question.fotoPerfil && <img src={question.fotoPerfil} className="FotoPerfil" alt="Foto de perfil" />}
-              {question.nome && <h2 className="NomePerfil">{question.nome}</h2>}
+      filteredQuestions.map((question, index) => {
+        const isExpanded = expandedQuestions[index];
+        const shouldShowExpandButton = question.descricao.length > 300; // Exibe o botão "Ler mais" se a pergunta for grande
+        const displayText = isExpanded ? question.descricao : `${question.descricao.substring(0, 300)}...`;
+
+        return (
+          <div key={index} className="ContainerQ">
+            <div className="ParteCima">
+              <div className="Esquerda">
+                {question.fotoPerfil && <img src={question.fotoPerfil} className="FotoPerfil" alt="Foto de perfil" />}
+                {question.nome && <h2 className="NomePerfil">{question.nome}</h2>}
+              </div>
+              <div className="Direita">
+                {question.tempo && <p>{question.tempo}</p>}
+              </div>
             </div>
-            <div className="Direita">
-              {question.tempo && <p>{question.tempo}</p>}
+            <div className="ParteMeio">
+              <p>{displayText}</p>
+              {shouldShowExpandButton && (
+                <button className="lerMais" onClick={() => toggleExpand(index)}>
+                  {isExpanded ? 'Ler menos' : 'Ler mais'}
+                </button>
+              )}
+            </div>
+            <div className="ParteBaixo">
+              <p className="Responder">Responder</p>
+              <p className="Respostas">Ver Respostas</p>
             </div>
           </div>
-          <div className="ParteMeio">{question.descricao && <p>{question.descricao}</p>}</div>
-          <div className="ParteBaixo">
-            <p className="Responder">Responder</p>
-            <p className="Respostas">Ver Respostas</p>
-          </div>
-        </div>
-      ))
+        );
+      })
     ) : (
       <p>Nenhuma pergunta disponível para {selectedIcon}</p>
     );
