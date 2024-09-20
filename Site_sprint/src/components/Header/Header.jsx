@@ -102,11 +102,16 @@ const Header = ({ adicionarPergunta }) => {
 
       {showLoginPopup && (
         <div className="overlay">
-          <div className="popup-box">
+          <div className="popup-box-login">
             <button className="close-btn" onClick={handleCloseLoginPopup}>&times;</button>
-            <h1>Você precisa estar logado para acessar o perfil!</h1>
+            <h1>Você não está logado em nenhuma conta!</h1>
+            <h4>Parece que você ainda não logou ainda na <b>PrimeZone!</b> Siga o link abaixo para entrar na sua conta, ou faça sua conta agora mesmo!</h4>
             <Link to="/login">
-              <button className="login-btn">Fazer Login</button>
+              <button className="login-btn">Entrar em uma conta</button>
+            </Link><br />
+            <p>ou</p>
+            <Link to="/cadastro">
+              <button className="cadastro-btn">Cadastrar-se</button>
             </Link>
           </div>
         </div>
