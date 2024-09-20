@@ -146,28 +146,30 @@
 /* _________________________________________ */
 /* Adicionamos keyframes pra manipular a animação de entrada do pop-up */
 
+/* Define a animação de entrada */
 @keyframes popupSlideIn {
   0% {
-    opacity: 0;
-    transform: translateY(-50px); /* Começa deslocado para cima */
+    opacity: 0; /* O pop-up começa invisível */
+    transform: translateY(-50px); /* Começa deslocado 50px para cima */
   }
   100% {
-    opacity: 1;
-    transform: translateY(0); /* Volta para a posição original */
+    opacity: 1; /* O pop-up se torna completamente visível */
+    transform: translateY(0); /* Volta para a posição original (nenhuma translação) */
   }
 }
 
+/* Estiliza a caixa pop-up */
 .popup-box {
-  background-color: rgba(255, 255, 255, 0.877);
-  width: 800px;
-  border: 2px solid #E6B64E;
-  height: 450px;
-  padding: 25px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  position: relative;
+  background-color: rgba(255, 255, 255, 0.877); /* Define uma cor de fundo branca com um pouco de transparência */
+  width: 800px; /* Define a largura do pop-up */
+  border: 2px solid #E6B64E; /* Define a cor e a espessura da borda */
+  height: 450px; /* Define a altura do pop-up */
+  padding: 25px; /* Define um espaçamento interno de 25px ao redor do conteúdo */
+  border-radius: 10px; /* Arredonda os cantos da caixa */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adiciona uma sombra para dar profundidade */
+  position: relative; /* Define a posição relativa para elementos filhos dentro da caixa */
 
-  /* Adiciona a animação */
-  animation: popupSlideIn 0.5s ease-out; /* Duração de 0.5 segundos */
-  opacity: 1; /* Garante que a opacidade final seja 1 */
+  /* Adiciona a animação de entrada */
+  animation: popupSlideIn 0.5s ease-out; /* Aplica a animação de entrada 'popupSlideIn' por 0.5 segundos, suavizando no final */
+  opacity: 1; /* Garante que o pop-up seja visível ao final da animação */
 }
