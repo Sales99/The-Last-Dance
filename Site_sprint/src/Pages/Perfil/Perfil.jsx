@@ -1,26 +1,41 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { getAuth } from 'firebase/auth';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
-import Bannermelhor from '../../assets/images/Bannermelhor.png'
-import Rd from '../../assets/images/rddesgracado.jpg'
-
+import Bannermelhor from '../../assets/images/Bannermelhor.png';
+import Rd from '../../assets/images/rddesgracado.jpg';
 import './Perfil.css';
 
 const Perfil = () => {
+  const [username, setUsername] = useState("Carregando...");
+  const auth = getAuth();
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        setUsername(user.displayName || "Nome não disponível");
+      } else {
+        setUsername("Nome não disponível");
+      }
+    });
+
+    // Limpeza do efeito
+    return () => unsubscribe();
+  }, [auth]);
+
   return (
     <>
       <Header />
-
       <img src={Bannermelhor} alt="Banner" className='Bannerzinho' />
       
       <div className="perfilContainer">
         <div className="leftSection">
           <img
-            src={Rd} // Coloque o caminho da imagem de perfil aqui
+            src={Rd}
             alt="User Profile"
             className="profileImage"
           />
-          <h2>RD maluco</h2>
+          <h2 className='username'>{username}</h2> {/* Exibe o nome do usuário */}
 
           <div className="stats">
             <span>Respostas</span>
@@ -44,9 +59,6 @@ const Perfil = () => {
           <p><strong>Começou em:</strong> 29 de agosto de 2024</p>
         </div>
       </div>
-
-
-
 
       <Footer />
     </>

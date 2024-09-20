@@ -1,3 +1,4 @@
+// LogarPage.jsx
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import { initializeApp } from "firebase/app";
@@ -32,7 +33,7 @@ export function LogarPage() {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
-                navigate("/");
+                navigate("/perfil"); // Redireciona para a página de perfil
             }
         });
 
@@ -45,7 +46,7 @@ export function LogarPage() {
 
         try {
             await signInWithEmailAndPassword(auth, email, senha);
-            navigate("/");
+            navigate("/perfil"); // Redireciona após o login
         } catch (error) {
             console.error("Erro ao fazer login:", error);
             setLatestError("Usuário não encontrado ou senha incorreta. Por favor, verifique suas credenciais.");
@@ -56,21 +57,17 @@ export function LogarPage() {
 
     const signInWithGoogle = async (e) => {
         e.preventDefault();
-
         try {
             const provider = new GoogleAuthProvider();
             const result = await signInWithPopup(auth, provider);
             const user = result.user;
             console.log("Usuário autenticado com sucesso:", user);
-            navigate("/"); // Redireciona após o login
+            navigate("/perfil"); // Redireciona após o login
         } catch (error) {
             console.error(error.message);
             setLatestError("Erro ao fazer login com o Google. Por favor, tente novamente mais tarde.");
         }
     };
-
-    const [resetPasswordMessage, setResetPasswordMessage] = useState('');
-    const [resetPasswordError, setResetPasswordError] = useState('');
 
     const handleResetPassword = async (e) => {
         e.preventDefault();
@@ -80,11 +77,9 @@ export function LogarPage() {
         }
         try {
             await sendPasswordResetEmail(auth, email);
-            setResetPasswordMessage('Um e-mail de redefinição de senha foi enviado para o seu endereço de e-mail.');
-            setResetPasswordError('');
+            setLatestError('Um e-mail de redefinição de senha foi enviado para o seu endereço de e-mail.');
         } catch (error) {
-            setResetPasswordError('Ocorreu um erro ao enviar o e-mail de redefinição de senha. Por favor, tente novamente.');
-            setResetPasswordMessage('');
+            setLatestError('Ocorreu um erro ao enviar o e-mail de redefinição de senha. Por favor, tente novamente.');
         }
     };
 
@@ -92,8 +87,6 @@ export function LogarPage() {
         <div className="login-page">
             <div className="Login_Container_Central">
                 <div className="Login_container">
-                    <div className="Login_Esquerda">
-                    </div>
                     <div className="Login_Direita">
                         <div className="Login_Titulo">
                             <h1>LOGIN</h1>
@@ -145,8 +138,6 @@ export function LogarPage() {
                                 )}
                             </div>
                             {latestError && <Alert variant="danger" className="Aviso_de_erro">{latestError}</Alert>}
-                            {resetPasswordMessage && <Alert variant="info" className="Aviso_de_info">{resetPasswordMessage}</Alert>}
-                            {resetPasswordError && <Alert variant="danger" className="Aviso_de_erro">{resetPasswordError}</Alert>}
                             <div className="Cadastre-se">
                                 <p className="Txt_Cadastro">Não tem uma conta?<Link to="../Cadastro" className="Btn_Cadastro">Cadastre-se</Link></p>
                             </div>
