@@ -142,3 +142,32 @@
 @media (max-width: 632px) {
   /* Nada ainda */
 }
+
+/* _________________________________________ */
+/* Adicionamos keyframes pra manipular a animação de entrada do pop-up */
+
+@keyframes popupSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px); /* Começa deslocado para cima */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0); /* Volta para a posição original */
+  }
+}
+
+.popup-box {
+  background-color: rgba(255, 255, 255, 0.877);
+  width: 800px;
+  border: 2px solid #E6B64E;
+  height: 450px;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+
+  /* Adiciona a animação */
+  animation: popupSlideIn 0.5s ease-out; /* Duração de 0.5 segundos */
+  opacity: 1; /* Garante que a opacidade final seja 1 */
+}
