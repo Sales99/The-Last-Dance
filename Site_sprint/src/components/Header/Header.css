@@ -116,6 +116,7 @@
   height: 40px;
   border-radius: 10px;
   font-size: 15px;
+  padding-left: 10px;
   font-weight: 545;
 }
 
@@ -160,15 +161,6 @@
 
 /* Estiliza a caixa pop-up */
 .popup-box {
-  background-color: rgba(255, 255, 255, 0.877); /* Define uma cor de fundo branca com um pouco de transparência */
-  width: 800px; /* Define a largura do pop-up */
-  border: 2px solid #E6B64E; /* Define a cor e a espessura da borda */
-  height: 450px; /* Define a altura do pop-up */
-  padding: 25px; /* Define um espaçamento interno de 25px ao redor do conteúdo */
-  border-radius: 10px; /* Arredonda os cantos da caixa */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adiciona uma sombra para dar profundidade */
-  position: relative; /* Define a posição relativa para elementos filhos dentro da caixa */
-
   /* Adiciona a animação de entrada */
   animation: popupSlideIn 0.5s ease-out; /* Aplica a animação de entrada 'popupSlideIn' por 0.5 segundos, suavizando no final */
   opacity: 1; /* Garante que o pop-up seja visível ao final da animação */
