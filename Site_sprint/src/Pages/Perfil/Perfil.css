@@ -16,17 +16,18 @@
 .leftSection {
   text-align: center;
   margin-bottom: 20px;
+  margin-top: 100px;
 }
 
 .profileImage {
-  width: 125px;
-  height: 125px;
+  width: 250px;
+  height: 250px;
   border-radius: 50%;
 }
 
 h2 {
   margin-top: 10px;
-  font-size: 20px;
+  font-size: 60px;
 }
 
 .stats {
@@ -36,10 +37,11 @@ h2 {
   margin-right: 100px;
   width: 100%;
   margin-top: 15px;
+  font-size: 20px;
 }
 
 .stats span {
-  font-size: 14px;
+  font-size: 30px;
 }
 
 .points {
@@ -61,7 +63,7 @@ h2 {
   text-align: center;
   width: 60%;
   margin-bottom: 20px;
-  margin-top: -36vh;
+  margin-top: -50vh;
   margin-left: 180vh;
 }
 

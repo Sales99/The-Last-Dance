@@ -20,7 +20,7 @@ const Perfil = () => {
             alt="User Profile"
             className="profileImage"
           />
-          <h2>Carlinhos Maia</h2>
+          <h2>RD maluco</h2>
 
           <div className="stats">
             <span>Respostas</span>
