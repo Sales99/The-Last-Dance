@@ -89,6 +89,7 @@
   background: none;
   outline: none;
   border: none;
+  transition: all 0.5s ease
 }
 
 .close-btn:focus {
@@ -97,6 +98,7 @@
 
 .close-btn:hover {
   color: red; /* Opcional: cor de hover para o botão de fechar */
+  font-size: 25px;
 }
 
 .QuestionMaker-Tittle {
@@ -170,4 +172,37 @@
   /* Adiciona a animação de entrada */
   animation: popupSlideIn 0.5s ease-out; /* Aplica a animação de entrada 'popupSlideIn' por 0.5 segundos, suavizando no final */
   opacity: 1; /* Garante que o pop-up seja visível ao final da animação */
+}
+
+.popup-box-login {
+  background-color: rgba(255, 255, 255, 0.877);
+  width: 800px;
+  border: 2px solid #E6B64E;
+  height: 450px;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+  text-align: center;
+}
+
+.popup-box-login h1 {
+  font-size: 46px;
+}
+
+.popup-box-login h4 {
+  font-size: 22px;
+  font-weight: 200;
+}
+
+.popup-box-login .login-btn, .cadastro-btn {
+  font-size: 18px;
+  background-color: #cda246;
+  padding: 12px;
+  transition: all 0.6s ease;
+}
+
+.popup-box-login .login-btn:hover, .cadastro-btn:hover {
+  font-size: 20px;
+  background-color: #ba9440;
 }
