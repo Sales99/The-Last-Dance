@@ -72,3 +72,100 @@
   background-color: white;
   border-radius: 100%;
 }
+
+
+
+
+/*  */
+/* Responsividade */
+@media (max-width: 602px) {
+
+
+  .footer {
+    background-color: #034F71;
+    color: #fff;
+    padding: 0px 0px;
+    width: 58vh;
+    margin-top: 80px;
+    min-height: 200px; /* Usa min-height em vez de height */
+    display: flex;
+    flex-direction: column; /* Garante que o conteúdo do footer fique em coluna */
+    justify-content: space-between; /* Garante espaçamento entre conteúdo e rodapé */
+  }
+  
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 20px;
+  }
+  
+  .footer-logo img {
+    width: 75px;
+    height: 75px;
+  }
+  
+  .footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .footer-links li {
+    margin-bottom: 10px;
+  }
+  
+  .footer-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 10px;
+  }
+  
+  .footer-social {
+    text-align: center;
+    margin-right: 90px;
+  }
+  
+  .social-icons {
+    gap: 10px;
+    flex-direction: column;
+  }
+  
+  .social-icons img {
+    width: 25px;
+    height: 25px;
+    transition: width 0.5s ease, height 0.5s ease;
+  }
+  
+  .social-icons img:hover {
+    width: 25px;
+    height: 25px;
+  }
+  
+  .footer-bottom {
+    text-align: center;
+    margin-top: 0px;
+    font-size: 10px;
+    color: #fff;
+  }
+  
+  .faceI {
+    background-color: white;
+    border-radius: 100%;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}

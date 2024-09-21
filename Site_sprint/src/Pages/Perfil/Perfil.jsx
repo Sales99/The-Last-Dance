@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getAuth } from 'firebase/auth';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
-import Bannermelhor from '../../assets/images/Bannermelhor.png';
+import Bannermelhor from '../../assets/images/bannermelhor.png';
 import Rd from '../../assets/images/rddesgracado.jpg';
 import './Perfil.css';
 
