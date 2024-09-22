@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './Header.css';
 import IconHeader from '../../assets/Icons/IconHeader';
 import { Link } from 'react-router-dom';
+import logo from "/src/assets/images/logo.png"
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 const Header = ({ adicionarPergunta }) => {
@@ -56,7 +57,7 @@ const Header = ({ adicionarPergunta }) => {
   return (
     <header className="header">
       <Link to="/"> 
-        <img src="/src/assets/images/logo.png" alt="Logo" className="logo" />
+        <img src={logo} alt="Logo" className="logo" />
       </Link>
       
       <input type="text" placeholder="Procurar..." className="search-bar" />

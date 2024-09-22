@@ -7,13 +7,14 @@ import './Quemsomos.css';
 
 const Quemsomos = () => {
   return (
+    <>
+  <Header />
     <div className="quemsomos-container">
-      <Header />
       <main className="ConteudoCentro">
         <div className="content-box">
           <div className="title">
             <img src={Livrinho} alt="livrinho" className="livrinho" />
-            <h1>Quem Somos?</h1>
+            <h1 className='h1zinho'>Quem Somos?</h1>
           </div>
           <div className="description">
             <p>
@@ -35,8 +36,9 @@ Com uma equipe de profissionais experientes e apaixonados, buscamos transformar 
           </div>
         </div>
       </main>
-      <Footer />
     </div>
+    <Footer />
+    </>
   );
 };
 

@@ -2,6 +2,14 @@ import React, { useState } from 'react';
 import './Main.css';
 import { questionsData } from '../../assets/Dados/perguntas'; // Importe os dados do assets.jsx
 import PlayFoto from '../../assets/images/PlayStore.png';
+import biologia from "/src/assets/images/biologia.png"
+import fisica from "/src/assets/images/fisica.png"
+import geografia from "/src/assets/images/geografia.png"
+import historia from "/src/assets/images/historia.png"
+import matematica from "/src/assets/images/matematica.png"
+import portugues from "/src/assets/images/portugues.png"
+import quimica from "/src/assets/images/quimica.png"
+import sociologia from "/src/assets/images/sociologia.png"
 
 const Main = () => {
   const [selectedIconName, setSelectedIconName] = useState('Início - Melhores Perguntas');
@@ -85,7 +93,7 @@ const Main = () => {
             className={`icon-item ${selectedIcon === 'Matemática' ? 'selected' : ''}`}
             onClick={() => handleIconClick('Matemática')}
           >
-            <img src="/src/assets/images/matematica.png" alt="Matemática" className="icon" />
+            <img src={matematica} alt="Matemática" className="icon" />
             <br />
             <span>Matemática</span>
           </div>
@@ -94,7 +102,7 @@ const Main = () => {
             className={`icon-item ${selectedIcon === 'História' ? 'selected' : ''}`}
             onClick={() => handleIconClick('História')}
           >
-            <img src="/src/assets/images/historia.png" alt="História" className="icon" />
+            <img src={historia} alt="História" className="icon" />
             <br />
             <span>História</span>
           </div>
@@ -103,7 +111,7 @@ const Main = () => {
             className={`icon-item ${selectedIcon === 'Português' ? 'selected' : ''}`}
             onClick={() => handleIconClick('Português')}
           >
-            <img src="/src/assets/images/portugues.png" alt="Português" className="icon" />
+            <img src={portugues} alt="Português" className="icon" />
             <br />
             <span>Português</span>
           </div>
@@ -112,7 +120,7 @@ const Main = () => {
             className={`icon-item ${selectedIcon === 'Geografia' ? 'selected' : ''}`}
             onClick={() => handleIconClick('Geografia')}
           >
-            <img src="/src/assets/images/geografia.png" alt="Geografia" className="icon" />
+            <img src={geografia} alt="Geografia" className="icon" />
             <br />
             <span>Geografia</span>
           </div>
@@ -121,7 +129,7 @@ const Main = () => {
             className={`icon-item ${selectedIcon === 'Biologia' ? 'selected' : ''}`}
             onClick={() => handleIconClick('Biologia')}
           >
-            <img src="/src/assets/images/biologia.png" alt="Biologia" className="icon" />
+            <img src={biologia} alt="Biologia" className="icon" />
             <br />
             <span>Biologia</span>
           </div>
@@ -130,7 +138,7 @@ const Main = () => {
             className={`icon-item ${selectedIcon === 'Química' ? 'selected' : ''}`}
             onClick={() => handleIconClick('Química')}
           >
-            <img src="/src/assets/images/quimica.png" alt="Química" className="icon" />
+            <img src={quimica} className="icon" />
             <br />
             <span>Química</span>
           </div>
@@ -139,7 +147,7 @@ const Main = () => {
             className={`icon-item ${selectedIcon === 'Física' ? 'selected' : ''}`}
             onClick={() => handleIconClick('Física')}
           >
-            <img src="/src/assets/images/fisica.png" alt="Física" className="icon" />
+            <img src={fisica} alt="Física" className="icon" />
             <br />
             <span>Física</span>
           </div>
@@ -148,7 +156,7 @@ const Main = () => {
             className={`icon-item ${selectedIcon === 'Sociologia' ? 'selected' : ''}`}
             onClick={() => handleIconClick('Sociologia')}
           >
-            <img src="/src/assets/images/sociologia.png" alt="Sociologia" className="icon" />
+            <img src={sociologia} className="icon" />
             <br />
             <span>Sociologia</span>
           </div>

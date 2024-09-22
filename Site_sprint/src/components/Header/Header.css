@@ -215,7 +215,7 @@
 /* _________________________________________ */
 /* Responsividade */
 
-@media (max-width: 602px) {
+@media (max-width: 1302px) {
   /* Nada ainda */
   
   .header {
@@ -226,7 +226,7 @@
     align-items: center;
     padding: 12px;
     padding-top: 14px;
-    width: 58vh;
+    width: 55vh;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
     margin-bottom: 32px;
   }
@@ -247,7 +247,7 @@
   
   .icon1 {
     height: 20px;
-    margin-left: -10px;
+    margin-left: -20px;
     color: white;
     cursor: pointer;
     transition: color 0.8s ease;
