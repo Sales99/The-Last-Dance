@@ -271,7 +271,7 @@ hr {
 /*  */
 
 
-@media (max-width: 1302px) {
+@media (max-width: 430px) {
 
   .main-content {
     display: flex;
@@ -453,6 +453,247 @@ hr {
     justify-content: space-between; /* Alinha os itens às extremidades */
     margin-top: 16px; /* Espaçamento acima */
     font-size: 16px; /* Ajuste o tamanho da fonte conforme necessário */
+    font-family: 'Inknut Antiqua', serif; /* Fonte para os itens */
+  }
+  
+  .Responder {
+    margin-left: 2px;
+    cursor: pointer;
+    transition: color 0.5s ease;
+  }
+  
+  .Respostas {
+    margin-right: 26px;
+    cursor: pointer;
+    transition: color 1s ease;
+  }
+  
+  .Responder:hover, .Respostas:hover {
+    color: rgb(88, 88, 88);
+  }
+  
+  /* ________________________________________ */
+  
+  hr {
+    border: 1px solid rgb(116, 116, 116);
+    width: 90%;
+  }
+  
+  .PlayTitulo {
+    color: black;
+    align-self: center;
+    text-align: center;
+    font-size: 16px;
+  }
+  
+  .PlayFoto {
+    align-self: center;
+    cursor: pointer;
+    width: 140px;
+    max-width: 280px;
+    transition: 0.5s;
+  }
+  
+  .PlayFoto:hover {
+    transform: scale(1.05);
+  }
+  
+  .lerMais {
+    background: none;
+    border: none;
+    color: rgb(88, 88, 88);
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: -18px;
+    margin-top: 8px;
+  
+    text-decoration: underline;
+  }
+  
+  .lerMais:focus {
+    outline: none;
+  }
+
+}
+
+@media (max-width: 330px) {
+
+  .main-content {
+    display: flex;
+    align-items: flex-start; /* Alinha no topo */
+    flex-direction: column; /* Itens organizados em coluna */
+   
+  }
+  
+  .icons-section {
+    display: flex;
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+    margin-top: -20px; /* Aproxima os ícones do header */
+    max-width: 100%;
+  }
+  
+  .carousel {
+    display: flex;
+    overflow-x: scroll; /* Rolagem horizontal */
+    scroll-behavior: smooth; /* Rolagem suave */
+    width: 100%;
+    max-width: 650px;
+    padding: 10px;
+  }
+  
+  .icon-item {
+    text-align: center;
+    margin: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Transição mais rápida */
+    padding: 12px 0px;
+    border-radius: 16px;
+  }
+  
+  .icon-item:hover {
+    background-color: rgba(0, 0, 0, 0.149);
+  }
+  
+  /* Fundo mais escuro ao selecionar */
+  .icon-item.selected {
+    background-color: rgba(0, 0, 0, 0.149);
+  }
+  
+  .icon-item span {
+    font-size: 16px;
+    color: black;
+  }
+  
+  .icon {
+    width: 30px;
+    height: 30px;
+    margin-bottom: 2px;
+  }
+  
+  .carousel-btn {
+    background: none;
+    color: black;
+    font-weight: 600;
+    outline: none;
+    border: none;
+    padding: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: none;
+    margin: 10px;
+    transition: font-size 0.5s ease;
+  }
+  
+  .carousel-btn:hover {
+    font-size: 13px;
+  }
+  
+  .carousel-btn:focus {
+    outline: none;
+    box-shadow: none;
+  }
+  
+  .carousel::-webkit-scrollbar {
+    display: none; /* Remove a barra de rolagem */
+  }
+  
+  /* Estilo para o título */
+  .icon-title {
+    color: black;
+    margin-left: 12px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 23px;
+    font-weight: 400;
+  }
+  
+  /* ____________________________________________ */
+  
+  .ContainerQ {
+    background-color: #97BF41;
+    margin-left: 13px;
+    padding: 14px;
+    display: flex;
+    border-radius: 12px;
+    flex-direction: column; /* Muda a direção para coluna */
+    width: 75%; /* Defina uma largura adequada para o layout */
+    margin-bottom: 40px;
+    box-shadow: -5px 6px 8px rgba(0, 0, 0, 0.5);
+  }
+  
+  .ParteCima {
+    display: flex;
+    justify-content: space-between; /* Alinha as colunas à esquerda e à direita */
+    align-items: center; /* Centraliza verticalmente os elementos */
+    width: 100%;
+  }
+  
+  .Esquerda {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  /* Altera apenas a cor dos itens ao passar o mouse */
+  .Esquerda:hover .NomePerfil,
+  .Esquerda:hover .FotoPerfil {
+    color: rgba(0, 0, 0, 0.7); /* Cor mais escura ao passar o mouse */
+    filter: brightness(0.7); /* Escurece a imagem da foto de perfil */
+  }
+  
+  /* Estilo padrão para o nome */
+  .NomePerfil {
+    font-size: 11px;
+    font-weight: 700;
+    margin: 0;
+    font-family: 'Inknut Antiqua', serif;
+    color: rgb(255, 255, 255); /* Cor padrão */
+    transition: filter, color 0.6s ease;
+  }
+  
+  /* Estilo padrão para a foto de perfil */
+  .FotoPerfil {
+    width: 31px;
+    height: 31px;
+    max-height: 52px;
+    max-width: 52px;
+    border-radius: 100%;
+    margin-right: 20px;
+    margin-left: 0px;
+    margin-top: 6px;
+    /* border: 1px solid black; */
+    transition: filter 0.6s ease; /* Transição suave ao escurecer a imagem */
+  }
+  
+  .Direita {
+    font-size: 13px;
+    font-weight: 700;
+    margin-right: 25px;
+    color: rgb(83, 83, 83);
+  }
+  
+  .ParteMeio {
+    margin-top: 8px; /* Espaçamento para separar da parte de cima */
+    font-size: 18px;
+    text-align: justify;
+    font-family: serif;
+    font-weight: 500;
+    color: black;
+    margin-left: 2px;
+    margin-right: 26px;
+  }
+  
+  .ParteMeio p {
+    margin-bottom: 0px;
+  }
+  
+  .ParteBaixo {
+    display: flex;
+    justify-content: space-between; /* Alinha os itens às extremidades */
+    margin-top: 16px; /* Espaçamento acima */
+    font-size: 13px; /* Ajuste o tamanho da fonte conforme necessário */
     font-family: 'Inknut Antiqua', serif; /* Fonte para os itens */
   }
   
