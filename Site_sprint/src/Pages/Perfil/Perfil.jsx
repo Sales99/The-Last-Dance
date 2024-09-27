@@ -1,18 +1,16 @@
-// src/Pages/Perfil/Perfil.jsx
-
 import React, { useEffect, useState, useRef } from 'react';
 import { getAuth, updateProfile } from 'firebase/auth';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import Bannermelhor from '../../assets/images/bannermelhor.png';
-import Rd from '../../assets/images/rddesgracado.jpg'; // Imagem de perfil padrão
+import DefaultProfileImage from '../../assets/images/defaultProfileImage.png'; // Imagem de perfil padrão
 import './Perfil.css';
-import { storage, auth } from '../../DB/Conexao_Firebase'; // Importar storage e auth do Firebase
+import { storage, auth } from '../../DB/Conexao_Firebase';
 
 const Perfil = () => {
   const [username, setUsername] = useState("Carregando...");
-  const [profileImage, setProfileImage] = useState(Rd); // Estado para a imagem de perfil
+  const [profileImage, setProfileImage] = useState(DefaultProfileImage); // Começa com imagem de perfil padrão
   const fileInputRef = useRef(null); // Referência para o input de arquivo
 
   useEffect(() => {
@@ -20,30 +18,26 @@ const Perfil = () => {
       if (user) {
         setUsername(user.displayName || "Nome não disponível");
         if (user.photoURL) {
-          setProfileImage(user.photoURL);
+          setProfileImage(user.photoURL); // Se houver uma foto de perfil no Firebase, usa essa
         }
       } else {
         setUsername("Nome não disponível");
       }
     });
 
-    // Limpeza do efeito
     return () => unsubscribe();
   }, []);
 
-  // Função para lidar com o clique na imagem de perfil
   const handleProfileImageClick = () => {
     if (fileInputRef.current) {
       fileInputRef.current.click(); // Abre o seletor de arquivos
     }
   };
 
-  // Função para lidar com a seleção do arquivo
   const handleFileChange = async (event) => {
     const file = event.target.files[0];
     if (file && auth.currentUser) {
       try {
-        // Referência no Firebase Storage
         const storageRef = ref(storage, `profileImages/${auth.currentUser.uid}/${file.name}`);
 
         // Upload do arquivo
@@ -53,14 +47,11 @@ const Perfil = () => {
         const downloadURL = await getDownloadURL(storageRef);
 
         // Atualizar o profileURL do usuário
-        await updateProfile(auth.currentUser, {
-          photoURL: downloadURL,
-        });
+        await updateProfile(auth.currentUser, { photoURL: downloadURL });
 
         // Atualizar o estado local para exibir a nova imagem
         setProfileImage(downloadURL);
 
-        // Opcional: Notificar o usuário sobre o sucesso
         alert("Imagem de perfil atualizada com sucesso!");
       } catch (error) {
         console.error("Erro ao atualizar a foto de perfil: ", error);
@@ -80,8 +71,8 @@ const Perfil = () => {
             src={profileImage}
             alt="User Profile"
             className="profileImage"
-            onClick={handleProfileImageClick} // Adiciona o handler de clique
-            style={{ cursor: 'pointer' }} // Muda o cursor para indicar que é clicável
+            onClick={handleProfileImageClick}
+            style={{ cursor: 'pointer' }}
           />
           {/* Input de arquivo oculto */}
           <input
@@ -91,7 +82,7 @@ const Perfil = () => {
             style={{ display: 'none' }}
             onChange={handleFileChange}
           />
-          <h2 className='username'>{username}</h2> {/* Exibe o nome do usuário */}
+          <h2 className='username'>{username}</h2>
 
           <div className="stats">
             <span>Respostas</span>
