@@ -1,21 +1,20 @@
-// src/context/QuestionsContext.jsx
 import React, { createContext, useState } from 'react';
-import { questionsData } from '../assets/Dados/perguntas'; // Certifique-se de que o caminho está correto
+import { questionsData } from '../../src/assets/Dados/perguntas';
 
 export const QuestionsContext = createContext();
 
 export const QuestionsProvider = ({ children }) => {
   const [questions, setQuestions] = useState(questionsData);
 
-  const adicionarPergunta = (descricao, materia, nome, fotoPerfil) => {
-    const novaPergunta = {
-      descricao,
+  const adicionarPergunta = (pergunta, materia) => {
+    const newQuestion = {
+      fotoPerfil: 'defaultProfilePic.png', // Adicione o caminho da imagem padrão
+      nome: 'Usuário Anônimo',
+      tempo: 'Agora',
+      descricao: pergunta,
       materia,
-      nome,
-      fotoPerfil,
-      tempo: '0 segundos atrás', // Tempo inicial
     };
-    setQuestions([novaPergunta, ...questions]);
+    setQuestions((prevQuestions) => [...prevQuestions, newQuestion]);
   };
 
   return (
