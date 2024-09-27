@@ -24,6 +24,11 @@
   height: 250px;
   border: 2px solid black;
   border-radius: 50%;
+  transition: all 0.8s ease;
+}
+
+.profileImage:hover {
+  filter: brightness(0.7);
 }
 
 h2 {
