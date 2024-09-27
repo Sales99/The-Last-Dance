@@ -56,7 +56,12 @@ const Main = ({ questions }) => {
       filteredQuestions.map((question, index) => {
         const isExpanded = expandedQuestions[index];
         const shouldShowExpandButton = question.descricao.length > 300; // Exibe o botão "Ler mais" se a descrição for longa
-        const displayText = isExpanded ? question.descricao : `${question.descricao.substring(0, 300)}...`;
+        const displayText = isExpanded 
+          ? question.descricao 
+          : question.descricao.length > 300 
+            ? `${question.descricao.substring(0, 300)}...` 
+            : question.descricao; // Exibe a descrição completa se tiver 300 caracteres ou menos
+
 
         return (
           <div key={index} className="ContainerQ">
