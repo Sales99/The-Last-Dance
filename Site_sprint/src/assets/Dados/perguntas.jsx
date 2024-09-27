@@ -20,8 +20,8 @@ export const questionsData = [
   {
     fotoPerfil: Cr7,
     nome: 'Cristiano Ronaldo',
-    tempo: '1 Ano',
-    descricao: 'Vocês podem dar um Ban no castro pelo amor de Deus?',
+    tempo: '11h atrás',
+    descricao: 'E o São Paulo Bruninho?',
     materia: 'Português',
   },
 ];
