@@ -36,6 +36,7 @@
   padding: 0;
   margin-top: 10px;
   margin-bottom: 20px;
+  line-height: 0.6;
 }
 
 .NoQuestion {
@@ -378,6 +379,7 @@ hr {
 
   .questions-section h1 {
     margin-left: 16px;
+    font-size: 80px;
   }
   
   /* ____________________________________________ */
@@ -389,7 +391,7 @@ hr {
     display: flex;
     border-radius: 12px;
     flex-direction: column; /* Muda a direção para coluna */
-    width: 75%; /* Defina uma largura adequada para o layout */
+    width: 85%; /* Defina uma largura adequada para o layout */
     margin-bottom: 40px;
     box-shadow: -5px 6px 8px rgba(0, 0, 0, 0.5);
   }
