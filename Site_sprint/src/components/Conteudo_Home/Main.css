@@ -191,6 +191,7 @@
   color: black;
   margin-left: 72px;
   margin-right: 26px;
+  overflow-wrap: break-word;
 }
 
 .ParteMeio p {
