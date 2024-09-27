@@ -62,7 +62,7 @@ const Main = ({ questions }) => {
           <div key={index} className="ContainerQ">
             <div className="ParteCima">
               <div className="Esquerda">
-                {question.fotoPerfil && <img src={question.fotoPerfil} className="FotoPerfil" alt="Foto de perfil" />}
+                {question.fotoPerfil && <img src={question.fotoPerfil} className="FotoPerfil" alt="" />}
                 {question.nome && <h2 className="NomePerfil">{question.nome}</h2>}
               </div>
               <div className="Direita">
