@@ -1,8 +1,9 @@
+// src/components/Header/Header.jsx
 import React, { useState, useEffect } from 'react';
 import './Header.css';
 import IconHeader from '../../assets/Icons/IconHeader';
 import { Link } from 'react-router-dom';
-import logo from "/src/assets/images/logo.png"
+import logo from "/src/assets/images/logo.png";
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 const Header = ({ adicionarPergunta }) => {
@@ -11,12 +12,19 @@ const Header = ({ adicionarPergunta }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [pergunta, setPergunta] = useState('');
   const [materia, setMateria] = useState('');
+  const [nome, setNome] = useState(''); // Estado para o nome do usuário
+  const [fotoPerfil, setFotoPerfil] = useState(''); // Estado para a imagem de perfil
 
   const auth = getAuth();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setIsAuthenticated(!!user);
+      if (user) {
+        // Obtém o nome e a foto do perfil do usuário autenticado
+        setNome(user.displayName || 'Usuário Anônimo');
+        setFotoPerfil(user.photoURL || '/src/assets/images/defaultProfilePic.png'); // Defina uma foto padrão se não houver
+      }
     });
     return () => unsubscribe();
   }, [auth]);
@@ -35,10 +43,10 @@ const Header = ({ adicionarPergunta }) => {
 
   const handleEnviarPergunta = () => {
     if (pergunta && materia) {
-      adicionarPergunta(pergunta, materia);
-      setPergunta('');
-      setMateria('');
-      setShowBox(false);
+      adicionarPergunta(pergunta, materia, nome, fotoPerfil); // Chama a função de adicionar pergunta com nome e foto
+      setPergunta(''); // Limpa o campo de pergunta
+      setMateria(''); // Limpa o campo de matéria
+      setShowBox(false); // Fecha a caixa de entrada
     }
   };
 

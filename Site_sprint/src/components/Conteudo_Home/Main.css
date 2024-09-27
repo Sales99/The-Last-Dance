@@ -18,6 +18,18 @@
   max-width: 100%;
 }
 
+.questions-section {
+  width: 100%;
+}
+
+.questions-section h1, .NoQuestion {
+  margin-left: 130px;
+}
+
+.NoQuestion {
+  margin-bottom: 60px;
+}
+
 .carousel {
   display: flex;
   overflow-x: scroll; /* Rolagem horizontal */
