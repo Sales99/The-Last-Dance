@@ -1,17 +1,17 @@
+// src/components/Conteudo_Home/Main.jsx
 import React, { useState } from 'react';
 import './Main.css';
-import { questionsData } from '../../assets/Dados/perguntas'; // Importe os dados do assets.jsx
 import PlayFoto from '../../assets/images/PlayStore.png';
-import biologia from "/src/assets/images/biologia.png"
-import fisica from "/src/assets/images/fisica.png"
-import geografia from "/src/assets/images/geografia.png"
-import historia from "/src/assets/images/historia.png"
-import matematica from "/src/assets/images/matematica.png"
-import portugues from "/src/assets/images/portugues.png"
-import quimica from "/src/assets/images/quimica.png"
-import sociologia from "/src/assets/images/sociologia.png"
+import biologia from "/src/assets/images/biologia.png";
+import fisica from "/src/assets/images/fisica.png";
+import geografia from "/src/assets/images/geografia.png";
+import historia from "/src/assets/images/historia.png";
+import matematica from "/src/assets/images/matematica.png";
+import portugues from "/src/assets/images/portugues.png";
+import quimica from "/src/assets/images/quimica.png";
+import sociologia from "/src/assets/images/sociologia.png";
 
-const Main = () => {
+const Main = ({ questions }) => {
   const [selectedIconName, setSelectedIconName] = useState('Início - Melhores Perguntas');
   const [selectedIcon, setSelectedIcon] = useState(null);
   const [expandedQuestions, setExpandedQuestions] = useState({});
@@ -30,8 +30,13 @@ const Main = () => {
       setSelectedIconName('Início - Melhores Perguntas');
     } else {
       setSelectedIcon(iconName);
-      setSelectedIconName(iconName);
+      setSelectedIconName(capitalizeFirstLetter(iconName));
     }
+  };
+
+  const capitalizeFirstLetter = (string) => {
+    if (!string) return '';
+    return string.charAt(0).toUpperCase() + string.slice(1);
   };
 
   const toggleExpand = (index) => {
@@ -41,16 +46,16 @@ const Main = () => {
     }));
   };
 
-  // Renderiza as perguntas com base no ícone selecionado
+  // Função para renderizar as perguntas com base na matéria selecionada
   const renderQuestions = () => {
     const filteredQuestions = selectedIcon
-      ? questionsData.filter((question) => question.materia === selectedIcon)
-      : questionsData;
+      ? questions.filter((question) => question.materia.toLowerCase() === selectedIcon.toLowerCase())
+      : questions;
 
     return filteredQuestions.length > 0 ? (
       filteredQuestions.map((question, index) => {
         const isExpanded = expandedQuestions[index];
-        const shouldShowExpandButton = question.descricao.length > 300; // Exibe o botão "Ler mais" se a pergunta for grande
+        const shouldShowExpandButton = question.descricao.length > 300; // Exibe o botão "Ler mais" se a descrição for longa
         const displayText = isExpanded ? question.descricao : `${question.descricao.substring(0, 300)}...`;
 
         return (
@@ -80,7 +85,7 @@ const Main = () => {
         );
       })
     ) : (
-      <p>Nenhuma pergunta disponível para {selectedIcon}</p>
+      <p className='NoQuestion'>Nenhuma pergunta disponível para {selectedIconName}</p>
     );
   };
 
@@ -89,9 +94,10 @@ const Main = () => {
       <section className="icons-section">
         <button className="carousel-btn" onClick={scrollLeft}>{'<'}</button>
         <div className="carousel" id="carousel">
+          {/* Ícones das matérias */}
           <div
-            className={`icon-item ${selectedIcon === 'Matemática' ? 'selected' : ''}`}
-            onClick={() => handleIconClick('Matemática')}
+            className={`icon-item ${selectedIcon === 'matematica' ? 'selected' : ''}`}
+            onClick={() => handleIconClick('matematica')}
           >
             <img src={matematica} alt="Matemática" className="icon" />
             <br />
@@ -99,8 +105,8 @@ const Main = () => {
           </div>
 
           <div
-            className={`icon-item ${selectedIcon === 'História' ? 'selected' : ''}`}
-            onClick={() => handleIconClick('História')}
+            className={`icon-item ${selectedIcon === 'historia' ? 'selected' : ''}`}
+            onClick={() => handleIconClick('historia')}
           >
             <img src={historia} alt="História" className="icon" />
             <br />
@@ -108,8 +114,8 @@ const Main = () => {
           </div>
 
           <div
-            className={`icon-item ${selectedIcon === 'Português' ? 'selected' : ''}`}
-            onClick={() => handleIconClick('Português')}
+            className={`icon-item ${selectedIcon === 'portugues' ? 'selected' : ''}`}
+            onClick={() => handleIconClick('portugues')}
           >
             <img src={portugues} alt="Português" className="icon" />
             <br />
@@ -117,8 +123,8 @@ const Main = () => {
           </div>
 
           <div
-            className={`icon-item ${selectedIcon === 'Geografia' ? 'selected' : ''}`}
-            onClick={() => handleIconClick('Geografia')}
+            className={`icon-item ${selectedIcon === 'geografia' ? 'selected' : ''}`}
+            onClick={() => handleIconClick('geografia')}
           >
             <img src={geografia} alt="Geografia" className="icon" />
             <br />
@@ -126,8 +132,8 @@ const Main = () => {
           </div>
 
           <div
-            className={`icon-item ${selectedIcon === 'Biologia' ? 'selected' : ''}`}
-            onClick={() => handleIconClick('Biologia')}
+            className={`icon-item ${selectedIcon === 'biologia' ? 'selected' : ''}`}
+            onClick={() => handleIconClick('biologia')}
           >
             <img src={biologia} alt="Biologia" className="icon" />
             <br />
@@ -135,17 +141,17 @@ const Main = () => {
           </div>
 
           <div
-            className={`icon-item ${selectedIcon === 'Química' ? 'selected' : ''}`}
-            onClick={() => handleIconClick('Química')}
+            className={`icon-item ${selectedIcon === 'quimica' ? 'selected' : ''}`}
+            onClick={() => handleIconClick('quimica')}
           >
-            <img src={quimica} className="icon" />
+            <img src={quimica} alt="Química" className="icon" />
             <br />
             <span>Química</span>
           </div>
 
           <div
-            className={`icon-item ${selectedIcon === 'Física' ? 'selected' : ''}`}
-            onClick={() => handleIconClick('Física')}
+            className={`icon-item ${selectedIcon === 'fisica' ? 'selected' : ''}`}
+            onClick={() => handleIconClick('fisica')}
           >
             <img src={fisica} alt="Física" className="icon" />
             <br />
@@ -153,10 +159,10 @@ const Main = () => {
           </div>
 
           <div
-            className={`icon-item ${selectedIcon === 'Sociologia' ? 'selected' : ''}`}
-            onClick={() => handleIconClick('Sociologia')}
+            className={`icon-item ${selectedIcon === 'sociologia' ? 'selected' : ''}`}
+            onClick={() => handleIconClick('sociologia')}
           >
-            <img src={sociologia} className="icon" />
+            <img src={sociologia} alt="Sociologia" className="icon" />
             <br />
             <span>Sociologia</span>
           </div>
@@ -164,10 +170,12 @@ const Main = () => {
         <button className="carousel-btn" onClick={scrollRight}>{'>'}</button>
       </section>
 
-      <h1 className={`icon-title ${selectedIcon ? 'fade-in' : 'fade-out'}`}>{selectedIconName}</h1>
-
-      {/* Exibe as perguntas se houver dados disponíveis */}
-      {renderQuestions()}
+      <section className="questions-section">
+        <h1>{selectedIconName}</h1>
+        <div className="questions-container">
+          {renderQuestions()}
+        </div>
+      </section>
 
       <hr />
       <h1 className="PlayTitulo">
