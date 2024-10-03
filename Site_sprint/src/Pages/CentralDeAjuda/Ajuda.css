@@ -1,128 +1,144 @@
-.ajuda-container {
+@import url('https://fonts.googleapis.com/css2?family=Jomhuria&display=swap');
+
+.ajuda-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: #fff;
+  text-align: center;
+  margin-top: 100px;
+}
+
+.ajuda-banner {
+  width: 100%;
+  height: 300px;
+  margin-top: -30px;
+}
+
+.ajuda-header-title {
+  font-family: "Jomhuria";
+  font-size: 6rem;
+  font-weight: 500;
+  margin-bottom: 5px;
+  margin-top: -100px;
+  color: #1f3c88;
+  text-decoration: underline 4px;
+  transition: font-size 0.5s ease;
+}
+
+.ajuda-header-title:hover {
+  font-size: 6.25rem;
+}
+
+.ajuda-section-item {
+  border: 2px solid #1f3c88;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 15px;
+  width: 600px;
+}
+
+.ajuda-toggle-button {
+  width: 100%;
+  padding: 15px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  background-color: #f9f9f9;
+  border: none;
+  cursor: pointer;
+  transition: font-size 0.5s;
+  outline: none;
+}
+
+.ajuda-toggle-button:focus {
+  outline: none;
+}
+
+.ajuda-toggle-button:hover {
+  font-size: 1.35rem;
+}
+
+.ajuda-toggle-button.active,
+.ajuda-toggle-button:hover {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.ajuda-section-content {
+  margin-top: 15px;
+  font-size: 1rem;
+  color: #333;
+  text-align: center;
+  overflow: hidden; /* Esconde o conteúdo que excede */
+  max-height: 0; /* Começa escondido */
+  opacity: 0; /* Começa invisível */
+  transition: max-height 0.5s ease, opacity 0.5s ease; /* Adiciona transição */
+}
+
+.ajuda-section-content.active {
+  max-height: 500px; /* Ajuste a altura máxima conforme necessário */
+  opacity: 1; /* Torna visível */
+}
+
+/* Responsividade */
+@media (max-width: 1302px) {
+  .ajuda-wrapper {
     padding: 20px;
     background-color: #fff;
     text-align: center;
     margin-top: 100px;
-    width: 1495px;
+    width: 100%; /* Altera a largura para 100% para preencher a tela */
   }
 
-  .Banner {
-    width: 1520px;
-    height: 300px;
-    margin-top: 00px;
-    
+  .ajuda-banner {
+    width: 100%; /* Assegura que a imagem do banner preencha a largura */
+    height: 120px;
+  }
 
+  .ajuda-header-title {
+    font-size: 4.5rem; /* Ajusta o tamanho da fonte para telas menores */
+    margin-left: -20px;
+    align-self: center;
   }
-  
-  .ajuda-title {
-    font-size: 2rem;
-    margin-bottom: 20px;
-    color: #1f3c88;
+
+  .ajuda-header-title:hover{
+    font-size: 4.75rem;
   }
-  
-  .ajuda-sections {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-  }
-  
-  .ajuda-section {
-    border: 2px solid #1f3c88;
-    padding: 10px;
-    border-radius: 5px;
-  }
-  
-  .ajuda-button {
+
+  .ajuda-content-sections {
+    margin-left: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 100%;
+    margin-left: -36px;
+  }
+
+  .ajuda-section-item {
+    border: 2px solid #1f3c88;
+    border-radius: 5px;
+    margin: 16px;
+    margin-left: 0px;
+    margin-right: 0px;
+    width: 320px;
+  }
+
+  .ajuda-toggle-button {
+    width: 100%; /* Garante que os botões ocupem a largura total */
     padding: 15px;
     font-size: 1.2rem;
     font-weight: bold;
-    background-color: #f9f9f9;
     border: none;
     cursor: pointer;
-    transition: background-color 0.3s;
   }
-  
-  .ajuda-button.active,
-  .ajuda-button:hover {
-    background-color: #e0f7fa;
-  }
-  
-  .ajuda-content {
-    margin-top: 15px;
+
+  .ajuda-section-content {
     font-size: 1rem;
     color: #333;
-    text-align: left;
+    text-align: center; /* Alinha o texto à esquerda */
+    margin-top: 15px; /* Margem superior */
   }
-  
-  /* @media (max-width: 768px) {
-    .ajuda-sections {
-      grid-template-columns: 1fr;
-    }
-  } */
-
-  /*  */
-  /* Responsividade */
-  /*  */
-
-
-  @media (max-width: 1302px) {
-    .ajuda-container {
-      padding: 20px;
-      background-color: #fff;
-      text-align: center;
-      margin-top: 100px;
-      width: 390px;
-    
-    }
-  
-    .Banner {
-      width: 60vh;
-      height: 200px;
-      margin-top: 0px;
-      
-  
-    }
-    
-    .ajuda-title {
-      font-size: 2rem;
-      margin-bottom: 20px;
-      color: #1f3c88;
-    }
-    
-    .ajuda-sections {
-      flex-direction: column;
-      grid-template-columns: repeat(1, 1fr);
-      gap: 20px;
-    }
-    
-    .ajuda-section {
-      border: 2px solid #1f3c88;
-      padding: 10px;
-      border-radius: 5px;
-    }
-    
-    .ajuda-button {
-      width: 100%;
-      padding: 15px;
-      font-size: 1.2rem;
-      font-weight: bold;
-      background-color: #f9f9f9;
-      border: none;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-    
-    .ajuda-button.active,
-    .ajuda-button:hover {
-      background-color: #e0f7fa;
-    }
-    
-    .ajuda-content {
-      margin-top: 15px;
-      font-size: 1rem;
-      color: #333;
-      text-align: left;
-    }
-    
-  }
+}
