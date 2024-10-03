@@ -492,6 +492,10 @@ hr {
     border: 1px solid rgb(116, 116, 116);
     width: 90%;
   }
+
+  .NoQuestion {
+    margin-left: 12px;
+  }
   
   .PlayTitulo {
     color: black;
@@ -763,6 +767,10 @@ hr {
     margin-top: 8px;
   
     text-decoration: underline;
+  }
+
+  .NoQuestion {
+    margin-left: 24px;
   }
   
   .lerMais:focus {
