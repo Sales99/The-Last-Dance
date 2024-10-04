@@ -266,6 +266,52 @@ hr {
 .lerMais:focus {
   outline: none;
 }
+/* ___________________________________________ */
+/* Parte Baixo */
+
+.ParteBaixo {
+  display: flex;
+  justify-content: space-between; /* Alinha os elementos nas extremidades */
+  margin-top: 16px; /* Espaçamento acima */
+  margin-left: 52px; /* Alinhamento consistente com ParteMeio */
+  margin-right: 26px;
+}
+
+/* Estilos para os elementos <p> que atuam como botões */
+.Responder,
+.Respostas {
+  padding: 8px 16px; /* Espaçamento interno */
+  font-size: 16px;
+  border: 2px solid transparent; /* Borda transparente por padrão */
+  border-radius: 8px;
+  cursor: pointer;
+  color: rgb(93, 93, 93);
+  transition: color 0.5s ease;
+  display: inline-block; /* Permite definir dimensões e centralizar texto */
+  margin: 0; /* Remove margens padrão */
+}
+
+.Responder:hover,
+.Respostas:hover {
+  color: rgb(12, 12, 12);
+}
+
+/* Opcional: Adicionar foco para acessibilidade */
+.Responder:focus,
+.Respostas:focus {
+  outline: none;
+}
+
+/* _____________________________________________ */
+/* Resposta Container */
+
+.RespostaContainer {
+  display: flex;
+  z-index: 1;
+  background-color: aliceblue;
+  margin-top: 120px;
+  width: 800px;
+}
 
 /*  */
 /*  */
