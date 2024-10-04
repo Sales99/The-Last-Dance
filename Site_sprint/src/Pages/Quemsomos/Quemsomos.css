@@ -102,7 +102,67 @@
     }
 
   }
+/*  */
 
+
+
+/* Xiaomi 12 */
+@media (max-width: 365px) {
+  .quemsomos-container {
+    flex-direction: column;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    margin-left: 25px;
+    width: 620px;
+    color: #333;
+  }
+  
+  .ConteudoCentro {
+    background-color: transparent;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 50%;
+  }
+  
+  .content-box {
+    background-color: #FFEC5C;
+    align-self: center;
+    right: 300px;
+    border-radius: 10px;
+    padding: 30px;
+    max-width: 600px;
+    margin-top: 60px;
+    margin-bottom: 40px;
+    box-shadow: -3px 3px 20px black;
+    text-align: left;
+  }
+  
+  .title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .livrinho {
+    height: 50px;
+    margin-right: 10px;
+  }
+  
+  .description p {
+    margin-bottom: 15px;
+  }
+     
+  .h1zinho{
+    font-size: 20px;
+  }
+
+}
+
+/*  */
 
   /*  */
   /*  */
