@@ -1,5 +1,5 @@
 // src/components/Conteudo_Home/Main.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Main.css';
 import PlayFoto from '../../assets/images/PlayStore.png';
 import biologia from "/src/assets/images/biologia.png";
@@ -10,11 +10,29 @@ import matematica from "/src/assets/images/matematica.png";
 import portugues from "/src/assets/images/portugues.png";
 import quimica from "/src/assets/images/quimica.png";
 import sociologia from "/src/assets/images/sociologia.png";
+import { getFirestore, collection, query, onSnapshot } from 'firebase/firestore'; // Importa Firestore
 
-const Main = ({ questions }) => {
+const Main = () => {
+  const [questions, setQuestions] = useState([]);
   const [selectedIconName, setSelectedIconName] = useState('Início - Melhores Perguntas');
   const [selectedIcon, setSelectedIcon] = useState(null);
   const [expandedQuestions, setExpandedQuestions] = useState({});
+
+  const db = getFirestore(); // Inicializa Firestore
+
+  useEffect(() => {
+    // Cria uma consulta para obter as perguntas do Firestore
+    const q = query(collection(db, "perguntas"));
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      const perguntasArray = [];
+      querySnapshot.forEach((doc) => {
+        perguntasArray.push({ id: doc.id, ...doc.data() });
+      });
+      setQuestions(perguntasArray); // Atualiza o estado com as perguntas do Firestore
+    });
+
+    return () => unsubscribe(); // Limpa o snapshot listener ao desmontar o componente
+  }, [db]);
 
   const scrollLeft = () => {
     document.getElementById('carousel').scrollLeft -= 110;
@@ -55,13 +73,12 @@ const Main = ({ questions }) => {
     return filteredQuestions.length > 0 ? (
       filteredQuestions.map((question, index) => {
         const isExpanded = expandedQuestions[index];
-        const shouldShowExpandButton = question.descricao.length > 300; // Exibe o botão "Ler mais" se a descrição for longa
+        const shouldShowExpandButton = question.pergunta.length > 300; // Exibe o botão "Ler mais" se a pergunta for longa
         const displayText = isExpanded 
-          ? question.descricao 
-          : question.descricao.length > 300 
-            ? `${question.descricao.substring(0, 300)}...` 
-            : question.descricao; // Exibe a descrição completa se tiver 300 caracteres ou menos
-
+          ? question.pergunta 
+          : question.pergunta.length > 300 
+            ? `${question.pergunta.substring(0, 300)}...` 
+            : question.pergunta;
 
         return (
           <div key={index} className="ContainerQ">
@@ -77,26 +94,22 @@ const Main = ({ questions }) => {
             <div className="ParteMeio">
               <p>{displayText}</p>
               {shouldShowExpandButton && (
-                <button className="lerMais" onClick={() => toggleExpand(index)}>
+                <button className="expand-button" onClick={() => toggleExpand(index)}>
                   {isExpanded ? 'Ler menos' : 'Ler mais'}
                 </button>
               )}
-            </div>
-            <div className="ParteBaixo">
-              <p className="Responder">Responder</p>
-              <p className="Respostas">Ver Respostas</p>
             </div>
           </div>
         );
       })
     ) : (
-      <p className='NoQuestion'>Nenhuma pergunta disponível para {selectedIconName}</p>
+      <p>Nenhuma pergunta disponível</p>
     );
   };
 
   return (
     <main className="main-content">
-      <section className="icons-section">
+     <section className="icons-section">
         <button className="carousel-btn" onClick={scrollLeft}>{'<'}</button>
         <div className="carousel" id="carousel">
           {/* Ícones das matérias */}
@@ -177,17 +190,8 @@ const Main = ({ questions }) => {
 
       <section className="questions-section">
         <h1>{selectedIconName}</h1>
-        <div className="questions-container">
-          {renderQuestions()}
-        </div>
+        <div className="questions-container">{renderQuestions()}</div>
       </section>
-
-      <hr />
-      <h1 className="PlayTitulo">
-        Curta todas às novidades em nosso aplicativo Mobile!
-        <br /> Baixe agora e teste as novidades!
-      </h1>
-      <img src={PlayFoto} alt="" className="PlayFoto" />
     </main>
   );
 };

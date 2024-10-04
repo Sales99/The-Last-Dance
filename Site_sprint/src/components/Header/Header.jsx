@@ -5,8 +5,9 @@ import IconHeader from '../../assets/Icons/IconHeader';
 import { Link } from 'react-router-dom';
 import logo from "/src/assets/images/logo.png";
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { getFirestore, collection, addDoc } from 'firebase/firestore'; // Adiciona Firestore
 
-const Header = ({ adicionarPergunta }) => {
+const Header = () => {
   const [showBox, setShowBox] = useState(false);
   const [showLoginPopup, setShowLoginPopup] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -16,6 +17,7 @@ const Header = ({ adicionarPergunta }) => {
   const [fotoPerfil, setFotoPerfil] = useState(''); // Estado para a imagem de perfil
 
   const auth = getAuth();
+  const db = getFirestore(); // Inicializa Firestore
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -41,12 +43,23 @@ const Header = ({ adicionarPergunta }) => {
     setShowBox(false);
   };
 
-  const handleEnviarPergunta = () => {
+  const handleEnviarPergunta = async () => {
     if (pergunta && materia) {
-      adicionarPergunta(pergunta, materia, nome, fotoPerfil); // Chama a função de adicionar pergunta com nome e foto
-      setPergunta(''); // Limpa o campo de pergunta
-      setMateria(''); // Limpa o campo de matéria
-      setShowBox(false); // Fecha a caixa de entrada
+      try {
+        // Salva a pergunta no Firestore
+        await addDoc(collection(db, "perguntas"), {
+          pergunta,
+          materia,
+          nome,
+          fotoPerfil,
+          tempo: new Date().toLocaleString() // Adiciona a data e hora da pergunta
+        });
+        setPergunta(''); // Limpa o campo de pergunta
+        setMateria(''); // Limpa o campo de matéria
+        setShowBox(false); // Fecha a caixa de entrada
+      } catch (error) {
+        console.error("Erro ao enviar a pergunta: ", error);
+      }
     }
   };
 
