@@ -246,7 +246,7 @@
   }
   
   .icon1 {
-    height: 20px;
+    height: 36px;
     margin-left: -20px;
     color: white;
     cursor: pointer;
@@ -259,7 +259,8 @@
   
   .QuestionMaker {
     text-align: center;
-    font-size: 7px;
+    font-size: 10px;
+    width: 70px;
     padding: 2px 0px;
     border: 3px solid black;
     border-radius: 16px;
@@ -461,8 +462,8 @@
   }
   
   .icon1 {
-    height: 20px;
-    margin-left: -20px;
+    height: 36px;
+    margin-right: -20px;
     color: white;
     cursor: pointer;
     transition: color 0.8s ease;
@@ -475,6 +476,7 @@
   .QuestionMaker {
     text-align: center;
     font-size: 7px;
+    width: 50px;
     padding: 2px 4px;
     border: 2px solid black;
     border-radius: 16px;

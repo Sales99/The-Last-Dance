@@ -85,7 +85,7 @@
     background-color: #034F71;
     color: #fff;
     padding: 0px 0px;
-    width: 58vh;
+    width: 100%;
     margin-top: 80px;
     min-height: 200px; /* Usa min-height em vez de height */
     display: flex;
@@ -94,6 +94,7 @@
   }
   
   .footer-content {
+    margin-top: 14px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -123,18 +124,19 @@
   }
   
   .footer-social {
+    margin-right: 60px;
+    margin-top: -12px;
     text-align: center;
-    margin-right: 90px;
   }
   
   .social-icons {
     gap: 10px;
-    flex-direction: column;
+    flex-direction: row;
   }
   
   .social-icons img {
-    width: 25px;
-    height: 25px;
+    width: 22px;
+    height: 22px;
     transition: width 0.5s ease, height 0.5s ease;
   }
   
@@ -185,7 +187,7 @@
     background-color: #034F71;
     color: #fff;
     padding: 0px 0px;
-    width: 61vh;
+    width: 100%;
     margin-top: 80px;
     min-height: 200px; /* Usa min-height em vez de height */
     display: flex;
@@ -197,6 +199,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: 32px;
     width: 100%;
     padding: 0 20px;
   }
@@ -233,7 +236,7 @@
   
   .social-icons {
     gap: 5px;
-    flex-direction: column;
+    flex-direction: row;
   }
   
   .social-icons img {
