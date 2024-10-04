@@ -83,7 +83,7 @@
 }
 
 /* Responsividade */
-@media (max-width: 1302px) {
+@media (max-width: 430px) {
   .ajuda-wrapper {
     padding: 20px;
     background-color: #fff;
@@ -140,5 +140,66 @@
     color: #333;
     text-align: center; /* Alinha o texto à esquerda */
     margin-top: 15px; /* Margem superior */
+  }
+}
+
+
+@media (max-width: 330px) {
+  .ajuda-wrapper {
+    padding: 20px;
+    background-color: #fff;
+    text-align: center;
+    margin-top: 100px;
+    width: 90%; /* Altera a largura para 100% para preencher a tela */
+  }
+
+  .ajuda-banner {
+    width: 100%; /* Assegura que a imagem do banner preencha a largura */
+    height: 120px;
+  }
+
+  .ajuda-header-title {
+    font-size: 4.5rem; /* Ajusta o tamanho da fonte para telas menores */
+    margin-left: -10px;
+    align-self: center;
+  }
+
+  .ajuda-header-title:hover{
+    font-size: 4.5rem;
+  }
+
+  .ajuda-content-sections {
+    margin-left: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-left: 56px;
+  }
+
+  .ajuda-section-item {
+    border: 2px solid #1f3c88;
+    border-radius: 5px;
+    margin: 16px;
+    margin-left: 0px;
+    margin-right: 60px;
+    width: 280px;
+  }
+
+  .ajuda-toggle-button {
+    width: 100%; /* Garante que os botões ocupem a largura total */
+    padding: 15px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+  }
+
+  .ajuda-section-content {
+    font-size: 1rem;
+    color: #333;
+    text-align: center; /* Alinha o texto à esquerda */
+    margin-top: 1px; /* Margem superior */
   }
 }
