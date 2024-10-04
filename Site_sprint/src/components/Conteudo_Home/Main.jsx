@@ -1,4 +1,3 @@
-// src/components/Conteudo_Home/Main.jsx
 import React, { useState, useEffect } from 'react';
 import './Main.css';
 import PlayFoto from '../../assets/images/PlayStore.png';
@@ -11,6 +10,7 @@ import portugues from "/src/assets/images/portugues.png";
 import quimica from "/src/assets/images/quimica.png";
 import sociologia from "/src/assets/images/sociologia.png";
 import { getFirestore, collection, query, onSnapshot } from 'firebase/firestore'; // Importa Firestore
+import DefaultProfileImage from '../../assets/images/defaultProfileImage.png'; // Imagem de perfil padrão
 
 const Main = () => {
   const [questions, setQuestions] = useState([]);
@@ -95,7 +95,11 @@ const Main = () => {
           <div key={index} className="ContainerQ">
             <div className="ParteCima">
               <div className="Esquerda">
-                {question.fotoPerfil && <img src={question.fotoPerfil} className="FotoPerfil" alt="" />}
+                <img 
+                  src={question.fotoPerfil || DefaultProfileImage} // Usa a imagem padrão se não houver foto de perfil
+                  className="FotoPerfil" 
+                  alt="" 
+                />
                 {question.nome && <h2 className="NomePerfil">{question.nome}</h2>}
               </div>
               <div className="Direita">
