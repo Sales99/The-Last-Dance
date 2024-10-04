@@ -10,12 +10,13 @@ import './Logar.css';
 import { FaEye, FaEyeSlash, FaGoogle } from 'react-icons/fa';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDYdvgk_Z3pYP-Lt_xpSwsvRyNghsSlS-4",
-    authDomain: "teste-tcc-f1317.firebaseapp.com",
-    projectId: "teste-tcc-f1317",
-    storageBucket: "teste-tcc-f1317.appspot.com",
-    messagingSenderId: "174564069294",
-    appId: "1:174564069294:web:045933f5e77bc0fd0a423f"
+    apiKey: "AIzaSyABktM135Cz7a93kprhUxhz9xmFKoish5c",
+  authDomain: "bdd-tcc-66f51.firebaseapp.com",
+  projectId: "bdd-tcc-66f51",
+  storageBucket: "bdd-tcc-66f51.appspot.com",
+  messagingSenderId: "55793936883",
+  appId: "1:55793936883:web:6b0da056a0d5419bae8a86",
+  measurementId: "G-QCEFKTHM05"
 };
 
 const app = initializeApp(firebaseConfig);
