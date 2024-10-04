@@ -8,13 +8,13 @@ import './Cadastro.css';
 import { FaEye, FaEyeSlash, FaGoogle } from 'react-icons/fa';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyABktM135Cz7a93kprhUxhz9xmFKoish5c",
-    authDomain: "bdd-tcc-66f51.firebaseapp.com",
-    projectId: "bdd-tcc-66f51",
-    storageBucket: "bdd-tcc-66f51.appspot.com",
-    messagingSenderId: "55793936883",
-    appId: "1:55793936883:web:6b0da056a0d5419bae8a86",
-    measurementId: "G-QCEFKTHM05"
+    apiKey: "AIzaSyColq8nh741FW-DeAVRdc77ZcC9FP-Blp8",
+    authDomain: "teste-denovo-1d43c.firebaseapp.com",
+    projectId: "teste-denovo-1d43c",
+    storageBucket: "teste-denovo-1d43c.appspot.com",
+    messagingSenderId: "384646857934",
+    appId: "1:384646857934:web:70f54a0c677d602d03fc9f",
+    measurementId: "G-E9FET4BYVZ"
 };
 
 const app = initializeApp(firebaseConfig);
