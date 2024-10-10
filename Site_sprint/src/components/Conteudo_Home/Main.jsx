@@ -15,7 +15,7 @@ import DefaultProfileImage from '../../assets/images/defaultProfileImage.png'; /
 
 const Main = () => {
   const [questions, setQuestions] = useState([]);
-  const [selectedIconName, setSelectedIconName] = useState('Início - Melhores Perguntas');
+  const [selectedIconName, setSelectedIconName] = useState('Dúvidas Frequentes ');
   const [selectedIcon, setSelectedIcon] = useState(null);
   const [expandedQuestions, setExpandedQuestions] = useState({});
 
@@ -77,7 +77,7 @@ const Main = () => {
   const handleIconClick = (iconName) => {
     if (selectedIcon === iconName) {
       setSelectedIcon(null);
-      setSelectedIconName('Início - Melhores Perguntas');
+      setSelectedIconName('Dúvidas Frequentes');
     } else {
       setSelectedIcon(iconName);
       setSelectedIconName(capitalizeFirstLetter(iconName));

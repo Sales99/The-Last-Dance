@@ -89,3 +89,457 @@ h2 {
 .aboutSection p {
   margin: 5px 0;
 }
+
+
+
+
+
+/* Iphone 13 pro max */
+@media (max-width: 430px) {
+  .Bannerzinho {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+  }
+  
+  .perfilContainer {
+    display: flex;
+    flex-direction: initial;
+    align-items: center;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    margin-right: 0vh; /*ajusta todo o conteudo do perfil*/
+    margin-left: -5vh;
+  }
+  
+  .leftSection {
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 10px;
+  }
+  
+  .profileImage {
+    width: 62px;
+    height: 62px;
+    border: 2px solid black;
+    border-radius: 50%;
+    transition: all 0.8s ease;
+  }
+  
+  .profileImage:hover {
+    filter: brightness(0.7);
+  }
+  
+  h2 {
+    margin-top: 10px;
+    font-size: 20px;
+  }
+  
+  .stats {
+      display: flex;
+    justify-content: space-evenly;
+    padding: 0px 0px;
+    margin-right: 100px;
+    width: 100%;
+    margin-top: 15px;
+    font-size: 5px;
+  }
+  
+  .stats span {
+    font-size: 8px;
+  }
+  
+  .points {
+    margin-top: 20px;
+  }
+  
+  .pointsButton {
+    background-color: #a0d468;
+    border: none;
+    padding: 10px 20px;
+    font-size: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .rightSection {
+    background-color: #f0f0f0;
+    padding: 9px 20px;
+    text-align: center;
+    width: 60%;
+    margin-bottom: 20px;
+    margin-top: 0vh;
+    margin-left: auto;  /* ajusta o você ainda não tem respostas  */
+    font-size: 0px;
+  }
+
+  .rightSection h3 {
+    font-size: 12px;
+  }
+
+  .rightSection p {
+    font-size: 10px;
+    text-align: center;
+  }
+  
+  .aboutSection {
+    background-color: #ffeb8a;
+    padding: 13px 20px;
+    text-align: initial;
+    margin-top: -19px;
+    
+    width: 60%;
+    margin-left: 1vh;  /* ajusta o container sobre */
+    font-size: 10px;
+  }
+  
+  .aboutSection h3 {
+    margin-bottom: 10px;
+    font-size: 12px;
+  }
+  
+  .aboutSection p {
+    margin: 5px 0;
+    font-size: 10px;
+    text-align: center;
+  }
+}
+
+
+
+/* Iphone 13 e 13 pro */
+@media (max-width: 391px) {
+  .Bannerzinho {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+  }
+  
+  .perfilContainer {
+    display: flex;
+    flex-direction: initial;
+    align-items: center;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    margin-right: 0vh; /*ajusta todo o conteudo do perfil*/
+    margin-left: -5vh;
+  }
+  
+  .leftSection {
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 10px;
+  }
+  
+  .profileImage {
+    width: 62px;
+    height: 62px;
+    border: 2px solid black;
+    border-radius: 50%;
+    transition: all 0.8s ease;
+  }
+  
+  .profileImage:hover {
+    filter: brightness(0.7);
+  }
+  
+  h2 {
+    margin-top: 10px;
+    font-size: 20px;
+  }
+  
+  .stats {
+      display: flex;
+    justify-content: space-evenly;
+    padding: 0px 0px;
+    margin-right: 80px;
+    width: 100%;
+    margin-top: 15px;
+    font-size: 5px;
+  }
+  
+  .stats span {
+    font-size: 8px;
+  }
+  
+  .points {
+    margin-top: 20px;
+  }
+  
+  .pointsButton {
+    background-color: #a0d468;
+    border: none;
+    padding: 10px 20px;
+    font-size: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .rightSection {
+    background-color: #f0f0f0;
+    padding: 0px 20px;
+    text-align: center;
+    width: 60%;
+    margin-bottom: 20px;
+    margin-top: 0vh;
+    margin-left: auto;  /* ajusta o você ainda não tem respostas  */
+    font-size: 0px;
+  }
+
+  .rightSection h3 {
+    font-size: 12px;
+  }
+
+  .rightSection p {
+    font-size: 10px;
+    text-align: center;
+  }
+  
+  .aboutSection {
+    background-color: #ffeb8a;
+    padding: 11px 20px;
+    text-align: initial;
+    margin-top: -19px;
+    
+    width: 60%;
+    margin-left: 1vh;  /* ajusta o container sobre */
+    font-size: 10px;
+  }
+  
+  .aboutSection h3 {
+    margin-bottom: 10px;
+    font-size: 12px;
+  }
+  
+  .aboutSection p {
+    margin: 5px 0;
+    font-size: 10px;
+    text-align: center;
+  }
+}
+
+
+
+/* xiaomi 12 */
+@media (max-width: 361px) {
+  .Bannerzinho {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+  }
+  
+  .perfilContainer {
+    display: flex;
+    flex-direction: initial;
+    align-items: center;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    margin-right: 0vh; /*ajusta todo o conteudo do perfil*/
+    margin-left: -5vh;
+  }
+  
+  .leftSection {
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 10px;
+  }
+  
+  .profileImage {
+    width: 42px;
+    height: 42px;
+    border: 2px solid black;
+    border-radius: 50%;
+    transition: all 0.8s ease;
+  }
+  
+  .profileImage:hover {
+    filter: brightness(0.7);
+  }
+  
+  h2 {
+    margin-top: 10px;
+    font-size: 20px;
+  }
+  
+  .stats {
+      display: flex;
+    justify-content: space-evenly;
+    padding: 0px 0px;
+    margin-right: 40px; /*ajusta os containers*/
+    width: 100%;
+    margin-top: 15px;
+    font-size: 5px;
+  }
+  
+  .stats span {
+    font-size: 7px;
+  }
+  
+  .points {
+    margin-top: 20px;
+  }
+  
+  .pointsButton {
+    background-color: #a0d468;
+    border: none;
+    padding: 10px 20px;
+    font-size: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .rightSection {
+    background-color: #f0f0f0;
+    padding: 3px 10px;
+    text-align: center;
+    width: 60%;
+    margin-bottom: 20px;
+    margin-top: 0vh;
+    margin-left: auto;  /* ajusta o você ainda não tem respostas  */
+    font-size: 0px;
+  }
+
+  .rightSection h3 {
+    font-size: 12px;
+  }
+
+  .rightSection p {
+    font-size: 10px;
+    text-align: center;
+  }
+  
+  .aboutSection {
+    background-color: #ffeb8a;
+    padding: 1px 10px;
+    text-align: initial;
+    margin-top: -19px;
+    width: 60%;
+    margin-left: 1vh;  /* ajusta o container sobre */
+    font-size: 10px;
+  }
+  
+  .aboutSection h3 {
+    margin-bottom: 10px;
+    font-size: 12px;
+  }
+  
+  .aboutSection p {
+    margin: 5px 0;
+    font-size: 10px;
+    text-align: center;
+  }
+}
+
+
+
+/*  */
+/*  */
+/* Iphone 6 */
+@media (max-width: 330px) {
+  .Bannerzinho {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+  }
+  
+  .perfilContainer {
+    display: flex;
+    flex-direction: initial;
+    align-items: center;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    margin-right: 0vh; /*ajusta todo o conteudo do perfil*/
+    margin-left: -5vh;
+  }
+  
+  .leftSection {
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 10px;
+  }
+  
+  .profileImage {
+    width: 42px;
+    height: 42px;
+    border: 2px solid black;
+    border-radius: 50%;
+    transition: all 0.8s ease;
+  }
+  
+  .profileImage:hover {
+    filter: brightness(0.7);
+  }
+  
+  h2 {
+    margin-top: 10px;
+    font-size: 20px;
+  }
+  
+  .stats {
+      display: flex;
+    justify-content: space-evenly;
+    padding: 0px 0px;
+    margin-right: 40px; /*ajusta os containers*/
+    width: 100%;
+    margin-top: 15px;
+    font-size: 5px;
+  }
+  
+  .stats span {
+    font-size: 7px;
+  }
+  
+  .points {
+    margin-top: 20px;
+  }
+  
+  .pointsButton {
+    background-color: #a0d468;
+    border: none;
+    padding: 10px 20px;
+    font-size: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .rightSection {
+    background-color: #f0f0f0;
+    padding: 3px 10px;
+    text-align: center;
+    width: 60%;
+    margin-bottom: 20px;
+    margin-top: 0vh;
+    margin-left: auto;  /* ajusta o você ainda não tem respostas  */
+    font-size: 0px;
+  }
+
+  .rightSection h3 {
+    font-size: 12px;
+  }
+
+  .rightSection p {
+    font-size: 10px;
+    text-align: center;
+  }
+  
+  .aboutSection {
+    background-color: #ffeb8a;
+    padding: 1px 10px;
+    text-align: initial;
+    margin-top: -19px;
+    width: 60%;
+    margin-left: 1vh;  /* ajusta o container sobre */
+    font-size: 10px;
+  }
+  
+  .aboutSection h3 {
+    margin-bottom: 10px;
+    font-size: 12px;
+  }
+  
+  .aboutSection p {
+    margin: 5px 0;
+    font-size: 10px;
+    text-align: center;
+  }
+}

@@ -410,220 +410,220 @@
     /* FIM */
     /*  */
   
-
-
-
-    @media (max-width: 430px) {
-  /* Nada ainda */
-  
-  .header {
-    background-color: #FFEC5C;
-    display: grid;
-    grid-template-columns: 0.6fr 1.6fr 0.55fr 0.3fr;
-    gap: 30px;
-    align-items: center;
-    padding: 12px;
-    padding-top: 14px;
-    width: 55vh;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-    margin-bottom: 32px;
-  }
-  
-  .logo {
-    width: 50px;
-    height: 50px;
-    margin-right: 0px;
-  }
-  
-  .search-bar {
-    padding: 8px;
-    font-size: 8px;
-    border-radius: 5px;
-    outline: none;
-    border: none;
-  }
-  
-  .icon1 {
-    height: 36px;
-    margin-left: -20px;
-    color: white;
-    cursor: pointer;
-    transition: color 0.8s ease;
-  }
-  
-  .icon1:hover {
-    color: rgb(0, 0, 0);
-  }
-  
-  .QuestionMaker {
-    text-align: center;
-    font-size: 10px;
-    width: 70px;
-    padding: 2px 0px;
-    border: 3px solid black;
-    border-radius: 16px;
-    cursor: pointer;
-    transition: all 0.5s ease;
-  }
-  
-  .QuestionMaker:hover {
-    background-color: rgba(0, 0, 0, 0.123);
-    font-size: 7px;
-  }
-  
-  /* _________________________________________ */
-  /* Question Maker */
-  
-  .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5); /* Fundo escurecido */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-  }
-  
-  .popup-box {
-    background-color: rgba(255, 255, 255, 0.877);
-    width: 800px;
-    border: 2px solid #E6B64E;
-    height: 450px;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    position: relative;
-  }
-  
-  .close-btn {
-    position: absolute;
-    padding: 0px 6px;
-    top: 5px;
-    right: 10px;
-    font-size: 24px;
-    cursor: pointer;
-    color: black;
-    background: none;
-    outline: none;
-    border: none;
-    transition: all 0.5s ease
-  }
-  
-  .close-btn:focus {
-    outline: none;
-  }
-  
-  .close-btn:hover {
-    color: red; /* Opcional: cor de hover para o botão de fechar */
-    font-size: 25px;
-  }
-  
-  .QuestionMaker-Tittle {
-    max-width: 95%;
-    font-size: 30px;
-  }
-  
-  .question-input {
-    background-color: rgba(255, 255, 255, 0.897);
-    font-size: 18px ;
-    padding: 0;
-    text-align: left;
-    vertical-align: text-top;
-    width: 93%;
-    height: 200px;
-    border: 2px solid rgb(156, 156, 156);
-    padding: 12px;
-    margin: 12px 0px 12px 0px; /* A ordem é cima, esquerda, baixo, direita */
-  }
-  
-  .seletor-materia {
-    width: 190px;
-    height: 40px;
-    border-radius: 10px;
-    font-size: 15px;
-    padding-left: 10px;
-    font-weight: 545;
-  }
-  
-  .linha-enviar-popup{
-    display: flex; /* Utiliza flexbox para o layout */
-    justify-content: space-between; /* Coloca os itens nos extremos (esquerda e direita) */
-    align-items: center; /* Alinha os itens verticalmente */
-    width: 96.5%; /* Define o tamanho total da linha */
-  }
-  
-  .enviar-pergunta {
-    background-color: #E6B64E;
-    /* border: 1px solid black; */
-    font-size: 18px;
-    transition: all 0.5s ease;
-  }
-  
-  .enviar-pergunta:hover {
-    background-color: #cda246;
-  }
-
-  /*  */
-  /* caixa de texto do você não está logado */
-  /*  */
-
-
-  .popup-box-login {
-    background-color: rgba(255, 255, 255, 0.877);
-    width: 300px;
-    border: 2px solid #E6B64E;
-    height: 300px;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    position: relative;
-    text-align: center;
-  }
-  
-  .popup-box-login h1 {
-    font-size: 15px;
-  }
-  
-  .popup-box-login h4 {
-    font-size: 15px;
-    font-weight: 200;
-  }
-  
-  .popup-box-login .login-btn, .cadastro-btn {
-    font-size: 15px;
-    background-color: #cda246;
-    padding: 12px;
-    transition: all 0.6s ease;
-  }
-  
-  .popup-box-login .login-btn:hover, .cadastro-btn:hover {
-    font-size: 20px;
-    background-color: #ba9440;
-  }
-  
-    /*  */
-    /* FIM */
-    /*  */
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
-}
+
+    /* iphone 13 e 13 pro */
+
+    @media (max-width: 390px) {
+      /* Nada ainda */
+      
+      .header {
+        background-color: #FFEC5C;
+        display: grid;
+        grid-template-columns: 0.6fr 1.6fr 0.55fr 0.3fr;
+        gap: 30px;
+        align-items: center;
+        padding: 12px;
+        padding-top: 14px;
+        width: 47vh;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        margin-bottom: 32px;
+      }
+      
+      .logo {
+        width: 40px;
+        height: 40px;
+        margin-right: 0px;
+      }
+      
+      .search-bar {
+        padding: 8px;
+        font-size: 8px;
+        border-radius: 5px;
+        outline: none;
+        border: none;
+      }
+      
+      .icon1 {
+        height: 30px;
+        margin-left: -20px;
+        color: white;
+        cursor: pointer;
+        transition: color 0.8s ease;
+      }
+      
+      .icon1:hover {
+        color: rgb(0, 0, 0);
+      }
+      
+      .QuestionMaker {
+        text-align: center;
+        font-size: 7px;
+        width: 60px;
+        height: 20px;
+        padding: 2px 0px;
+        border: 3px solid black;
+        border-radius: 16px;
+        cursor: pointer;
+        transition: all 0.5s ease;
+      }
+      
+      .QuestionMaker:hover {
+        background-color: rgba(0, 0, 0, 0.123);
+      }
+      
+      /* _________________________________________ */
+      /* Question Maker */
+      
+      .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5); /* Fundo escurecido */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+      
+      .popup-box {
+        background-color: rgba(255, 255, 255, 0.877);
+        width: 800px;
+        border: 2px solid #E6B64E;
+        height: 450px;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        position: relative;
+      }
+      
+      .close-btn {
+        position: absolute;
+        padding: 0px 6px;
+        top: 5px;
+        right: 10px;
+        font-size: 24px;
+        cursor: pointer;
+        color: black;
+        background: none;
+        outline: none;
+        border: none;
+        transition: all 0.5s ease
+      }
+      
+      .close-btn:focus {
+        outline: none;
+      }
+      
+      .close-btn:hover {
+        color: red; /* Opcional: cor de hover para o botão de fechar */
+        font-size: 25px;
+      }
+      
+      .QuestionMaker-Tittle {
+        max-width: 95%;
+        font-size: 30px;
+      }
+      
+      .question-input {
+        background-color: rgba(255, 255, 255, 0.897);
+        font-size: 18px ;
+        padding: 0;
+        text-align: left;
+        vertical-align: text-top;
+        width: 93%;
+        height: 200px;
+        border: 2px solid rgb(156, 156, 156);
+        padding: 12px;
+        margin: 12px 0px 12px 0px; /* A ordem é cima, esquerda, baixo, direita */
+      }
+      
+      .seletor-materia {
+        width: 190px;
+        height: 40px;
+        border-radius: 10px;
+        font-size: 15px;
+        padding-left: 10px;
+        font-weight: 545;
+      }
+      
+      .linha-enviar-popup{
+        display: flex; /* Utiliza flexbox para o layout */
+        justify-content: space-between; /* Coloca os itens nos extremos (esquerda e direita) */
+        align-items: center; /* Alinha os itens verticalmente */
+        width: 96.5%; /* Define o tamanho total da linha */
+      }
+      
+      .enviar-pergunta {
+        background-color: #E6B64E;
+        /* border: 1px solid black; */
+        font-size: 18px;
+        transition: all 0.5s ease;
+      }
+      
+      .enviar-pergunta:hover {
+        background-color: #cda246;
+      }
+    
+      /*  */
+      /* caixa de texto do você não está logado */
+      /*  */
+    
+    
+      .popup-box-login {
+        background-color: rgba(255, 255, 255, 0.877);
+        width: 300px;
+        border: 2px solid #E6B64E;
+        height: 300px;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        position: relative;
+        text-align: center;
+      }
+      
+      .popup-box-login h1 {
+        font-size: 15px;
+      }
+      
+      .popup-box-login h4 {
+        font-size: 15px;
+        font-weight: 200;
+      }
+      
+      .popup-box-login .login-btn, .cadastro-btn {
+        font-size: 15px;
+        background-color: #cda246;
+        padding: 12px;
+        transition: all 0.6s ease;
+      }
+      
+      .popup-box-login .login-btn:hover, .cadastro-btn:hover {
+        font-size: 20px;
+        background-color: #ba9440;
+      }
+      
+        /*  */
+        /* FIM */
+        /*  */
+      
+    
+    }
+    
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   /* Xiaomi 12 */
