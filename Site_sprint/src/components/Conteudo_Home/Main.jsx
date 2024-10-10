@@ -10,6 +10,7 @@ import portugues from "/src/assets/images/portugues.png";
 import quimica from "/src/assets/images/quimica.png";
 import sociologia from "/src/assets/images/sociologia.png";
 import { getFirestore, collection, query, onSnapshot } from 'firebase/firestore'; // Importa Firestore
+import { auth } from '../../DB/Conexao_Firebase'; // Importa a autenticação do Firebase
 import DefaultProfileImage from '../../assets/images/defaultProfileImage.png'; // Imagem de perfil padrão
 
 const Main = () => {
@@ -17,13 +18,33 @@ const Main = () => {
   const [selectedIconName, setSelectedIconName] = useState('Dúvidas Frequentes ');
   const [selectedIcon, setSelectedIcon] = useState(null);
   const [expandedQuestions, setExpandedQuestions] = useState({});
-  
+
   // Estados para responder perguntas
-  const [respondendoId, setRespondendoId] = useState(null); // ID da pergunta que está sendo respondida
   const [resposta, setResposta] = useState(''); // Resposta atual do usuário
   const [respostas, setRespostas] = useState({}); // Respostas armazenadas
+  const [showResponsePopup, setShowResponsePopup] = useState(false); // Estado para controlar o pop-up de resposta
+  const [currentQuestionId, setCurrentQuestionId] = useState(null); // ID da pergunta atual no pop-up
+
+  // Estados para armazenar o nome e a foto do usuário atual
+  const [currentUserName, setCurrentUserName] = useState(null);
+  const [currentUserPhoto, setCurrentUserPhoto] = useState(DefaultProfileImage);
 
   const db = getFirestore(); // Inicializa Firestore
+
+  useEffect(() => {
+    // Verifica o estado de autenticação do usuário
+    const unsubscribeAuth = auth.onAuthStateChanged((user) => {
+      if (user) {
+        setCurrentUserName(user.displayName || "Anônimo");
+        setCurrentUserPhoto(user.photoURL || DefaultProfileImage);
+      } else {
+        setCurrentUserName(null);
+        setCurrentUserPhoto(DefaultProfileImage);
+      }
+    });
+
+    return () => unsubscribeAuth();
+  }, []);
 
   useEffect(() => {
     // Carregar respostas do localStorage ao montar o componente
@@ -92,57 +113,40 @@ const Main = () => {
             : question.pergunta;
 
         return (
-          <div key={index} className="ContainerQ">
-            <div className="ParteCima">
-              <div className="Esquerda">
-                <img 
-                  src={question.fotoPerfil || DefaultProfileImage} // Usa a imagem padrão se não houver foto de perfil
-                  className="FotoPerfil" 
-                  alt="" 
-                />
-                {question.nome && <h2 className="NomePerfil">{question.nome}</h2>}
+          <div key={index}>
+            <div className="ContainerQ">
+              <div className="ParteCima">
+                <div className="Esquerda">
+                  <img 
+                    src={question.fotoPerfil || DefaultProfileImage} // Usa a imagem padrão se não houver foto de perfil
+                    className="FotoPerfil" 
+                    alt="" 
+                  />
+                  {question.nome && <h2 className="NomePerfil">{question.nome}</h2>}
+                </div>
+                <div className="Direita">
+                  {question.tempo && <p>{question.tempo}</p>}
+                </div>
               </div>
-              <div className="Direita">
-                {question.tempo && <p>{question.tempo}</p>}
+              <div className="ParteMeio">
+                <p>{displayText}</p>
+                {shouldShowExpandButton && (
+                  <button className="expand-button" onClick={() => toggleExpand(index)}>
+                    {isExpanded ? 'Ler menos' : 'Ler mais'}
+                  </button>
+                )}
               </div>
-            </div>
-            <div className="ParteMeio">
-              <p>{displayText}</p>
-              {shouldShowExpandButton && (
-                <button className="expand-button" onClick={() => toggleExpand(index)}>
-                  {isExpanded ? 'Ler menos' : 'Ler mais'}
-                </button>
-              )}
-            </div>
 
-            {/* Adição dos elementos "Responder" e "Ver Respostas" como <p> */}
-            <div className="ParteBaixo">
-              <p className="Responder" onClick={() => handleResponder(question.id)}>
-                Responder
-              </p>
-              <p className="Respostas" onClick={() => handleVerRespostas(question.id)}>
-                Ver Respostas
-              </p>
-            </div>
-
-            {/* Se esta pergunta está sendo respondida, exibir o input de resposta */}
-            {respondendoId === question.id && (
-              <div className="RespostaContainer">
-                <input
-                  type="text"
-                  value={resposta}
-                  onChange={(e) => setResposta(e.target.value)}
-                  placeholder="Digite sua resposta"
-                  className="RespostaInput"
-                />
-                <button onClick={() => enviarResposta(question.id)} className="EnviarButton">
-                  Enviar
-                </button>
-                <button onClick={() => setRespondendoId(null)} className="CancelarButton">
-                  Cancelar
-                </button>
+              {/* Adição dos elementos "Responder" e "Ver Respostas" como <p> */}
+              <div className="ParteBaixo">
+                <p className="Responder" onClick={() => handleResponder(question.id)}>
+                  Responder
+                </p>
+                <p className="Respostas" onClick={() => handleVerRespostas(question.id)}>
+                  Ver Respostas
+                </p>
               </div>
-            )}
+            </div>
 
             {/* Se "Ver Respostas" foi clicado para esta pergunta, exibir as respostas */}
             {verRespostasId === question.id && (
@@ -150,7 +154,15 @@ const Main = () => {
                 {respostas[question.id] && respostas[question.id].length > 0 ? (
                   respostas[question.id].map((resp, idx) => (
                     <div key={idx} className="RespostaItem">
-                      <p>{resp}</p>
+                      <img 
+                        src={resp.fotoPerfil || DefaultProfileImage} // Imagem do respondente
+                        className="FotoPerfilResp" 
+                        alt="" 
+                      />
+                      <div className="RespostaTexto">
+                        <h3 className="NomeResp">{resp.nome}</h3>
+                        <p>{resp.texto}</p>
+                      </div>
                     </div>
                   ))
                 ) : (
@@ -162,7 +174,7 @@ const Main = () => {
         );
       })
     ) : (
-      <p>Nenhuma pergunta disponível</p>
+      <p className='NoQuestion'>Nenhuma pergunta disponível</p>
     );
   };
 
@@ -171,7 +183,12 @@ const Main = () => {
 
   // Funções de manipulação para os elementos "Responder" e "Ver Respostas"
   const handleResponder = (questionId) => {
-    setRespondendoId(questionId);
+    if (!currentUserName) {
+      alert('Você precisa estar logado para responder.');
+      return;
+    }
+    setCurrentQuestionId(questionId);
+    setShowResponsePopup(true); // Exibe o pop-up de resposta
     setVerRespostasId(null); // Esconde as respostas se estiverem visíveis
   };
 
@@ -180,32 +197,42 @@ const Main = () => {
       setVerRespostasId(null); // Toggle para esconder
     } else {
       setVerRespostasId(questionId);
-      setRespondendoId(null); // Esconde o input de resposta se estiver visível
+      setCurrentQuestionId(null); // Esconde o pop-up se estiver aberto
+      setShowResponsePopup(false);
     }
   };
 
-  const enviarResposta = (questionId) => {
+  const enviarResposta = () => {
     if (resposta.trim() === '') {
       alert('Por favor, digite uma resposta.');
       return;
     }
 
-    // Adicionar a resposta ao estado
+    // Adicionar a resposta ao estado com o nome e foto do usuário
     setRespostas((prevRespostas) => {
       const novasRespostas = { ...prevRespostas };
-      if (!novasRespostas[questionId]) {
-        novasRespostas[questionId] = [];
+      if (!novasRespostas[currentQuestionId]) {
+        novasRespostas[currentQuestionId] = [];
       }
-      novasRespostas[questionId].push(resposta.trim());
+      novasRespostas[currentQuestionId].push({
+        texto: resposta.trim(),
+        nome: currentUserName,
+        fotoPerfil: currentUserPhoto,
+      });
       // Salvar no localStorage
       localStorage.setItem('respostas', JSON.stringify(novasRespostas));
       return novasRespostas;
     });
 
-    // Limpar o input e fechar o campo de resposta
+    // Limpar o input e fechar o pop-up de resposta
     setResposta('');
-    setRespondendoId(null);
-    setVerRespostasId(questionId); // Opcional: abrir as respostas após enviar
+    setShowResponsePopup(false);
+    setVerRespostasId(currentQuestionId); // Opcional: abrir as respostas após enviar
+  };
+
+  const handleCloseResponsePopup = () => {
+    setShowResponsePopup(false);
+    setResposta(''); // Limpa a resposta ao fechar o pop-up
   };
 
   return (
@@ -222,16 +249,6 @@ const Main = () => {
             <br />
             <span>Matemática</span>
           </div>
-
-          <div
-            className={`icon-item ${selectedIcon === 'historia' ? 'selected' : ''}`}
-            onClick={() => handleIconClick('historia')}
-          >
-            <img src={historia} alt="História" className="icon" />
-            <br />
-            <span>História</span>
-          </div>
-
           <div
             className={`icon-item ${selectedIcon === 'portugues' ? 'selected' : ''}`}
             onClick={() => handleIconClick('portugues')}
@@ -240,25 +257,6 @@ const Main = () => {
             <br />
             <span>Português</span>
           </div>
-
-          <div
-            className={`icon-item ${selectedIcon === 'geografia' ? 'selected' : ''}`}
-            onClick={() => handleIconClick('geografia')}
-          >
-            <img src={geografia} alt="Geografia" className="icon" />
-            <br />
-            <span>Geografia</span>
-          </div>
-
-          <div
-            className={`icon-item ${selectedIcon === 'biologia' ? 'selected' : ''}`}
-            onClick={() => handleIconClick('biologia')}
-          >
-            <img src={biologia} alt="Biologia" className="icon" />
-            <br />
-            <span>Biologia</span>
-          </div>
-
           <div
             className={`icon-item ${selectedIcon === 'quimica' ? 'selected' : ''}`}
             onClick={() => handleIconClick('quimica')}
@@ -267,7 +265,14 @@ const Main = () => {
             <br />
             <span>Química</span>
           </div>
-
+          <div
+            className={`icon-item ${selectedIcon === 'biologia' ? 'selected' : ''}`}
+            onClick={() => handleIconClick('biologia')}
+          >
+            <img src={biologia} alt="Biologia" className="icon" />
+            <br />
+            <span>Biologia</span>
+          </div>
           <div
             className={`icon-item ${selectedIcon === 'fisica' ? 'selected' : ''}`}
             onClick={() => handleIconClick('fisica')}
@@ -276,7 +281,22 @@ const Main = () => {
             <br />
             <span>Física</span>
           </div>
-
+          <div
+            className={`icon-item ${selectedIcon === 'geografia' ? 'selected' : ''}`}
+            onClick={() => handleIconClick('geografia')}
+          >
+            <img src={geografia} alt="Geografia" className="icon" />
+            <br />
+            <span>Geografia</span>
+          </div>
+          <div
+            className={`icon-item ${selectedIcon === 'historia' ? 'selected' : ''}`}
+            onClick={() => handleIconClick('historia')}
+          >
+            <img src={historia} alt="História" className="icon" />
+            <br />
+            <span>História</span>
+          </div>
           <div
             className={`icon-item ${selectedIcon === 'sociologia' ? 'selected' : ''}`}
             onClick={() => handleIconClick('sociologia')}
@@ -291,8 +311,38 @@ const Main = () => {
 
       <section className="questions-section">
         <h1>{selectedIconName}</h1>
-        <div className="questions-container">{renderQuestions()}</div>
+        <div className="questions-container">
+          {renderQuestions()}
+        </div>
       </section>
+
+      {/* Pop-up para responder perguntas */}
+      {showResponsePopup && (
+        <div className="popup-overlay">
+          <div className="popup-content">
+            {/* Parte de Cima */}
+            <div className="popup-cima">
+              <h2 className='Responder-tittle'>Escreva sua Resposta abaixo</h2>
+              <p>Ajude os outros com sua resposta e especialidade no assunto!</p>
+            </div>
+
+            {/* Parte do Meio */}
+            <div className="popup-meio">
+              <textarea
+                value={resposta}
+                onChange={(e) => setResposta(e.target.value)}
+                placeholder="Digite sua resposta aqui..."
+              />
+            </div>
+
+            {/* Parte de Baixo */}
+            <div className="popup-baixo">
+              <button onClick={enviarResposta}>Enviar Resposta</button>
+              <button onClick={handleCloseResponsePopup}>Fechar</button>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 };
