@@ -1,11 +1,10 @@
-// src/components/Header/Header.jsx
 import React, { useState, useEffect } from 'react';
 import './Header.css';
 import IconHeader from '../../assets/Icons/IconHeader';
 import { Link } from 'react-router-dom';
-import logo from "/src/assets/images/logo.png";
+import logo from '/src/assets/images/logo.png';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { getFirestore, collection, addDoc } from 'firebase/firestore'; // Adiciona Firestore
+import { getFirestore, collection, addDoc } from 'firebase/firestore'; // Firestore para salvar perguntas
 
 const Header = () => {
   const [showBox, setShowBox] = useState(false);
@@ -19,18 +18,20 @@ const Header = () => {
   const auth = getAuth();
   const db = getFirestore(); // Inicializa Firestore
 
+  // Atualiza o estado baseado no status de autenticação
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setIsAuthenticated(!!user);
       if (user) {
-        // Obtém o nome e a foto do perfil do usuário autenticado
+        // Define o nome e a foto de perfil do usuário autenticado
         setNome(user.displayName || 'Usuário Anônimo');
-        setFotoPerfil(user.photoURL || '/src/assets/images/defaultProfilePic.png'); // Defina uma foto padrão se não houver
+        setFotoPerfil(user.photoURL || '/src/assets/images/defaultProfilePic.png'); // Define uma foto padrão se não houver
       }
     });
     return () => unsubscribe();
   }, [auth]);
 
+  // Abre a caixa de perguntas se o usuário estiver autenticado
   const handleClickPergunta = () => {
     if (isAuthenticated) {
       setShowBox(true);
@@ -39,21 +40,27 @@ const Header = () => {
     }
   };
 
+  // Fecha a caixa de perguntas
   const handleClose = () => {
     setShowBox(false);
   };
 
+  // Envia a pergunta para o Firestore
   const handleEnviarPergunta = async () => {
     if (pergunta && materia) {
       try {
-        // Salva a pergunta no Firestore
+        const user = auth.currentUser; // Obter o usuário autenticado
+
+        // Salva a pergunta no Firestore com o uid do usuário
         await addDoc(collection(db, "perguntas"), {
           pergunta,
           materia,
           nome,
           fotoPerfil,
+          uid: user ? user.uid : 'anônimo', // Adiciona o uid do usuário à pergunta
           tempo: new Date().toLocaleString() // Adiciona a data e hora da pergunta
         });
+
         setPergunta(''); // Limpa o campo de pergunta
         setMateria(''); // Limpa o campo de matéria
         setShowBox(false); // Fecha a caixa de entrada
@@ -63,6 +70,7 @@ const Header = () => {
     }
   };
 
+  // Abre o perfil do usuário ou exibe popup de login se não estiver autenticado
   const handleProfileClick = () => {
     if (isAuthenticated) {
       window.location.href = '/perfil';
@@ -71,6 +79,7 @@ const Header = () => {
     }
   };
 
+  // Fecha o popup de login
   const handleCloseLoginPopup = () => {
     setShowLoginPopup(false);
   };
