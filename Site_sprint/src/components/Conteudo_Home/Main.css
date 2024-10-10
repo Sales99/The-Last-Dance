@@ -303,7 +303,7 @@ hr {
 }
 
 /* _____________________________________________ */
-/* Resposta Container */
+/* Resposta Container estilo respostas */
 
 .RespostasContainer {
 display: flex;
@@ -311,25 +311,22 @@ max-width: 60rem;
 width: 100%;
 flex-direction: column;
 gap: 20px;
-background-color: rgb(54, 206, 156);
+background-color: yellowgreen;
 margin-left: 180px;
+margin-top: 10px;
+opacity: 85%;
+padding: 10px 20px;
+border-radius: 8px;
 }
 
 .RespostaItem {
-background-color: aqua;
+background-color: yellowgreen;
 }
 
 /* _____________________________________ */
 /* _____________________________________ */
 /* _____________________________________ */
 
-/* Estilos das Respostas */
-.RespostasContainer {
-  margin-top: 10px;
-  padding: 10px 20px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-}
 
 .RespostaItem {
   display: flex;
@@ -338,14 +335,14 @@ background-color: aqua;
 }
 
 .FotoPerfilResp {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
   margin-right: 10px;
 }
 
 .RespostaTexto {
-  background-color: #e0f7fa;
+  background-color: #FAFAD2;
   padding: 10px;
   border-radius: 8px;
   width: 100%;
@@ -353,13 +350,14 @@ background-color: aqua;
 
 .NomeResp {
   margin: 0;
-  font-size: 14px;
+  font-size: 24px;
   font-weight: bold;
+  
 }
 
 .RespostaTexto p {
   margin: 5px 0 0 0;
-  font-size: 14px;
+  font-size: 20px;
 }
 
 /* Ajustes nas Imagens */
