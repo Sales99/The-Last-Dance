@@ -305,6 +305,109 @@ hr {
 /* _____________________________________________ */
 /* Resposta Container */
 
+.RespostasContainer {
+display: flex;
+max-width: 60rem;
+width: 100%;
+flex-direction: column;
+gap: 20px;
+background-color: rgb(54, 206, 156);
+margin-left: 180px;
+}
+
+.RespostaItem {
+background-color: aqua;
+}
+
+/* _____________________________________ */
+/* _____________________________________ */
+/* _____________________________________ */
+
+/* Estilos das Respostas */
+.RespostasContainer {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+.RespostaItem {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.FotoPerfilResp {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.RespostaTexto {
+  background-color: #e0f7fa;
+  padding: 10px;
+  border-radius: 8px;
+  width: 100%;
+}
+
+.NomeResp {
+  margin: 0;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.RespostaTexto p {
+  margin: 5px 0 0 0;
+  font-size: 14px;
+}
+
+/* Ajustes nas Imagens */
+.FotoPerfilResp {
+  object-fit: cover;
+}
+
+/* _____________________________________ */
+/* _____________________________________ */
+/* Responder Container PopUp */
+
+
+/* Estilos da Parte Baixo das Perguntas */
+.ParteBaixo {
+  display: flex;
+  justify-content: space-between; /* Alinha os elementos nas extremidades */
+  margin-top: 16px; /* Espaçamento acima */
+  margin-left: 52px; /* Alinhamento consistente com ParteMeio */
+  margin-right: 26px;
+}
+
+/* Estilos para os elementos <p> que atuam como botões */
+.Responder,
+.Respostas {
+  padding: 8px 16px; /* Espaçamento interno */
+  font-size: 16px;
+  border: 2px solid transparent; /* Borda transparente por padrão */
+  border-radius: 8px;
+  cursor: pointer;
+  color: rgb(93, 93, 93);
+  transition: color 0.5s ease;
+  display: inline-block; /* Permite definir dimensões e centralizar texto */
+  margin: 0; /* Remove margens padrão */
+}
+
+.Responder:hover,
+.Respostas:hover {
+  color: rgb(12, 12, 12);
+}
+
+/* Opcional: Adicionar foco para acessibilidade */
+.Responder:focus,
+.Respostas:focus {
+  outline: none;
+}
+
+/* _____________________________________________ */
+/* Resposta Container */
 .RespostaContainer {
   display: flex;
   z-index: 1;
@@ -312,6 +415,104 @@ hr {
   margin-top: 120px;
   width: 800px;
 }
+
+/* _____________________________________ */
+/* Responder Container PopUp */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Estilos para o título do pop-up */
+.Responder-tittle {
+  font-family: "Jomhuria";
+  font-weight: 400;
+  font-size: 85px;
+  margin: 0;
+}
+
+/* Estilos para o parágrafo do pop-up */
+.popup-overlay p {
+  margin-top: -2px;
+  font-size: 20px;
+  text-align: center;
+}
+
+/* Estilos do conteúdo do pop-up */
+.popup-content {
+  background-color: white;
+  padding: 50px;
+  border: 2px solid #ba9440;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilos do textarea do pop-up */
+.popup-content textarea {
+  max-width: 590px;
+  width: 100%;
+  height: 160px;
+}
+
+/* Estilos da parte de cima do pop-up */
+.popup-cima {
+  margin-bottom: 20px; /* Espaçamento inferior para separar do meio */
+  text-align: center; /* Centraliza o texto */
+}
+
+/* Estilos da parte do meio do pop-up */
+.popup-meio {
+  margin-bottom: 20px; /* Espaçamento inferior para separar do baixo */
+}
+
+/* Estilos da parte de baixo do pop-up */
+.popup-baixo {
+  display: flex;
+  justify-content: space-between; /* Alinha os botões nas extremidades */
+}
+
+/* Estilos dos botões da parte de baixo do pop-up */
+.popup-baixo button {
+  padding: 8px 16px; /* Estilo do botão */
+  font-size: 17px;
+  background-color: #E6B64E;
+  border: 2px solid transparent; /* Borda transparente por padrão */
+  border-radius: 8px;
+  cursor: pointer;
+  color: black;
+  transition: all 0.8s ease;
+}
+
+.popup-baixo button:hover {
+  background-color: #ac8838;
+}
+
+/* ______________________________________________ */
+/* Animação do PopUp */
+@keyframes popupSlideIn {
+  0% {
+    opacity: 0; /* O pop-up começa invisível */
+    transform: translateY(-50px); /* Começa deslocado 50px para cima */
+  }
+  100% {
+    opacity: 1; /* O pop-up se torna completamente visível */
+    transform: translateY(0); /* Volta para a posição original */
+  }
+}
+
+/* Aplica a animação de entrada ao conteúdo do pop-up */
+.popup-content {
+  animation: popupSlideIn 0.5s ease-out; /* Aplica a animação de entrada */
+  opacity: 1; /* Garante que o pop-up seja visível ao final da animação */
+}
+
 
 /*  */
 /*  */
