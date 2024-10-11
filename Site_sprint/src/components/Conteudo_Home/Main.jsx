@@ -207,8 +207,26 @@ const Main = () => {
       alert('Por favor, digite uma resposta.');
       return;
     }
-
-    // Adicionar a resposta ao estado com o nome e foto do usuário
+  
+    console.log('Sending response:', resposta.trim());
+    console.log('Current question ID:', currentQuestionId);
+  
+    try {
+      // Create a new response document in Firestore
+      const responseRef = db.collection('respostas').doc();
+      responseRef.set({
+        texto: resposta.trim(),
+        nome: currentUserName,
+        fotoPerfil: currentUserPhoto,
+        questionId: currentQuestionId,
+      });
+  
+      console.log('Response sent successfully!');
+    } catch (error) {
+      console.error('Error sending response:', error);
+    }
+  
+    // Update the local state and localStorage
     setRespostas((prevRespostas) => {
       const novasRespostas = { ...prevRespostas };
       if (!novasRespostas[currentQuestionId]) {
@@ -219,15 +237,14 @@ const Main = () => {
         nome: currentUserName,
         fotoPerfil: currentUserPhoto,
       });
-      // Salvar no localStorage
       localStorage.setItem('respostas', JSON.stringify(novasRespostas));
       return novasRespostas;
     });
-
-    // Limpar o input e fechar o pop-up de resposta
+  
+    // Clear the input and close the response popup
     setResposta('');
     setShowResponsePopup(false);
-    setVerRespostasId(currentQuestionId); // Opcional: abrir as respostas após enviar
+    setVerRespostasId(currentQuestionId); // Optional: open the responses after sending
   };
 
   const handleCloseResponsePopup = () => {
