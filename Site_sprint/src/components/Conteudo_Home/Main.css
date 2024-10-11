@@ -316,6 +316,7 @@ margin-left: 180px;
 margin-top: 10px;
 opacity: 85%;
 padding: 10px 20px;
+margin-bottom: 20px;
 border-radius: 8px;
 }
 
@@ -622,6 +623,21 @@ background-color: yellowgreen;
     font-weight: 400;
   }
 
+  .RespostasContainer {
+    display: flex;
+    max-width: 60rem;
+    width: 80%;
+    flex-direction: column;
+    gap: 20px;
+    background-color: yellowgreen;
+    margin-left: 10px;
+    margin-top: 10px;
+    opacity: 85%;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    }
+
   .questions-section h1 {
     margin-left: 12px;
     font-size: 80px;
@@ -713,6 +729,9 @@ background-color: yellowgreen;
     margin-top: 16px; /* Espaçamento acima */
     font-size: 16px; /* Ajuste o tamanho da fonte conforme necessário */
     font-family: 'Inknut Antiqua', serif; /* Fonte para os itens */
+  }
+  .ParteBaixo p {
+    font-size: 13px; /* Ajuste o tamanho da fonte conforme necessário */
   }
   
   .Responder {
