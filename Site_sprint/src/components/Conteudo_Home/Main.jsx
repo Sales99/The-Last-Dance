@@ -230,8 +230,9 @@ const Main = () => {
       nome: currentUserName,
       fotoPerfil: currentUserPhoto,
       perguntaId: currentQuestionId,
+      uid: auth.currentUser.uid, // Adiciona o UID do usuário
       timestamp: new Date(), // Adicionar um timestamp se necessário
-    };
+    };    
   
     try {
       // Criar uma nova referência de documento em "respostas"
@@ -257,6 +258,7 @@ const Main = () => {
       alert('Erro ao enviar resposta. Tente novamente.');
     }
   };
+  
 
   const handleCloseResponsePopup = () => {
     setShowResponsePopup(false);

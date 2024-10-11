@@ -456,6 +456,7 @@ background-color: yellowgreen;
 /* Estilos do textarea do pop-up */
 .popup-content textarea {
   max-width: 590px;
+  font-size: 18px;
   width: 100%;
   height: 160px;
 }

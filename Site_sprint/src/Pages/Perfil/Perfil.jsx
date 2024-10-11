@@ -17,6 +17,8 @@ const Perfil = () => {
 
   const db = getFirestore(); // Inicializa Firestore
 
+  const [respostaCount, setRespostaCount] = useState(0); // Novo estado para contar respostas
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
       if (user) {
@@ -30,16 +32,26 @@ const Perfil = () => {
           collection(db, "perguntas"),
           where("uid", "==", user.uid) // Assumindo que cada pergunta tem um campo 'uid' com o ID do usuário
         );
-
-        const querySnapshot = await getDocs(perguntasQuery);
-        setPerguntaCount(querySnapshot.size); // Define a contagem de perguntas
+        const querySnapshotPerguntas = await getDocs(perguntasQuery);
+        setPerguntaCount(querySnapshotPerguntas.size); // Define a contagem de perguntas
+  
+        // Buscar o número de respostas feitas pelo usuário no Firestore
+        const respostasQuery = query(
+          collection(db, "respostas"),
+          where("uid", "==", user.uid) // Filtra respostas pelo UID do usuário
+        );
+        const querySnapshotRespostas = await getDocs(respostasQuery);
+        setRespostaCount(querySnapshotRespostas.size); // Define a contagem de respostas
       } else {
         setUsername("Nome não disponível");
+        setPerguntaCount(0);
+        setRespostaCount(0);
       }
     });
-
+  
     return () => unsubscribe();
-  }, []);
+  }, [db]);
+  
 
   const handleProfileImageClick = () => {
     if (fileInputRef.current) {
@@ -98,10 +110,11 @@ const Perfil = () => {
           <h2 className='username'>{username}</h2>
 
           <div className="stats">
-            <span>Respostas</span>
+            <span>Respostas: {respostaCount}</span> {/* Exibe o número de respostas */}
             <span>Perguntas: {perguntaCount}</span> {/* Exibe o número de perguntas */}
             <span>Elogios</span>
           </div>
+
 
           <div className="points">
             <button className="pointsButton">Pontos: 0</button>
