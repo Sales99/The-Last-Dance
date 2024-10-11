@@ -12,6 +12,7 @@ import sociologia from "/src/assets/images/sociologia.png";
 import { getFirestore, collection, query, onSnapshot, doc, setDoc } from 'firebase/firestore'; // Importa Firestore
 import { auth } from '../../DB/Conexao_Firebase'; // Importa a autenticação do Firebase
 import DefaultProfileImage from '../../assets/images/defaultProfileImage.png'; // Imagem de perfil padrão
+import { Link } from 'react-router-dom'; // Importa Link para o pop-up de login
 
 const Main = () => {
   const [questions, setQuestions] = useState([]);
@@ -30,6 +31,9 @@ const Main = () => {
   const [currentUserPhoto, setCurrentUserPhoto] = useState(DefaultProfileImage);
 
   const db = getFirestore(); // Inicializa Firestore
+
+  // Estados para gerenciar a exibição do pop-up de login
+  const [showLoginPopup, setShowLoginPopup] = useState(false);
 
   useEffect(() => {
     // Verifica o estado de autenticação do usuário
@@ -201,7 +205,7 @@ const Main = () => {
   // Funções de manipulação para os elementos "Responder" e "Ver Respostas"
   const handleResponder = (questionId) => {
     if (!currentUserName) {
-      alert('Você precisa estar logado para responder.');
+      setShowLoginPopup(true); // Exibe o popup de login se não estiver autenticado
       return;
     }
     setCurrentQuestionId(questionId);
@@ -263,6 +267,11 @@ const Main = () => {
   const handleCloseResponsePopup = () => {
     setShowResponsePopup(false);
     setResposta(''); // Limpa a resposta ao fechar o pop-up
+  };
+
+  // Função para fechar o pop-up de login
+  const handleCloseLoginPopup = () => {
+    setShowLoginPopup(false);
   };
 
   return (
@@ -370,6 +379,24 @@ const Main = () => {
               <button onClick={enviarResposta}>Enviar Resposta</button>
               <button onClick={handleCloseResponsePopup}>Fechar</button>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Pop-up de login */}
+      {showLoginPopup && (
+        <div className="overlay">
+          <div className="popup-box-login">
+            <button className="close-btn" onClick={handleCloseLoginPopup}>&times;</button>
+            <h1>Você não está logado em nenhuma conta!</h1>
+            <h4>Parece que você ainda não logou na <b>PrimeZone!</b> Siga o link abaixo para entrar na sua conta, ou faça sua conta agora mesmo!</h4>
+            <Link to="/login">
+              <button className="login-btn">Entrar em uma conta</button>
+            </Link><br />
+            <p>ou</p>
+            <Link to="/cadastro">
+              <button className="cadastro-btn">Cadastrar-se</button>
+            </Link>
           </div>
         </div>
       )}
