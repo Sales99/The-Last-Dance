@@ -9,7 +9,7 @@ import matematica from "/src/assets/images/matematica.png";
 import portugues from "/src/assets/images/portugues.png";
 import quimica from "/src/assets/images/quimica.png";
 import sociologia from "/src/assets/images/sociologia.png";
-import { getFirestore, collection, query, onSnapshot } from 'firebase/firestore'; // Importa Firestore
+import { getFirestore, collection, query, onSnapshot, doc, setDoc } from 'firebase/firestore'; // Importa Firestore
 import { auth } from '../../DB/Conexao_Firebase'; // Importa a autenticação do Firebase
 import DefaultProfileImage from '../../assets/images/defaultProfileImage.png'; // Imagem de perfil padrão
 
@@ -64,6 +64,23 @@ const Main = () => {
     });
 
     return () => unsubscribe(); // Limpa o snapshot listener ao desmontar o componente
+  }, [db]);
+
+  useEffect(() => {
+    const q = query(collection(db, 'respostas'));
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      const respostasArray = {};
+      querySnapshot.forEach((doc) => {
+        const data = doc.data();
+        if (!respostasArray[data.perguntaId]) {
+          respostasArray[data.perguntaId] = [];
+        }
+        respostasArray[data.perguntaId].push({ id: doc.id, ...data });
+      });
+      setRespostas(respostasArray);
+    });
+  
+    return () => unsubscribe();
   }, [db]);
 
   const scrollLeft = () => {
@@ -202,49 +219,43 @@ const Main = () => {
     }
   };
 
-  const enviarResposta = () => {
+  const enviarResposta = async () => {
     if (resposta.trim() === '') {
       alert('Por favor, digite uma resposta.');
       return;
     }
   
-    console.log('Sending response:', resposta.trim());
-    console.log('Current question ID:', currentQuestionId);
+    const respostaData = {
+      texto: resposta.trim(),
+      nome: currentUserName,
+      fotoPerfil: currentUserPhoto,
+      perguntaId: currentQuestionId,
+      timestamp: new Date(), // Adicionar um timestamp se necessário
+    };
   
     try {
-      // Create a new response document in Firestore
-      const responseRef = db.collection('respostas').doc();
-      responseRef.set({
-        texto: resposta.trim(),
-        nome: currentUserName,
-        fotoPerfil: currentUserPhoto,
-        questionId: currentQuestionId,
+      // Criar uma nova referência de documento em "respostas"
+      const respostaRef = doc(collection(db, 'respostas'));
+      await setDoc(respostaRef, respostaData);
+  
+      // Atualizar o estado local se necessário
+      setRespostas((prevRespostas) => {
+        const novasRespostas = { ...prevRespostas };
+        if (!novasRespostas[currentQuestionId]) {
+          novasRespostas[currentQuestionId] = [];
+        }
+        novasRespostas[currentQuestionId].push(respostaData);
+        return novasRespostas;
       });
   
-      console.log('Response sent successfully!');
+      // Limpar o input e fechar o pop-up de resposta
+      setResposta('');
+      setShowResponsePopup(false);
+      setVerRespostasId(currentQuestionId); // Opcional: abrir as respostas após enviar
     } catch (error) {
-      console.error('Error sending response:', error);
+      console.error('Erro ao enviar resposta: ', error);
+      alert('Erro ao enviar resposta. Tente novamente.');
     }
-  
-    // Update the local state and localStorage
-    setRespostas((prevRespostas) => {
-      const novasRespostas = { ...prevRespostas };
-      if (!novasRespostas[currentQuestionId]) {
-        novasRespostas[currentQuestionId] = [];
-      }
-      novasRespostas[currentQuestionId].push({
-        texto: resposta.trim(),
-        nome: currentUserName,
-        fotoPerfil: currentUserPhoto,
-      });
-      localStorage.setItem('respostas', JSON.stringify(novasRespostas));
-      return novasRespostas;
-    });
-  
-    // Clear the input and close the response popup
-    setResposta('');
-    setShowResponsePopup(false);
-    setVerRespostasId(currentQuestionId); // Optional: open the responses after sending
   };
 
   const handleCloseResponsePopup = () => {
