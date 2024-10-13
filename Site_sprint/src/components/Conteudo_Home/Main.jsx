@@ -35,6 +35,26 @@ const Main = () => {
   // Estados para gerenciar a exibição do pop-up de login
   const [showLoginPopup, setShowLoginPopup] = useState(false);
 
+  // Icones das materias
+  const iconList = [
+    { name: 'matematica', img: matematica, label: 'Matemática' },
+    { name: 'portugues', img: portugues, label: 'Português' },
+    { name: 'quimica', img: quimica, label: 'Química' },
+    { name: 'biologia', img: biologia, label: 'Biologia' },
+    { name: 'fisica', img: fisica, label: 'Física' },
+    { name: 'geografia', img: geografia, label: 'Geografia' },
+    { name: 'historia', img: historia, label: 'História' },
+    { name: 'sociologia', img: sociologia, label: 'Sociologia' },
+  ];
+  const carouselRef = React.useRef(null); 
+
+  // Clone os itens do carrossel para dar a sensação de rolagem infinita
+  const cloneIcons = [...iconList, ...iconList, ...iconList];
+
+
+
+
+
   useEffect(() => {
     // Verifica o estado de autenticação do usuário
     const unsubscribeAuth = auth.onAuthStateChanged((user) => {
@@ -88,11 +108,15 @@ const Main = () => {
   }, [db]);
 
   const scrollLeft = () => {
-    document.getElementById('carousel').scrollLeft -= 110;
+    if (carouselRef.current) {
+      carouselRef.current.scrollLeft -= 110;
+    }
   };
 
   const scrollRight = () => {
-    document.getElementById('carousel').scrollLeft += 110;
+    if (carouselRef.current) {
+      carouselRef.current.scrollLeft += 110;
+    }
   };
 
   const handleIconClick = (iconName) => {
@@ -172,8 +196,10 @@ const Main = () => {
             {/* Se "Ver Respostas" foi clicado para esta pergunta, exibir as respostas */}
             {verRespostasId === question.id && (
               <div className="RespostasContainer">
+                <h1 id='toti'>Respostas:</h1>
                 {respostas[question.id] && respostas[question.id].length > 0 ? (
                   respostas[question.id].map((resp, idx) => (
+                    
                     <div key={idx} className="RespostaItem">
                       <img 
                         src={resp.fotoPerfil || DefaultProfileImage} // Imagem do respondente
@@ -183,6 +209,9 @@ const Main = () => {
                       <div className="RespostaTexto">
                         <h3 className="NomeResp">{resp.nome}</h3>
                         <p>{resp.texto}</p>
+                      </div>
+                      <div className="Respostas" onClick={() => handleVerRespostas(question.id)}>X
+
                       </div>
                     </div>
                   ))
@@ -278,72 +307,18 @@ const Main = () => {
     <main className="main-content">
       <section className="icons-section">
         <button className="carousel-btn" onClick={scrollLeft}>{'<'}</button>
-        <div className="carousel" id="carousel">
-          {/* Ícones das matérias */}
-          <div
-            className={`icon-item ${selectedIcon === 'matematica' ? 'selected' : ''}`}
-            onClick={() => handleIconClick('matematica')}
-          >
-            <img src={matematica} alt="Matemática" className="icon" />
-            <br />
-            <span>Matemática</span>
-          </div>
-          <div
-            className={`icon-item ${selectedIcon === 'portugues' ? 'selected' : ''}`}
-            onClick={() => handleIconClick('portugues')}
-          >
-            <img src={portugues} alt="Português" className="icon" />
-            <br />
-            <span>Português</span>
-          </div>
-          <div
-            className={`icon-item ${selectedIcon === 'quimica' ? 'selected' : ''}`}
-            onClick={() => handleIconClick('quimica')}
-          >
-            <img src={quimica} alt="Química" className="icon" />
-            <br />
-            <span>Química</span>
-          </div>
-          <div
-            className={`icon-item ${selectedIcon === 'biologia' ? 'selected' : ''}`}
-            onClick={() => handleIconClick('biologia')}
-          >
-            <img src={biologia} alt="Biologia" className="icon" />
-            <br />
-            <span>Biologia</span>
-          </div>
-          <div
-            className={`icon-item ${selectedIcon === 'fisica' ? 'selected' : ''}`}
-            onClick={() => handleIconClick('fisica')}
-          >
-            <img src={fisica} alt="Física" className="icon" />
-            <br />
-            <span>Física</span>
-          </div>
-          <div
-            className={`icon-item ${selectedIcon === 'geografia' ? 'selected' : ''}`}
-            onClick={() => handleIconClick('geografia')}
-          >
-            <img src={geografia} alt="Geografia" className="icon" />
-            <br />
-            <span>Geografia</span>
-          </div>
-          <div
-            className={`icon-item ${selectedIcon === 'historia' ? 'selected' : ''}`}
-            onClick={() => handleIconClick('historia')}
-          >
-            <img src={historia} alt="História" className="icon" />
-            <br />
-            <span>História</span>
-          </div>
-          <div
-            className={`icon-item ${selectedIcon === 'sociologia' ? 'selected' : ''}`}
-            onClick={() => handleIconClick('sociologia')}
-          >
-            <img src={sociologia} alt="Sociologia" className="icon" />
-            <br />
-            <span>Sociologia</span>
-          </div>
+        <div className="carousel" id="carousel" ref={carouselRef}>
+          {cloneIcons.map((icon, index) => (
+            <div
+              key={index}
+              className={`icon-item ${selectedIcon === icon.name ? 'selected' : ''}`}
+              onClick={() => handleIconClick(icon.name)}
+            >
+              <img src={icon.img} alt={icon.label} className="icon" />
+              <br />
+              <span>{icon.label}</span>
+            </div>
+          ))}
         </div>
         <button className="carousel-btn" onClick={scrollRight}>{'>'}</button>
       </section>
