@@ -108,6 +108,7 @@ const Perfil = () => {
             onChange={handleFileChange}
           />
           <h2 className='username'>{username}</h2>
+          <h3 className='sair-button'>Sair da conta</h3>
 
           <div className="stats">
             <span>Respostas: {respostaCount}</span> {/* Exibe o número de respostas */}
