@@ -30,25 +30,29 @@ const Perfil = () => {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
       if (user) {
+        // Mantenha o nome salvo no Firestore, caso o displayName não esteja definido
         setUsername(user.displayName || "Nome não disponível");
         if (user.photoURL) {
           setProfileImage(user.photoURL);
         }
-
+  
         // Obtenha dados do Firestore
         const userDocRef = doc(db, "users", user.uid);
         const userDoc = await getDoc(userDocRef);
-
+  
         if (userDoc.exists()) {
           const userData = userDoc.data();
+          
+          // Atualize o nome do perfil com o valor do Firestore, se disponível
           setName(userData.name || '');
+          setUsername(userData.name || user.displayName || "Nome não disponível"); // Atualiza o username com o nome do Firestore
           setAge(userData.age || '');
           setLanguage(userData.language || '');
           setEducation(userData.education || '');
           setProfession(userData.profession || '');
           setBiography(userData.biography || '');
         }
-
+  
         // Código para contar perguntas e respostas
         const perguntasQuery = query(
           collection(db, "perguntas"),
@@ -56,7 +60,7 @@ const Perfil = () => {
         );
         const querySnapshotPerguntas = await getDocs(perguntasQuery);
         setPerguntaCount(querySnapshotPerguntas.size);
-
+  
         const respostasQuery = query(
           collection(db, "respostas"),
           where("uid", "==", user.uid)
@@ -69,9 +73,10 @@ const Perfil = () => {
         setRespostaCount(0);
       }
     });
-
+  
     return () => unsubscribe();
   }, [db]);
+  
 
   const handleProfileImageClick = () => {
     if (fileInputRef.current) {
