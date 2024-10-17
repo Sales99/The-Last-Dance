@@ -91,7 +91,7 @@ const Perfil = () => {
     const confirmed = window.confirm("Você tem certeza que deseja sair da conta?");
     if (confirmed) {
       auth.signOut()
-        .then(() => {
+        .then(() => {''
           navigate('/'); // Redireciona para a página inicial
         })
         .catch((error) => {
