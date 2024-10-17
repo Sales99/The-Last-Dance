@@ -3,7 +3,8 @@
 .Bannerzinho {
   width: 100%;
   height: auto;
-  margin-bottom: 20px;
+  margin-top: -32px;
+  /* border: #E6B64E 4px solid; */
 }
 
 .perfilContainer {
@@ -261,20 +262,14 @@ h2 {
   outline: none;
 }
 
-.popupButtons {
-  display: flex;
-  justify-content: space-between;
-  font-family: "Oswald";
-}
-
-.popupButtons button {
+.popupField button {
   font-size: 18px;
   background-color: #E6B64E;
   border: none;
   transition: all 0.5s ease;
 }
 
-.popupButtons button:hover {
+.popupField button:hover {
   background-color: #d0a446;
   font-size: 19px;
 }

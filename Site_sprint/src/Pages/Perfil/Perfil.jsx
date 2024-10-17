@@ -216,11 +216,14 @@ const Perfil = () => {
 
             <div className="popupField">
               <div className="popupFields">
+
                 <div className="leftColumn">
+
                   <div className="popupField">
                     <label>Nome</label>
                     <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
                   </div>
+
                   <div className="popupField">
                     <label>Escolaridade</label>
                     <select
@@ -234,15 +237,16 @@ const Perfil = () => {
                       <option value="Ensino Superior">Ensino Superior</option>
                     </select>
                   </div>
-                  <div className="popupField">
-                    <label>Idade</label>
-                    <input type="text" value={age} onChange={(e) => setAge(e.target.value)} />
-                  </div>
                 </div>
 
                 <div className="rightColumn">
                   <div className="popupField">
-                    <label>Idioma</label>
+                  <label>Idade</label>
+                  <input type="text" value={age} onChange={(e) => setAge(e.target.value)} />
+                  </div>
+
+                  <div className="popupField">
+                  <label>Idioma</label>
                     <select value={language} onChange={(e) => setLanguage(e.target.value)}>
                       <option value="">Selecione</option>
                       <option value="Português">Português</option>
@@ -251,8 +255,10 @@ const Perfil = () => {
                       {/* Adicione outras opções de idiomas conforme necessário */}
                     </select>
                   </div>
-                  <div className="popupField">
-                    <label>Profissão</label>
+                </div> 
+              </div>
+              <div className="popupField">
+                  <label>Profissão</label>
                     <input
                       type="text"
                       value={profession}
@@ -266,8 +272,6 @@ const Perfil = () => {
                       onChange={(e) => setBiography(e.target.value)}
                     ></textarea>
                   </div>
-                </div>
-              </div>
 
               <button className="saveButton" onClick={handleSaveChanges}>Salvar</button>
             </div>
