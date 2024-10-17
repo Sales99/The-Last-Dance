@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { getAuth, updateProfile } from 'firebase/auth';
 import { getFirestore, collection, query, where, getDocs } from 'firebase/firestore'; // Importa Firestore
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { useNavigate } from 'react-router-dom'; // Importa o useNavigate
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import Bannermelhor from '../../assets/images/bannermelhor.png';
@@ -14,6 +15,7 @@ const Perfil = () => {
   const [profileImage, setProfileImage] = useState(DefaultProfileImage); // Começa com imagem de perfil padrão
   const [perguntaCount, setPerguntaCount] = useState(0); // Estado para contar perguntas
   const fileInputRef = useRef(null); // Referência para o input de arquivo
+  const navigate = useNavigate(); // Hook de navegação
 
   const db = getFirestore(); // Inicializa Firestore
 
@@ -85,6 +87,19 @@ const Perfil = () => {
     }
   };
 
+  const handleLogout = () => {
+    const confirmed = window.confirm("Você tem certeza que deseja sair da conta?");
+    if (confirmed) {
+      auth.signOut()
+        .then(() => {
+          navigate('/'); // Redireciona para a página inicial
+        })
+        .catch((error) => {
+          console.error("Erro ao sair da conta:", error);
+        });
+    }
+  };
+
   return (
     <>
       <Header />
@@ -108,7 +123,7 @@ const Perfil = () => {
             onChange={handleFileChange}
           />
           <h2 className='username'>{username}</h2>
-          <h3 className='sair-button'>Sair da conta</h3>
+          <h3 className='sair-button' onClick={handleLogout}>Sair da conta</h3>
 
           <div className="stats">
             <span>Respostas: {respostaCount}</span> {/* Exibe o número de respostas */}
