@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { getAuth, updateProfile } from 'firebase/auth';
-import { getFirestore, collection, query, where, getDocs } from 'firebase/firestore';
+import { getFirestore, collection, query, where, getDocs, doc, setDoc, getDoc } from 'firebase/firestore';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Header/Header';
@@ -35,6 +35,21 @@ const Perfil = () => {
           setProfileImage(user.photoURL);
         }
 
+        // Obtenha dados do Firestore
+        const userDocRef = doc(db, "users", user.uid);
+        const userDoc = await getDoc(userDocRef);
+
+        if (userDoc.exists()) {
+          const userData = userDoc.data();
+          setName(userData.name || '');
+          setAge(userData.age || '');
+          setLanguage(userData.language || '');
+          setEducation(userData.education || '');
+          setProfession(userData.profession || '');
+          setBiography(userData.biography || '');
+        }
+
+        // Código para contar perguntas e respostas
         const perguntasQuery = query(
           collection(db, "perguntas"),
           where("uid", "==", user.uid)
@@ -102,11 +117,31 @@ const Perfil = () => {
     setShowEditPopup(false);
   };
 
-  const handleSaveChanges = () => {
-    // Aqui você pode adicionar a lógica para salvar as alterações no Firestore, se necessário
-    console.log("Dados salvos:", { name, age, language, education, profession, biography });
-    closeEditPopup();
+  const handleSaveChanges = async () => {
+    if (auth.currentUser) {
+      const userRef = doc(db, "users", auth.currentUser.uid);
+      try {
+        await setDoc(userRef, {
+          name,
+          age,
+          language,
+          education,
+          profession,
+          biography,
+        }, { merge: true });
+  
+        // Atualize o estado do username com o novo nome
+        setUsername(name); // Atualiza o nome que aparece abaixo da foto de perfil
+  
+        alert("Informações do perfil atualizadas com sucesso!");
+        closeEditPopup();
+      } catch (error) {
+        console.error("Erro ao salvar informações do perfil: ", error);
+        alert("Erro ao salvar informações. Tente novamente.");
+      }
+    }
   };
+  
 
   return (
     <>
@@ -134,7 +169,8 @@ const Perfil = () => {
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 20 20" fill="4B4B4B">
               <path d="M3.944 11.79a.5.5 0 0 1 .141-.277L14.163 1.435a.5.5 0 0 1 .707 0l3.89 3.89a.5.5 0 0 1 0 .706L8.68 16.11a.5.5 0 0 1-.277.14l-4.595.706a.5.5 0 0 1-.57-.57zm.964.314l-.577 3.76l3.759-.578l9.609-9.608l-3.183-3.182z"></path>
               <path d="m15.472 8.173l-3.537-3.53l.707-.708l3.536 3.53z"></path>
-            </svg>  EDITAR PERFIL</h3>
+            </svg>  EDITAR PERFIL
+          </h3>
 
           <h3 className='sair-button' onClick={handleLogout}>Sair da conta</h3>
 
@@ -173,8 +209,6 @@ const Perfil = () => {
               <span className="closePopup" onClick={closeEditPopup}>&times;</span>
             </div>
 
-            {/* ________________________________________________________________ */}
-
             <div className="popupField">
               <div className="popupFields">
                 <div className="leftColumn">
@@ -187,54 +221,54 @@ const Perfil = () => {
                     <select
                       value={education}
                       onChange={(e) => setEducation(e.target.value)}
-                      required
                     >
-                      <option value="" disabled hidden>Grau de Escolaridade</option>
-                      <option value="Ensino Fundamental Completo">Ensino Fundamental</option>
-                      <option value="Ensino Médio Completo">Ensino Médio</option>
-                      <option value="Ensino Superior Completo">Ensino Superior</option>
-                      <option value="Pós-Graduação Completo">Pós-Graduação</option>
+                      <option value="">Selecione</option>
+                      <option value="Ensino Fundamental">Ensino Fundamental</option>
+                      <option value="Ensino Médio">Ensino Médio</option>
+                      <option value="Ensino Técnico">Ensino Técnico</option>
+                      <option value="Ensino Superior">Ensino Superior</option>
                     </select>
                   </div>
-                </div>
-                <div className="rightColumn">
                   <div className="popupField">
                     <label>Idade</label>
-                    <input type="number" value={age} onChange={(e) => setAge(e.target.value)} />
+                    <input type="text" value={age} onChange={(e) => setAge(e.target.value)} />
                   </div>
+                </div>
+
+                <div className="rightColumn">
                   <div className="popupField">
                     <label>Idioma</label>
-                    <select
-                      value={language}
-                      onChange={(e) => setLanguage(e.target.value)}
-                      required
-                    >
-                      <option value="" disabled hidden>Selecione seu idioma</option>
-                      <option value="portugues">Português</option>
-                      <option value="ingles">Inglês</option>
-                      <option value="espanhol">Espanhol</option>
+                    <select value={language} onChange={(e) => setLanguage(e.target.value)}>
+                      <option value="">Selecione</option>
+                      <option value="Português">Português</option>
+                      <option value="Inglês">Inglês</option>
+                      <option value="Espanhol">Espanhol</option>
+                      {/* Adicione outras opções de idiomas conforme necessário */}
                     </select>
+                  </div>
+                  <div className="popupField">
+                    <label>Profissão</label>
+                    <input
+                      type="text"
+                      value={profession}
+                      onChange={(e) => setProfession(e.target.value)}
+                    />
+                  </div>
+                  <div className="popupField">
+                    <label>Biografia</label>
+                    <textarea
+                      value={biography}
+                      onChange={(e) => setBiography(e.target.value)}
+                    ></textarea>
                   </div>
                 </div>
               </div>
-              <div className="popupField">
-                <label>Profissão</label>
-                <input type="text" value={profession} onChange={(e) => setProfession(e.target.value)} />
-              </div>
-              <div className="popupField">
-                <label>Biografia</label>
-                <textarea value={biography} onChange={(e) => setBiography(e.target.value)} />
-              </div>
-            </div>
 
-            <div className="popupButtons">
-              <button onClick={closeEditPopup}>Cancelar</button>
-              <button onClick={handleSaveChanges}>Salvar</button>
+              <button className="saveButton" onClick={handleSaveChanges}>Salvar</button>
             </div>
           </div>
         </div>
       )}
-
 
       <Footer />
     </>
