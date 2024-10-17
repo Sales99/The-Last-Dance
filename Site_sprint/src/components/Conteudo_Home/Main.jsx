@@ -19,12 +19,22 @@ const Main = () => {
   const [selectedIconName, setSelectedIconName] = useState('Dúvidas Frequentes ');
   const [selectedIcon, setSelectedIcon] = useState(null);
   const [expandedQuestions, setExpandedQuestions] = useState({});
+  const [visibleResponses, setVisibleResponses] = useState(1); // Exibir uma resposta inicialmente
+
+  const showMoreResponses = () => {
+    setVisibleResponses((prevCount) => prevCount + 1); // Aumenta o número de respostas visíveis em 1
+  };
+  
 
   // Estados para responder perguntas
   const [resposta, setResposta] = useState(''); // Resposta atual do usuário
   const [respostas, setRespostas] = useState({}); // Respostas armazenadas
   const [showResponsePopup, setShowResponsePopup] = useState(false); // Estado para controlar o pop-up de resposta
   const [currentQuestionId, setCurrentQuestionId] = useState(null); // ID da pergunta atual no pop-up
+
+  const [showRespostasPopup, setShowRespostasPopup] = useState(false); // Controla a exibição do pop-up de respostas
+  const [currentQuestion, setCurrentQuestion] = useState(null); // Armazena a pergunta atual selecionada
+
 
   // Estados para armazenar o nome e a foto do usuário atual
   const [currentUserName, setCurrentUserName] = useState(null);
@@ -187,39 +197,14 @@ const Main = () => {
                 <p className="Responder" onClick={() => handleResponder(question.id)}>
                   Responder
                 </p>
-                <p className="Respostas" onClick={() => handleVerRespostas(question.id)}>
+                <p className="Respostas" onClick={() => handleVerRespostas(question)}>
                   Ver Respostas
                 </p>
               </div>
             </div>
 
             {/* Se "Ver Respostas" foi clicado para esta pergunta, exibir as respostas */}
-            {verRespostasId === question.id && (
-              <div className="RespostasContainer">
-                <h1 id='toti'>Respostas:</h1>
-                {respostas[question.id] && respostas[question.id].length > 0 ? (
-                  respostas[question.id].map((resp, idx) => (
-                    
-                    <div key={idx} className="RespostaItem">
-                      <img 
-                        src={resp.fotoPerfil || DefaultProfileImage} // Imagem do respondente
-                        className="FotoPerfilResp" 
-                        alt="" 
-                      />
-                      <div className="RespostaTexto">
-                        <h3 className="NomeResp">{resp.nome}</h3>
-                        <p>{resp.texto}</p>
-                      </div>
-                      <div className="Respostas" onClick={() => handleVerRespostas(question.id)}>X
-
-                      </div>
-                    </div>
-                  ))
-                ) : (
-                  <p>Sem respostas ainda.</p>
-                )}
-              </div>
-            )}
+           
           </div>
         );
       })
@@ -227,6 +212,12 @@ const Main = () => {
       <p className='NoQuestion'>Nenhuma pergunta disponível</p>
     );
   };
+
+  const showLessResponses = () => {
+  setVisibleResponses((prevCount) => Math.max(prevCount - 1, 1)); // Garante que o número mínimo de respostas visíveis seja 1
+};
+
+
 
   // Estados para gerenciar a exibição das respostas
   const [verRespostasId, setVerRespostasId] = useState(null); // ID da pergunta cujas respostas estão sendo visualizadas
@@ -242,15 +233,20 @@ const Main = () => {
     setVerRespostasId(null); // Esconde as respostas se estiverem visíveis
   };
 
-  const handleVerRespostas = (questionId) => {
-    if (verRespostasId === questionId) {
-      setVerRespostasId(null); // Toggle para esconder
+  const handleVerRespostas = (question) => {
+    if (verRespostasId === question.id) {
+      setVerRespostasId(null);
+      setShowRespostasPopup(false); // Fechar o pop-up se a mesma pergunta for clicada novamente
+      setVisibleResponses(1); // Reinicia o número de respostas visíveis para 1
     } else {
-      setVerRespostasId(questionId);
-      setCurrentQuestionId(null); // Esconde o pop-up se estiver aberto
+      setVerRespostasId(question.id);
+      setCurrentQuestion(question); // Atualizar a pergunta selecionada
+      setShowRespostasPopup(true); // Abrir o pop-up de respostas
+      setCurrentQuestionId(null);
       setShowResponsePopup(false);
     }
   };
+  
 
   const enviarResposta = async () => {
     if (resposta.trim() === '') {
@@ -357,6 +353,64 @@ const Main = () => {
           </div>
         </div>
       )}
+      
+
+      {/* Pop-up para exibir respostas da pergunta */}
+{showRespostasPopup && currentQuestion &&  (
+  <div className="popup-overlay">
+    <div className="popup-resposta">
+      {/* Título e Pergunta */}
+      <div className="popup-cima">
+        <div className='pop-up-info'>
+          <img 
+              src={quimica}
+              className="FotoPerfilpopup" // <img src={question.fotoPerfil || DefaultProfileImage} className="FotoPerfil" alt="" />
+              alt=""  
+          />
+                  <p id='nome'> {currentQuestion.nome}</p>
+                  <button className='botaofechar' onClick={() => setShowRespostasPopup(false)}>X</button>
+          </div>
+                  <h2 className='perguntapopup'>{currentQuestion.pergunta}</h2>
+
+      </div>
+
+      {/* Respostas */}
+      <div className="popup-meio">
+        <h3>Respostas:</h3>
+        {respostas[currentQuestion.id] && respostas[currentQuestion.id].length > 0 ? (
+          respostas[currentQuestion.id].slice(0, visibleResponses).map((resp, idx) => (
+            <div key={idx} className="RespostaItem">
+              <img 
+                src={quimica} // src={resp.fotoperfil || DefaultProgileImage}
+                className="FotoPerfilResp" 
+                alt=""
+              />
+              <div className="RespostaTexto">
+                <h3 className="NomeResp">{resp.nome}</h3>
+                <p id='Resp'>{resp.texto}</p>
+              </div>
+              
+            </div>
+          ))
+        ) : (
+          <p>Sem respostas ainda.</p>
+        )}
+        
+         {/* Botão "Mostrar mais" para carregar mais respostas */}
+
+      </div>
+      <div className="respostas-buttons">
+    <button onClick={showMoreResponses}>Mostrar mais</button>
+    <button onClick={showLessResponses}>Mostrar menos</button>
+  </div>
+
+      {/* Botão para fechar o pop-up */}
+      
+    </div>
+  </div>
+)}
+
+
 
       {/* Pop-up de login */}
       {showLoginPopup && (
