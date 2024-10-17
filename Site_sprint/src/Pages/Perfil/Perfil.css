@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Mitr:wght@200;300;400;500;600;700&family=Oswald:wght@200..700&display=swap'); /* Font-family: Oswald ou Mitr  */
+
 .Bannerzinho {
   width: 100%;
   height: auto;
@@ -15,6 +17,7 @@
 
 .leftSection {
   text-align: center;
+  justify-items: center;
   margin-bottom: 20px;
   margin-top: 100px;
 }
@@ -34,10 +37,11 @@
 h2 {
   margin-top: 10px;
   font-size: 60px;
+  margin-bottom: 5px;
 }
 
 .stats {
-    display: flex;
+  display: flex;
   justify-content: space-around;
   padding: 0px 0px;
   margin-right: 100px;
@@ -69,7 +73,7 @@ h2 {
   text-align: center;
   width: 60%;
   margin-bottom: 20px;
-  margin-top: -50vh;
+  margin-top: -60vh;
   margin-left: 180vh;
 }
 
@@ -79,11 +83,11 @@ h2 {
   text-align: left;
   width: 60%;
   margin-left: 180vh;
-
 }
 
 .aboutSection h3 {
-  margin-bottom: 10px;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .aboutSection p {
@@ -94,20 +98,190 @@ h2 {
 /* Sair Estilização */
 
 .sair-button {
-  margin-top: -15px;
-  margin-bottom: 40px;
-  font-size: 20px;
-  color: red;
-  cursor: pointer;
-  transition: all 0.5s ease;
+  margin-top: 0px;                  /* Ajuste a margem superior para um espaço mais uniforme */
+  margin-bottom: 20px;               /* Mantém a margem inferior */
+  font-size: 20px;                   /* Tamanho da fonte */
+  color: red;                        /* Cor do texto */
+  max-width: 150px;                  /* Define a largura máxima do botão */
+  cursor: pointer;                   /* Cursor de ponteiro ao passar o mouse */
+  position: relative;                 /* Necessário para o pseudo-elemento */
+  transition: font-size 0.3s ease;   /* Transição suave do tamanho da fonte */
+  text-align: center;                 /* Centraliza o texto dentro do botão */
+  display: inline-block;              /* Permite centralizar corretamente o botão */
+}
+
+.sair-button::after {
+  content: '';
+  position: absolute;
+  width: 0;                          /* Inicialmente, a largura é 0 */
+  height: 2px;                       /* Altura do sublinhado */
+  bottom: 0;                         /* Posiciona o sublinhado na parte inferior */
+  left: 0;                           /* Começa da esquerda */
+  background-color: red;             /* Mesma cor do texto */
+  transition: width 0.3s ease;       /* Transição suave do sublinhado */
+}
+
+.sair-button:hover::after {
+  width: 100%;                       /* Faz o sublinhado expandir até cobrir o texto */
 }
 
 .sair-button:hover {
-  font-size: 22px;
-  text-decoration: underline;
+  font-size: 22px;                   /* Tamanho da fonte aumenta no hover */
+}
+
+/* _____________________________________ */
+/* Estilização de Editar Dados */
+
+.editar-button {
+  display: flex;             /* Usar flexbox para centralizar */
+  align-items: center;        /* Alinha o ícone e o texto verticalmente */
+  justify-content: center;    /* Centraliza horizontalmente */
+  gap: 8px;                  /* Espaçamento entre o ícone e o texto */
+  background-color: #E5E5E5;  /* Cor de fundo */
+  max-width: 200px;           /* Largura máxima do botão */
+  cursor: pointer;            /* Cursor de pointer */
+  color: #000;                /* Cor do texto e ícone */
+  font-size: 16px;            /* Tamanho da fonte */
+  padding: 10px;              /* Adiciona espaçamento interno */
+  margin: 10px auto 30px;             /* Centraliza horizontalmente */
+  border-radius: 5px;         /* Bordas arredondadas */
+  transition: all 0.4s ease;
+}
+
+.editar-button svg {
+  width: 24px;                /* Largura do ícone */
+  height: 24px;               /* Altura do ícone */
+  fill: currentColor;         /* Define que a cor do ícone segue a cor do texto */
+}
+
+.editar-button:hover {
+  color: #007bff;             /* Altera a cor no hover */
+  background-color: #dcdcdc;
+}
+
+/* _____________________________________ */
+/* ____________________________________ */
+/* Estilização do Pop-up */
+
+.popup {
+  position: fixed;                /* Fixa o pop-up na tela */
+  top: 0;                         /* Começa no topo da tela */
+  left: 0;                        /* Começa na esquerda da tela */
+  width: 100vw;                  /* Largura da tela */
+  height: 100vh;                 /* Altura da tela */
+  background-color: rgba(0, 0, 0, 0.7); /* Fundo escuro com opacidade */
+  display: flex;                 /* Flexbox para centralizar */
+  align-items: center;           /* Alinha verticalmente ao centro */
+  justify-content: center;       /* Alinha horizontalmente ao centro */
+  z-index: 999;                  /* Mantém o pop-up acima dos outros elementos */
+}
+
+.popupContent {
+  background-color: #ffffff;        /* Fundo branco para o conteúdo do pop-up */
+  border-radius: 10px;           /* Bordas arredondadas */
+  padding: 15px 30px 40px 30px;                 /* Espaçamento interno */
+  width: 700px;                  /* Largura do pop-up */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Sombra */
+  border: 2px solid #E6B64E;
+}
+
+.popupHeader {
+  display: flex;                 /* Flexbox para organizar o cabeçalho */
+  justify-content: center;       /* Centraliza o conteúdo */
+  align-items: center;           /* Alinha verticalmente */
+  position: relative;            /* Para posicionar o botão de fechar corretamente */
+}
+
+.popupTitle {
+  font-size: 42px;              /* Tamanho da fonte do título */
+  font-family: "Mitr";
+  font-weight: 600;
+  text-shadow: -3px 4px 2px rgba(0, 0, 0, 0.3); /* Sombra do texto */
+  transition: all 0.4s ease;
+}
+
+.popupTitle:hover {
+  font-size: 43px;
+}
+
+.closePopup {
+  position: absolute;            /* Posiciona o botão de fechar em relação ao cabeçalho */
+  right: 0px;                  /* Distância da borda direita */
+  top: 0px;
+  cursor: pointer;               /* Cursor de ponteiro ao passar o mouse */
+  font-size: 24px;              /* Tamanho da fonte do botão de fechar */
+  color: #888;                   /* Cor do ícone de fechar */
+  transition: all 0.3s ease;  /* Transição suave de cor */
+}
+
+.closePopup:hover {
+  color: #000;                   /* Cor do ícone de fechar ao passar o mouse */
+  font-size: 28px;
+}
+
+.popupFields {
+  display: flex;                       /* Utiliza flexbox para o layout em colunas */
+  justify-content: space-between;      /* Distribui o espaço igualmente entre as colunas */
+  margin-bottom: 15px;                 /* Espaçamento entre as colunas e os botões */
+}
+
+.leftColumn, .rightColumn {
+  flex: 1;                             /* Cada coluna ocupa 50% do espaço disponível */
+  margin-right: 20px;                  /* Espaço entre as colunas */
+  text-align: center;
+}
+
+.leftColumn:last-child, .rightColumn:last-child {
+  margin-right: 0;                     /* Remove o espaço da última coluna */
+}
+
+.popupField {
+  margin-bottom: 15px;                  /* Espaçamento entre os campos */
+  text-align: center;
+}
+
+.popupField label {
+  display: block;                       /* Faz o label ocupar toda a linha */
+  margin-bottom: 5px;                  /* Espaço entre o label e o input */
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.popupField input, .popupField textarea, .popupField select {
+  width: 100%;                         /* Largura total do campo */
+  padding: 10px;                       /* Espaçamento interno */
+  border: 1px solid #9a9a9a;              /* Borda do campo */
+  box-shadow: -2px 4px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;                  /* Bordas arredondadas */
+  box-sizing: border-box;               /* Inclui borda e padding no total */
+  font-size: 15px;
+}
+
+.popupField input:focus, .popupField textarea:focus, .popupField select:focus {
+  outline: none;
+}
+
+.popupButtons {
+  display: flex;
+  justify-content: space-between;
+  font-family: "Oswald";
+}
+
+.popupButtons button {
+  font-size: 18px;
+  background-color: #E6B64E;
+  border: none;
+  transition: all 0.5s ease;
+}
+
+.popupButtons button:hover {
+  background-color: #d0a446;
+  font-size: 19px;
 }
 
 
+/* __________________________________ */
+/* __________________________________ */
 
 /* Iphone 13 pro max */
 @media (max-width: 430px) {
@@ -121,6 +295,7 @@ h2 {
     display: flex;
     flex-direction: initial;
     align-items: center;
+    justify-content: center;
     padding: 20px;
     font-family: Arial, sans-serif;
     margin-right: 0vh; /*ajusta todo o conteudo do perfil*/
