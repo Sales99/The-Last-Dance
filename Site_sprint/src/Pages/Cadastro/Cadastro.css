@@ -220,3 +220,37 @@
     width: calc(100% - 22px); /* Ajusta a largura para considerar a margem */
     margin: 10px 0; /* Margem adicionada acima e abaixo dos inputs */
 }
+
+/* Estilo para o campo de entrada do grau de escolaridade */
+.Inputs_escolaridade_cadastro {
+    gap: 5px; /* Menor distância entre o título e a caixa de seleção */
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.Inputs_escolaridade_cadastro label {
+    font-size: medium;
+    color: black;
+    font-weight: bold;
+    font-family: 'Inknut Antiqua', serif;
+    margin-bottom: 5px; /* Reduz a margem abaixo do label */
+}
+
+.Inputs_escolaridade_cadastro select {
+    border-radius: 10px;
+    padding: 10px;
+    border: 1px solid black;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    height: auto; /* Ajusta a altura automaticamente */
+    width: 100%; /* Ajusta a largura para 100% */
+    margin: 5px 0; /* Margem ajustada */
+    background-color: white;
+    font-family: 'Inknut Antiqua', serif;
+    color: #6c757d; /* Cor do texto do placeholder */
+    appearance: none; /* Remove a seta padrão (opcional) */
+}
+
+.Inputs_escolaridade_cadastro select option[disabled] {
+    color: #6c757d; /* Cor do placeholder */
+}

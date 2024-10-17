@@ -25,6 +25,7 @@ export function Cadastro() {
     const [senha, setSenha] = useState("");
     const [confirmarSenha, setConfirmarSenha] = useState("");
     const [nomePerfil, setNomePerfil] = useState(""); // Novo estado para nome de perfil
+    const [escolaridade, setEscolaridade] = useState(""); // Novo estado para grau de escolaridade
     const [latestError, setLatestError] = useState("");
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
@@ -49,7 +50,7 @@ export function Cadastro() {
         e.preventDefault();
 
         if (senha !== confirmarSenha) {
-            setLatestError("As senhas não estão iguais..");
+            setLatestError("As senhas não estão iguais.");
             return;
         }
 
@@ -66,8 +67,16 @@ export function Cadastro() {
             const userCredential = await createUserWithEmailAndPassword(auth, email, senha);
             const user = userCredential.user;
             
-            // Atualiza o perfil do usuário com o nome fornecido
+            // Atualiza o perfil do usuário com o nome fornecido e a escolaridade
             await updateProfile(user, { displayName: nomePerfil });
+
+            // Salvar o grau de escolaridade no banco de dados (ex: Firestore, Realtime Database)
+            // Exemplo utilizando Firestore:
+            // const db = getFirestore(app);
+            // await setDoc(doc(db, "usuarios", user.uid), {
+            //     nomePerfil: nomePerfil,
+            //     escolaridade: escolaridade,
+            // });
 
             navigate("/login");
         } catch (error) {
@@ -140,6 +149,22 @@ export function Cadastro() {
                                     {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
                                 </div>
                             </div>
+                        </div>
+                        <div className="Inputs_escolaridade_cadastro">
+                            <label htmlFor="escolaridade">Seu grau de escolaridade</label>
+                            <select 
+                                id="escolaridade" 
+                                name="escolaridade" 
+                                required
+                                value={escolaridade}
+                                onChange={(e) => setEscolaridade(e.target.value)}
+                            >
+                                <option value="" disabled hidden>Selecione seu grau de escolaridade</option>
+                                <option value="fundamental">Ensino Fundamental</option>
+                                <option value="medio">Ensino Médio</option>
+                                <option value="superior">Ensino Superior</option>
+                                <option value="pos">Pós-Graduação</option>
+                            </select>
                         </div>
                     </div>
                     <div className="EnviarFormularioCadastro">
