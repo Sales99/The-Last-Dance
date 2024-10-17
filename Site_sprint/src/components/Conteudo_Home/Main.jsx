@@ -49,7 +49,7 @@ const Main = () => {
   const carouselRef = React.useRef(null); 
 
   // Clone os itens do carrossel para dar a sensação de rolagem infinita
-  const cloneIcons = [...iconList, ...iconList, ...iconList];
+  const cloneIcons = [...iconList, ...iconList, ...iconList, ...iconList, ...iconList, ...iconList, ...iconList, ...iconList];
 
 
 
