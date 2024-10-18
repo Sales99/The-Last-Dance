@@ -311,7 +311,7 @@ max-width: 60rem;
 width: 55%;
 flex-direction: column;
 gap: 20px;
-background-color: yellowgreen;
+background-color: white;
 margin-left: 180px;
 margin-top: -120px;
 opacity: 85%;
@@ -325,9 +325,7 @@ border-radius: 8px;
   margin-left: 60px;
 }
 
-.RespostaItem {
-background-color: yellowgreen;
-}
+
 
 /* _____________________________________ */
 /* _____________________________________ */
@@ -347,10 +345,18 @@ background-color: yellowgreen;
   margin-right: 10px;
 }
 
+
+/* Mexe na resposta do pop-up */
+.RespostaItem {
+  background-color: gold;
+  border-radius: 10px;
+  width: 400px;
+  }
 .RespostaTexto {
-  background-color: #FAFAD2;
+  background-color: gold;
   padding: 10px;
   border-radius: 8px;
+  border-radius: 10px;
   width: 100%;
 }
 
@@ -359,6 +365,17 @@ background-color: yellowgreen;
   font-size: 24px;
   font-weight: bold;
   
+}
+
+#Resp {
+  margin-right: 240px;
+}
+
+.respostas-buttons{
+  display: flex;
+  justify-content: space-between; /* Espaça os botões igualmente */
+  gap: 10px; /* Define a distância entre os botões */
+
 }
 
 .RespostaTexto p {
@@ -371,9 +388,59 @@ background-color: yellowgreen;
   object-fit: cover;
 }
 
+/* ajusta a foto de perfil e nome do perfil do pop-up */
+.pop-up-info{
+  display: flex;
+  padding: 0px 50px;
+  justify-content: space-between; /* Espaça os itens igualmente */
+  align-items: center;
+  margin-top: -20px;
+}
+
+.FotoPerfilpopup{
+  width: 62px;
+  height: 62px;
+  max-height: 52px;
+  max-width: 52px;
+  border-radius: 100%;
+  margin-left: -50px;
+  margin-top: 6px;
+  border: 1px solid black;
+}
+
+/* nome do usuario do pop-up */
+#nome {
+  font-size: 30px;
+  color: gold;
+  margin-right: 240px;
+}
+
+.perguntapopup{
+  font-size: 20px;
+  margin-right: 200px;
+  margin-top: -30px;
+}
+
+.botaofechar{
+  color: red;
+  background-color: transparent;
+  margin-right: -70px;
+  margin-top: -40px;
+}
+
+/* Popup respostas */
+.popup-resposta {
+  background-color: white;
+  padding: 50px;
+  width: 400px;
+  border: 2px solid #ba9440;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
 /* _____________________________________ */
 /* _____________________________________ */
-/* Responder Container PopUp */
+/* Responder Container uo-Up */
 
 
 /* Estilos da Parte Baixo das Perguntas */
