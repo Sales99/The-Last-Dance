@@ -209,11 +209,10 @@ const updateQuestionNames = async (newName) => {
           </div>
         </div>
 
-        <div className="rightSection"> {/* perguntas e respostas do usuário */}
+        <div className="rightSection"> {/* perguntas e respostas que o usuario fez usuário */}
           <button className='respostasbuttons'>Perguntas</button>
           <button className='respostasbuttons'>Respostas</button>
         </div>
-
 
         <div className="aboutSection">
           <h3>Sobre</h3>
