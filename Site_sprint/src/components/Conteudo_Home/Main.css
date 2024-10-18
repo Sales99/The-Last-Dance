@@ -674,6 +674,7 @@ textarea {
 .excluir-popup-content {
   background: #fff; /* Cor de fundo do pop-up */
   border-radius: 8px; /* Cantos arredondados */
+  border: #ba9440 2px solid;
   padding: 40px ; /* Espaçamento interno */
   width: 600px; /* Largura do pop-up */
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Sombra do pop-up */
