@@ -22,7 +22,20 @@ const Main = () => {
   const [expandedQuestions, setExpandedQuestions] = useState({});
   const [visibleResponses, setVisibleResponses] = useState(1); // Exibir uma resposta inicialmente
 
-    const [isEditing, setIsEditing] = useState(false); // Controla se o popup de edição está visível
+  const [isEditing, setIsEditing] = useState(false); // Controla se o popup de edição está visível
+
+  // _________________________________
+  // PopUp de Excluir e confirmar
+
+  const [ConfirmarExclusao, setExclusao] = useState(false);
+  const handleConfirmarExclusao = (question) => {
+    setExclusao(true);
+  };
+  const handleCancelExclusao = () => {
+    setExclusao(false)
+  } ;
+
+  // _________________________________
 
   const showMoreResponses = () => {
     setVisibleResponses((prevCount) => prevCount + 1); // Aumenta o número de respostas visíveis em 1
@@ -48,7 +61,6 @@ const Main = () => {
 
   const [showRespostasPopup, setShowRespostasPopup] = useState(false); // Controla a exibição do pop-up de respostas
   const [currentQuestion, setCurrentQuestion] = useState(null); // Armazena a pergunta atual selecionada
-
 
   // Estados para armazenar o nome e a foto do usuário atual
   const [currentUserName, setCurrentUserName] = useState(null);
@@ -212,7 +224,7 @@ const renderQuestions = () => {
                         height={28}
                         viewBox="0 0 24 24"
                         className='opcao-lixo'
-                        onClick={() => handleDeleteQuestion(question.id)} // Adicione a lógica para excluir a pergunta
+                        onClick={() => handleConfirmarExclusao(question.id)} // Adicione a lógica para excluir a pergunta
                       >
                         <path fill="currentColor" d="M19 4h-3.5l-1-1h-5l-1 1H5v2h14M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6z"></path>
                       </svg>
@@ -457,6 +469,7 @@ const renderQuestions = () => {
       )}
 
       {/* __________________________________________ */}
+      {/* PopUp Alterar pergunta */}
       {isEditing && (
   <div className="edit-popup-overlay"> {/* Classe de fundo do pop-up */}
     <div className="edit-popup-content"> {/* Classe do conteúdo do pop-up */}
@@ -471,8 +484,20 @@ const renderQuestions = () => {
     </div>
   </div>
 )}
-
-
+{/* ___________________________________________ */}
+{/* PopUp Confirmar Excluir pergunta */} 
+{ConfirmarExclusao && (
+  <div className="excluir-popup-overlay"> {/* Classe de fundo do pop-up */}
+    <div className="excluir-popup-content"> {/* Classe do conteúdo do pop-up */}
+      <h2 className='excluir-popup-title'>DESEJA APAGAR SUA PERGUNTA?</h2> {/* Título do pop-up */}
+      <p>Ao clicar em confirmar, sua pergunta será apagada e terá que refazer outra para os outros poderem responder</p>
+      <div className="excluir-popup-buttons"> {/* Botões do pop-up */}
+        <button>Salvar</button>
+        <button onClick={handleCancelExclusao}>Cancelar</button>
+      </div>
+    </div>
+  </div>
+)}
 
       {/* _________________________________ */}
       {/* Pop-up de login */}
