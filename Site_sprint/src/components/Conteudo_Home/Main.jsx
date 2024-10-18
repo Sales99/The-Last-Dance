@@ -166,78 +166,98 @@ const Main = () => {
   };
 
   // Função para renderizar as perguntas com base na matéria selecionada
-  const renderQuestions = () => {
-    const filteredQuestions = selectedIcon
-      ? questions.filter((question) => question.materia.toLowerCase() === selectedIcon.toLowerCase())
-      : questions;
+  // Dentro da função renderQuestions
+const renderQuestions = () => {
+  const filteredQuestions = selectedIcon
+    ? questions.filter((question) => question.materia.toLowerCase() === selectedIcon.toLowerCase())
+    : questions;
 
-    return filteredQuestions.length > 0 ? (
-      filteredQuestions.map((question, index) => {
-        const isExpanded = expandedQuestions[index];
-        const shouldShowExpandButton = question.pergunta.length > 300; // Exibe o botão "Ler mais" se a pergunta for maior que 300 caracteres
-        const displayText = isExpanded
-          ? question.pergunta
-          : question.pergunta.length > 300
-            ? `${question.pergunta.substring(0, 300)}...`
-            : question.pergunta;
+  return filteredQuestions.length > 0 ? (
+    filteredQuestions.map((question, index) => {
+      const isExpanded = expandedQuestions[index];
+      const shouldShowExpandButton = question.pergunta.length > 300;
+      const displayText = isExpanded
+        ? question.pergunta
+        : question.pergunta.length > 300
+          ? `${question.pergunta.substring(0, 300)}...`
+          : question.pergunta;
 
-        return (
-          <div key={index}>
-            <div className="ContainerQ">
-              <div className="ParteCima">
-                <div className="Esquerda">
-                  <img
-                    src={question.fotoPerfil || DefaultProfileImage} // Usa a imagem padrão se não houver foto de perfil
-                    className="FotoPerfil"
-                    alt=""
-                  />
-                  {question.nome && <h2 className="NomePerfil">{question.nome}</h2>}
-                </div>
-                <div className="Direita">
-                  <div className="Direita-cima">
-                    {question.tempo && <p>{question.tempo}</p>}
-                  </div>
+      // Verificação para mostrar os ícones apenas se o usuário for o autor
+      const isAuthor = auth.currentUser && auth.currentUser.uid === question.uid;
 
-                  <div className="Direita-baixo">
-                    <svg xmlns="http://www.w3.org/2000/svg" width={28} height={28} viewBox="0 0 24 24" className='opcao-lixo'>
-                      <path fill="currentColor" d="M19 4h-3.5l-1-1h-5l-1 1H5v2h14M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6z"></path>
-                    </svg>
-                    <svg xmlns="http://www.w3.org/2000/svg" width={28} height={28} viewBox="0 0 24 24" className='opcao-editar' onClick={handleEditQuestion}>
-                      <path fill="currentColor" d="M3 21v-4.25L16.2 3.575q.3-.275.663-.425t.762-.15t.775.15t.65.45L20.425 5q.3.275.438.65T21 6.4q0 .4-.137.763t-.438.662L7.25 21zM17.6 7.8L19 6.4L17.6 5l-1.4 1.4z"></path>
-                    </svg>
-                  </div>
-
-                </div>
+      return (
+        <div key={index}>
+          <div className="ContainerQ">
+            <div className="ParteCima">
+              <div className="Esquerda">
+                <img
+                  src={question.fotoPerfil || DefaultProfileImage}
+                  className="FotoPerfil"
+                  alt=""
+                />
+                {question.nome && <h2 className="NomePerfil">{question.nome}</h2>}
               </div>
-              <div className="ParteMeio">
-                <p>{displayText}</p>
-                {shouldShowExpandButton && (
-                  <button className="expand-button" onClick={() => toggleExpand(index)}>
-                    {isExpanded ? 'Ler menos' : 'Ler mais'}
-                  </button>
-                )}
-              </div>
+              <div className="Direita">
+                <div className="Direita-cima">
+                  {question.tempo && <p>{question.tempo}</p>}
+                </div>
 
-              {/* Adição dos elementos "Responder" e "Ver Respostas" como <p> */}
-              <div className="ParteBaixo">
-                <p className="Responder" onClick={() => handleResponder(question.id)}>
-                  Responder
-                </p>
-                <p className="Respostas" onClick={() => handleVerRespostas(question)}>
-                  Ver Respostas
-                </p>
+                <div className="Direita-baixo">
+                  {/* Renderiza os ícones de editar e excluir apenas se o usuário for o autor */}
+                  {isAuthor && (
+                    <>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width={28}
+                        height={28}
+                        viewBox="0 0 24 24"
+                        className='opcao-lixo'
+                        onClick={() => handleDeleteQuestion(question.id)} // Adicione a lógica para excluir a pergunta
+                      >
+                        <path fill="currentColor" d="M19 4h-3.5l-1-1h-5l-1 1H5v2h14M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6z"></path>
+                      </svg>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width={28}
+                        height={28}
+                        viewBox="0 0 24 24"
+                        className='opcao-editar'
+                        onClick={() => handleEditQuestion(question)} // Chame a função para editar a pergunta
+                      >
+                        <path fill="currentColor" d="M3 21v-4.25L16.2 3.575q.3-.275.663-.425t.762-.15t.775.15t.65.45L20.425 5q.3.275.438.65T21 6.4q0 .4-.137.763t-.438.662L7.25 21zM17.6 7.8L19 6.4L17.6 5l-1.4 1.4z"></path>
+                      </svg>
+                    </>
+                  )}
+                </div>
+
               </div>
             </div>
+            <div className="ParteMeio">
+              <p>{displayText}</p>
+              {shouldShowExpandButton && (
+                <button className="expand-button" onClick={() => toggleExpand(index)}>
+                  {isExpanded ? 'Ler menos' : 'Ler mais'}
+                </button>
+              )}
+            </div>
 
-            {/* Se "Ver Respostas" foi clicado para esta pergunta, exibir as respostas */}
-
+            <div className="ParteBaixo">
+              <p className="Responder" onClick={() => handleResponder(question.id)}>
+                Responder
+              </p>
+              <p className="Respostas" onClick={() => handleVerRespostas(question)}>
+                Ver Respostas
+              </p>
+            </div>
           </div>
-        );
-      })
-    ) : (
-      <p className='NoQuestion'>Nenhuma pergunta disponível</p>
-    );
-  };
+        </div>
+      );
+    })
+  ) : (
+    <p className='NoQuestion'>Nenhuma pergunta disponível</p>
+  );
+};
+
 
   const showLessResponses = () => {
     setVisibleResponses((prevCount) => Math.max(prevCount - 1, 1)); // Garante que o número mínimo de respostas visíveis seja 1
