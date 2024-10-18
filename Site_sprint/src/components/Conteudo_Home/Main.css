@@ -580,6 +580,10 @@ border-radius: 8px;
   background-color: #ac8838;
 }
 
+.saveButton:focus {
+  outline: none;
+}
+
 /* ______________________________________________ */
 /* Animação do PopUp */
 @keyframes popupSlideIn {

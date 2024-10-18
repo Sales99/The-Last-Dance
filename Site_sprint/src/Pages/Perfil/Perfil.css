@@ -92,6 +92,10 @@ h2 {
 
 }
 
+.respostasbuttons:focus {
+  outline: none;
+}
+
 .aboutSection {
   background-color: #ffeb8a;
   padding: 20px;
