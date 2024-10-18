@@ -259,14 +259,14 @@ h2 {
 }
 
 .popupField input:focus, .popupField textarea:focus, .popupField select:focus {
-  outline: none;
-}
+  outline: none; /* Tira a linha preta(feia) que fica após clicar */
+} 
 
 .popupField button {
-  font-size: 18px;
-  background-color: #E6B64E;
-  border: none;
-  transition: all 0.5s ease;
+  font-size: 18px; /* tamanho da fonte no botão */
+  background-color: #E6B64E; /* Cor do Botão */
+  border: none; /* Retira as bordas do botão */
+  transition: all 0.5s ease; /* Transição leve de 0.5s */
 }
 
 .popupField button:hover {
