@@ -189,10 +189,11 @@ const Perfil = () => {
           </div>
         </div>
 
-        <div className="rightSection">
-          <h3>Você ainda não tem Respostas</h3>
-          <p>(responda perguntas para acumular pontos)</p>
+        <div className="rightSection"> {/* perguntas e respostas do usuário */}
+          <button className='respostasbuttons'>Perguntas</button>
+          <button className='respostasbuttons'>Respostas</button>
         </div>
+
 
         <div className="aboutSection">
           <h3>Sobre</h3>

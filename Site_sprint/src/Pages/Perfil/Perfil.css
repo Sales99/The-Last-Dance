@@ -76,6 +76,20 @@ h2 {
   margin-bottom: 20px;
   margin-top: -60vh;
   margin-left: 180vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px; /* Espaçamento entre os botões */
+  border: none;
+}
+
+
+/* buttons respostas e perguntas */
+.respostasbuttons {
+  display: flex;
+  justify-content: center; /* Centraliza os botões */
+  background-color: #97BF41;
+
 }
 
 .aboutSection {
