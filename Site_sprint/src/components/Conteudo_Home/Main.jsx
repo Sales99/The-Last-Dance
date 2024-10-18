@@ -9,7 +9,8 @@ import matematica from "/src/assets/images/matematica.png";
 import portugues from "/src/assets/images/portugues.png";
 import quimica from "/src/assets/images/quimica.png";
 import sociologia from "/src/assets/images/sociologia.png";
-import { getFirestore, collection, query, onSnapshot, doc, setDoc } from 'firebase/firestore'; // Importa Firestore
+import { getFirestore, collection, query, onSnapshot, doc, setDoc, deleteDoc, updateDoc } from 'firebase/firestore'; // Importa Firestore
+// import { db } from '../../DB/Conexao_Firebase';
 import { auth } from '../../DB/Conexao_Firebase'; // Importa a autenticação do Firebase
 import DefaultProfileImage from '../../assets/images/defaultProfileImage.png'; // Imagem de perfil padrão
 import { Link } from 'react-router-dom'; // Importa Link para o pop-up de login
@@ -21,10 +22,23 @@ const Main = () => {
   const [expandedQuestions, setExpandedQuestions] = useState({});
   const [visibleResponses, setVisibleResponses] = useState(1); // Exibir uma resposta inicialmente
 
+    const [isEditing, setIsEditing] = useState(false); // Controla se o popup de edição está visível
+
   const showMoreResponses = () => {
     setVisibleResponses((prevCount) => prevCount + 1); // Aumenta o número de respostas visíveis em 1
   };
-  
+
+  const handleEditQuestion = (question) => {
+    setIsEditing(true); // Abre o pop-up de edição
+    // Aqui você pode armazenar a pergunta no estado, se necessário.
+  };  
+
+  // Função para cancelar a edição
+  const handleCancelEdit = () => {
+    setIsEditing(false); // Fecha o popup sem salvar
+  };
+
+
 
   // Estados para responder perguntas
   const [resposta, setResposta] = useState(''); // Resposta atual do usuário
@@ -56,10 +70,10 @@ const Main = () => {
     { name: 'historia', img: historia, label: 'História' },
     { name: 'sociologia', img: sociologia, label: 'Sociologia' },
   ];
-  const carouselRef = React.useRef(null); 
+  const carouselRef = React.useRef(null);
 
   // Clone os itens do carrossel para dar a sensação de rolagem infinita
-  const cloneIcons = [...iconList, ...iconList, ...iconList, ...iconList, ...iconList, ...iconList, ...iconList, ...iconList];
+  const cloneIcons = [...iconList, ...iconList, ...iconList, ...iconList, ...iconList, ...iconList, ...iconList, ...iconList, ...iconList, ...iconList, ...iconList, ...iconList, ...iconList, ...iconList, ...iconList, ...iconList, ...iconList, ...iconList, ...iconList];
 
 
 
@@ -113,7 +127,7 @@ const Main = () => {
       });
       setRespostas(respostasArray);
     });
-  
+
     return () => unsubscribe();
   }, [db]);
 
@@ -152,70 +166,102 @@ const Main = () => {
   };
 
   // Função para renderizar as perguntas com base na matéria selecionada
-  const renderQuestions = () => {
-    const filteredQuestions = selectedIcon
-      ? questions.filter((question) => question.materia.toLowerCase() === selectedIcon.toLowerCase())
-      : questions;
+  // Dentro da função renderQuestions
+const renderQuestions = () => {
+  const filteredQuestions = selectedIcon
+    ? questions.filter((question) => question.materia.toLowerCase() === selectedIcon.toLowerCase())
+    : questions;
 
-    return filteredQuestions.length > 0 ? (
-      filteredQuestions.map((question, index) => {
-        const isExpanded = expandedQuestions[index];
-        const shouldShowExpandButton = question.pergunta.length > 300; // Exibe o botão "Ler mais" se a pergunta for longa
-        const displayText = isExpanded 
-          ? question.pergunta 
-          : question.pergunta.length > 300 
-            ? `${question.pergunta.substring(0, 300)}...` 
-            : question.pergunta;
+  return filteredQuestions.length > 0 ? (
+    filteredQuestions.map((question, index) => {
+      const isExpanded = expandedQuestions[index];
+      const shouldShowExpandButton = question.pergunta.length > 300;
+      const displayText = isExpanded
+        ? question.pergunta
+        : question.pergunta.length > 300
+          ? `${question.pergunta.substring(0, 300)}...`
+          : question.pergunta;
 
-        return (
-          <div key={index}>
-            <div className="ContainerQ">
-              <div className="ParteCima">
-                <div className="Esquerda">
-                  <img 
-                    src={question.fotoPerfil || DefaultProfileImage} // Usa a imagem padrão se não houver foto de perfil
-                    className="FotoPerfil" 
-                    alt="" 
-                  />
-                  {question.nome && <h2 className="NomePerfil">{question.nome}</h2>}
-                </div>
-                <div className="Direita">
+      // Verificação para mostrar os ícones apenas se o usuário for o autor
+      const isAuthor = auth.currentUser && auth.currentUser.uid === question.uid;
+
+      return (
+        <div key={index}>
+          <div className="ContainerQ">
+            <div className="ParteCima">
+              <div className="Esquerda">
+                <img
+                  src={question.fotoPerfil || DefaultProfileImage}
+                  className="FotoPerfil"
+                  alt=""
+                />
+                {question.nome && <h2 className="NomePerfil">{question.nome}</h2>}
+              </div>
+              <div className="Direita">
+                <div className="Direita-cima">
                   {question.tempo && <p>{question.tempo}</p>}
                 </div>
-              </div>
-              <div className="ParteMeio">
-                <p>{displayText}</p>
-                {shouldShowExpandButton && (
-                  <button className="expand-button" onClick={() => toggleExpand(index)}>
-                    {isExpanded ? 'Ler menos' : 'Ler mais'}
-                  </button>
-                )}
-              </div>
 
-              {/* Adição dos elementos "Responder" e "Ver Respostas" como <p> */}
-              <div className="ParteBaixo">
-                <p className="Responder" onClick={() => handleResponder(question.id)}>
-                  Responder
-                </p>
-                <p className="Respostas" onClick={() => handleVerRespostas(question)}>
-                  Ver Respostas
-                </p>
+                <div className="Direita-baixo">
+                  {/* Renderiza os ícones de editar e excluir apenas se o usuário for o autor */}
+                  {isAuthor && (
+                    <>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width={28}
+                        height={28}
+                        viewBox="0 0 24 24"
+                        className='opcao-lixo'
+                        onClick={() => handleDeleteQuestion(question.id)} // Adicione a lógica para excluir a pergunta
+                      >
+                        <path fill="currentColor" d="M19 4h-3.5l-1-1h-5l-1 1H5v2h14M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6z"></path>
+                      </svg>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width={28}
+                        height={28}
+                        viewBox="0 0 24 24"
+                        className='opcao-editar'
+                        onClick={() => handleEditQuestion(question)} // Chame a função para editar a pergunta
+                      >
+                        <path fill="currentColor" d="M3 21v-4.25L16.2 3.575q.3-.275.663-.425t.762-.15t.775.15t.65.45L20.425 5q.3.275.438.65T21 6.4q0 .4-.137.763t-.438.662L7.25 21zM17.6 7.8L19 6.4L17.6 5l-1.4 1.4z"></path>
+                      </svg>
+                    </>
+                  )}
+                </div>
+
               </div>
             </div>
+            <div className="ParteMeio">
+              <p>{displayText}</p>
+              {shouldShowExpandButton && (
+                <button className="expand-button" onClick={() => toggleExpand(index)}>
+                  {isExpanded ? 'Ler menos' : 'Ler mais'}
+                </button>
+              )}
+            </div>
 
-            {/* Se "Ver Respostas" foi clicado para esta pergunta, exibir as respostas */}
-           
+            <div className="ParteBaixo">
+              <p className="Responder" onClick={() => handleResponder(question.id)}>
+                Responder
+              </p>
+              <p className="Respostas" onClick={() => handleVerRespostas(question)}>
+                Ver Respostas
+              </p>
+            </div>
           </div>
-        );
-      })
-    ) : (
-      <p className='NoQuestion'>Nenhuma pergunta disponível</p>
-    );
-  };
+        </div>
+      );
+    })
+  ) : (
+    <p className='NoQuestion'>Nenhuma pergunta disponível</p>
+  );
+};
+
 
   const showLessResponses = () => {
-  setVisibleResponses((prevCount) => Math.max(prevCount - 1, 1)); // Garante que o número mínimo de respostas visíveis seja 1
-};
+    setVisibleResponses((prevCount) => Math.max(prevCount - 1, 1)); // Garante que o número mínimo de respostas visíveis seja 1
+  };
 
 
 
@@ -246,14 +292,14 @@ const Main = () => {
       setShowResponsePopup(false);
     }
   };
-  
+
 
   const enviarResposta = async () => {
     if (resposta.trim() === '') {
       alert('Por favor, digite uma resposta.');
       return;
     }
-  
+
     const respostaData = {
       texto: resposta.trim(),
       nome: currentUserName,
@@ -261,13 +307,13 @@ const Main = () => {
       perguntaId: currentQuestionId,
       uid: auth.currentUser.uid, // Adiciona o UID do usuário
       timestamp: new Date(), // Adicionar um timestamp se necessário
-    };    
-  
+    };
+
     try {
       // Criar uma nova referência de documento em "respostas"
       const respostaRef = doc(collection(db, 'respostas'));
       await setDoc(respostaRef, respostaData);
-  
+
       // Atualizar o estado local se necessário
       setRespostas((prevRespostas) => {
         const novasRespostas = { ...prevRespostas };
@@ -277,7 +323,7 @@ const Main = () => {
         novasRespostas[currentQuestionId].push(respostaData);
         return novasRespostas;
       });
-  
+
       // Limpar o input e fechar o pop-up de resposta
       setResposta('');
       setShowResponsePopup(false);
@@ -287,7 +333,7 @@ const Main = () => {
       alert('Erro ao enviar resposta. Tente novamente.');
     }
   };
-  
+
 
   const handleCloseResponsePopup = () => {
     setShowResponsePopup(false);
@@ -353,65 +399,82 @@ const Main = () => {
           </div>
         </div>
       )}
-      
+
 
       {/* Pop-up para exibir respostas da pergunta */}
-{showRespostasPopup && currentQuestion &&  (
-  <div className="popup-overlay">
-    <div className="popup-resposta">
-      {/* Título e Pergunta */}
-      <div className="popup-cima">
-        <div className='pop-up-info'>
-          <img 
-              src={quimica}
-              className="FotoPerfilpopup" // <img src={question.fotoPerfil || DefaultProfileImage} className="FotoPerfil" alt="" />
-              alt=""  
-          />
-                  <p id='nome'> {currentQuestion.nome}</p>
-                  <button className='botaofechar' onClick={() => setShowRespostasPopup(false)}>X</button>
-          </div>
-                  <h2 className='perguntapopup'>{currentQuestion.pergunta}</h2>
-
-      </div>
-
-      {/* Respostas */}
-      <div className="popup-meio">
-        <h3>Respostas:</h3>
-        {respostas[currentQuestion.id] && respostas[currentQuestion.id].length > 0 ? (
-          respostas[currentQuestion.id].slice(0, visibleResponses).map((resp, idx) => (
-            <div key={idx} className="RespostaItem">
-              <img 
-                src={quimica} // src={resp.fotoperfil || DefaultProgileImage}
-                className="FotoPerfilResp" 
-                alt=""
-              />
-              <div className="RespostaTexto">
-                <h3 className="NomeResp">{resp.nome}</h3>
-                <p id='Resp'>{resp.texto}</p>
+      {showRespostasPopup && currentQuestion && (
+        <div className="popup-overlay">
+          <div className="popup-resposta">
+            {/* Título e Pergunta */}
+            <div className="popup-cima">
+              <div className='pop-up-info'>
+                <img
+                  src={quimica}
+                  className="FotoPerfilpopup" // <img src={question.fotoPerfil || DefaultProfileImage} className="FotoPerfil" alt="" />
+                  alt=""
+                />
+                <p id='nome'> {currentQuestion.nome}</p>
+                <button className='botaofechar' onClick={() => setShowRespostasPopup(false)}>X</button>
               </div>
-              
+              <h2 className='perguntapopup'>{currentQuestion.pergunta}</h2>
+
             </div>
-          ))
-        ) : (
-          <p>Sem respostas ainda.</p>
-        )}
-        
-         {/* Botão "Mostrar mais" para carregar mais respostas */}
 
+            {/* Respostas */}
+            <div className="popup-meio">
+              <h3>Respostas:</h3>
+              {respostas[currentQuestion.id] && respostas[currentQuestion.id].length > 0 ? (
+                respostas[currentQuestion.id].slice(0, visibleResponses).map((resp, idx) => (
+                  <div key={idx} className="RespostaItem">
+                    <img
+                      src={quimica} // src={resp.fotoperfil || DefaultProgileImage}
+                      className="FotoPerfilResp"
+                      alt=""
+                    />
+                    <div className="RespostaTexto">
+                      <h3 className="NomeResp">{resp.nome}</h3>
+                      <p id='Resp'>{resp.texto}</p>
+                    </div>
+
+                  </div>
+                ))
+              ) : (
+                <p>Sem respostas ainda.</p>
+              )}
+
+              {/* Botão "Mostrar mais" para carregar mais respostas */}
+
+            </div>
+            <div className="respostas-buttons">
+              <button onClick={showMoreResponses}>Mostrar mais</button>
+              <button onClick={showLessResponses}>Mostrar menos</button>
+            </div>
+
+            {/* Botão para fechar o pop-up */}
+
+          </div>
+        </div>
+      )}
+
+      {/* __________________________________________ */}
+      {isEditing && (
+  <div className="edit-popup-overlay"> {/* Classe de fundo do pop-up */}
+    <div className="edit-popup-content"> {/* Classe do conteúdo do pop-up */}
+      <h2 className='edit-popup-title'>EDITAR SUA PERGUNTA</h2> {/* Título do pop-up */}
+      <textarea
+        placeholder="Edite sua pergunta aqui..."
+      />
+      <div className="edit-popup-buttons"> {/* Botões do pop-up */}
+        <button>Salvar</button>
+        <button onClick={handleCancelEdit}>Cancelar</button>
       </div>
-      <div className="respostas-buttons">
-    <button onClick={showMoreResponses}>Mostrar mais</button>
-    <button onClick={showLessResponses}>Mostrar menos</button>
-  </div>
-
-      {/* Botão para fechar o pop-up */}
-      
     </div>
   </div>
 )}
 
 
 
+      {/* _________________________________ */}
       {/* Pop-up de login */}
       {showLoginPopup && (
         <div className="overlay">
