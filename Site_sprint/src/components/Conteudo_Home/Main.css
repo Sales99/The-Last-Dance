@@ -177,10 +177,24 @@
 }
 
 .Direita {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
   font-size: 17px;
   font-weight: 700;
   margin-right: 30px;
   color: rgb(83, 83, 83);
+}
+
+.opcao-lixo, .opcao-editar {
+  color: rgb(66, 66, 66);
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+.opcao-editar:hover, .opcao-lixo:hover {
+  width: 30px;
+  height: 30px;
 }
 
 .ParteMeio {
@@ -551,7 +565,7 @@ border-radius: 8px;
 }
 
 /* Estilos dos botões da parte de baixo do pop-up */
-.popup-baixo button {
+.popup-baixo button, .edit-popup-buttons button {
   padding: 8px 16px; /* Estilo do botão */
   font-size: 17px;
   background-color: #E6B64E;
@@ -562,7 +576,7 @@ border-radius: 8px;
   transition: all 0.8s ease;
 }
 
-.popup-baixo button:hover {
+.popup-baixo button:hover, .edit-popup-buttons button:hover {
   background-color: #ac8838;
 }
 
@@ -585,6 +599,61 @@ border-radius: 8px;
   opacity: 1; /* Garante que o pop-up seja visível ao final da animação */
 }
 
+/* _______________________________ */
+/* Editar PopUp */
+
+.edit-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Fundo semitransparente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Certifique-se de que o pop-up esteja acima de outros elementos */
+}
+
+.edit-popup-content {
+  background: #fff; /* Cor de fundo do pop-up */
+  border-radius: 8px; /* Cantos arredondados */
+  padding: 40px ; /* Espaçamento interno */
+  width: 600px; /* Largura do pop-up */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Sombra do pop-up */
+}
+
+.edit-popup-title {
+  text-align: center;
+  margin-bottom: 15px; /* Margem abaixo do título */
+  font-size: 70px; /* Tamanho da fonte do título */
+  font-family: "Jomhuria";
+  font-weight: 500;
+}
+
+textarea {
+  align-self: center;
+  max-width: 100%; /* Largura total do textarea */
+  width: 575px;
+  font-size: 18px;
+  height: 100px; /* Altura do textarea */
+  margin-bottom: 15px; /* Margem abaixo do textarea */
+  padding: 10px; /* Espaçamento interno */
+  border: 1px solid #ccc; /* Borda do textarea */
+  border-radius: 4px; /* Cantos arredondados */
+  resize: vertical;
+}
+
+.edit-popup-buttons {
+  display: flex; /* Para alinhar os botões lado a lado */
+  justify-content: space-between; /* Espaçamento entre os botões */
+}
+
+.edit-popup-buttons button:focus{
+  outline: none;
+}
+
+/* _______________________________ */
 
 /*  */
 /*  */
