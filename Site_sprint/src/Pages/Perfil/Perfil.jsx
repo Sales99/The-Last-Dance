@@ -124,28 +124,48 @@ const Perfil = () => {
 
   const handleSaveChanges = async () => {
     if (auth.currentUser) {
-      const userRef = doc(db, "users", auth.currentUser.uid);
-      try {
-        await setDoc(userRef, {
-          name,
-          age,
-          language,
-          education,
-          profession,
-          biography,
-        }, { merge: true });
-  
-        // Atualize o estado do username com o novo nome
-        setUsername(name); // Atualiza o nome que aparece abaixo da foto de perfil
-  
-        alert("Informações do perfil atualizadas com sucesso!");
-        closeEditPopup();
-      } catch (error) {
-        console.error("Erro ao salvar informações do perfil: ", error);
-        alert("Erro ao salvar informações. Tente novamente.");
-      }
+        const userRef = doc(db, "users", auth.currentUser.uid);
+        try {
+            await setDoc(userRef, {
+                name,
+                age,
+                language,
+                education,
+                profession,
+                biography,
+            }, { merge: true });
+
+            // Atualize o estado do username com o novo nome
+            setUsername(name); // Atualiza o nome que aparece abaixo da foto de perfil
+
+            // Atualizar o nome nas perguntas
+            await updateQuestionNames(name); // Nova função para atualizar as perguntas
+
+            alert("Informações do perfil atualizadas com sucesso!");
+            closeEditPopup();
+        } catch (error) {
+            console.error("Erro ao salvar informações do perfil: ", error);
+            alert("Erro ao salvar informações. Tente novamente.");
+        }
     }
-  };
+};
+
+// Função para atualizar o nome nas perguntas do usuário
+const updateQuestionNames = async (newName) => {
+    const perguntasQuery = query(
+        collection(db, "perguntas"),
+        where("uid", "==", auth.currentUser.uid)
+    );
+    
+    const querySnapshot = await getDocs(perguntasQuery);
+    
+    const updates = querySnapshot.docs.map(doc => {
+        return setDoc(doc.ref, { nome: newName }, { merge: true });
+    });
+
+    await Promise.all(updates); // Aguarda todas as atualizações serem concluídas
+};
+
   
 
   return (
