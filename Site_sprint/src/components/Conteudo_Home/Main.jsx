@@ -24,6 +24,7 @@ const Main = () => {
 
   const [isEditing, setIsEditing] = useState(false); // Controla se o popup de edição está visível
 
+  const [editedQuestion, setEditedQuestion] = useState('');
   // _________________________________
   // PopUp de Excluir e confirmar
 
@@ -62,9 +63,28 @@ const deleteQuestion = async () => {
   };
 
   const handleEditQuestion = (question) => {
-    setIsEditing(true); // Abre o pop-up de edição
-    // Aqui você pode armazenar a pergunta no estado, se necessário.
-  };  
+    setIsEditing(true);
+    setEditedQuestion(question.pergunta);
+    setCurrentQuestionId(question.id); // Ensure this is set correctly
+  };
+
+  const saveEditedQuestion = async (questionId) => {
+    if (editedQuestion.trim() === '') {
+      alert('Por favor, digite uma pergunta válida.');
+      return;
+    }
+  
+    try {
+      await updateDoc(doc(db, "perguntas", questionId), {
+        pergunta: editedQuestion // Update the question text
+      });
+      setIsEditing(false); // Close the edit popup
+      setEditedQuestion(''); // Reset the edited question state
+    } catch (error) {
+      console.error("Erro ao atualizar a pergunta: ", error);
+      alert('Erro ao salvar a pergunta. Tente novamente.');
+    }
+  };
 
   // Função para cancelar a edição
   const handleCancelEdit = () => {
@@ -491,14 +511,15 @@ const renderQuestions = () => {
       {/* __________________________________________ */}
       {/* PopUp Alterar pergunta */}
       {isEditing && (
-  <div className="edit-popup-overlay"> {/* Classe de fundo do pop-up */}
-    <div className="edit-popup-content"> {/* Classe do conteúdo do pop-up */}
-      <h2 className='edit-popup-title'>EDITAR SUA PERGUNTA</h2> {/* Título do pop-up */}
+  <div className="edit-popup-overlay">
+    <div className="edit-popup-content">
+      <h2 className='edit-popup-title'>EDITAR SUA PERGUNTA</h2>
       <textarea
-        placeholder="Edite sua pergunta aqui..."
+        value={editedQuestion}
+        onChange={(e) => setEditedQuestion(e.target.value)} // Update editedQuestion on change
       />
-      <div className="edit-popup-buttons"> {/* Botões do pop-up */}
-        <button>Salvar</button>
+      <div className="edit-popup-buttons">
+        <button onClick={() => saveEditedQuestion(currentQuestionId)}>Salvar</button> {/* Save button */}
         <button onClick={handleCancelEdit}>Cancelar</button>
       </div>
     </div>
