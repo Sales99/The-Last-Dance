@@ -53,11 +53,13 @@ const Perfil = () => {
           setProfession(userData.profession || '');
           setBiography(userData.biography || '');
         }
+
+        // ______________________________________________________
   
         // Código para contar perguntas e respostas
         const perguntasQuery = query(
           collection(db, "perguntas"),
-          where("uid", "==", user.uid)
+          where("uid", "==", user.uidid)
         );
         const querySnapshotPerguntas = await getDocs(perguntasQuery);
         setPerguntaCount(querySnapshotPerguntas.size);
@@ -75,6 +77,8 @@ const Perfil = () => {
       }
     });
   
+    // ______________________________________________
+    
     return () => unsubscribe();
   }, [db]);
   
