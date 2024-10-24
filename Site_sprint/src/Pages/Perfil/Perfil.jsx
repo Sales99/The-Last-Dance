@@ -26,65 +26,65 @@ const Perfil = () => {
   const fileInputRef = useRef(null);
   const navigate = useNavigate();
   const db = getFirestore();
-          console.log("FOdase imagem")
+  console.log("FOdase imagem")
 
-          useEffect(() => {
-            const authListener = auth.onAuthStateChanged(async (user) => {
-              try {
-                if (user) {
-                  console.log("Fdase");
-                  setUsername(user.displayName || "Nome não disponível");
-                  if (user.photoURL) {
-                    setProfileImage(user.photoURL);
-                  }
-          
-                  // Obtenha dados do Firestore
-                  const userDocRef = doc(db, "users", user.uid);
-                  const userDoc = await getDoc(userDocRef);
-          
-                  if (userDoc.exists()) {
-                    const userData = userDoc.data();
-                    setName(userData.name || '');
-                    setUsername(userData.name || user.displayName || "Nome não disponível");
-                    setAge(userData.age || '');
-                    setLanguage(userData.language || '');
-                    setEducation(userData.education || '');
-                    setProfession(userData.profession || '');
-                    setBiography(userData.biography || '');
-                  }
-          
-                  // Contar perguntas
-                  const perguntasQuery = query(
-                    collection(db, "perguntas"),
-                    where("uid", "==", user.uid)
-                  );
-                  const querySnapshotPerguntas = await getDocs(perguntasQuery);
-                  setPerguntaCount(querySnapshotPerguntas.size);
-                  console.log("Pergunta Count:", querySnapshotPerguntas.size); // Log
-          
-                  // Contar respostas
-                  const respostasQuery = query(
-                    collection(db, "respostas"),
-                    where("uid", "==", user.uid)
-                  );
-                  const querySnapshotRespostas = await getDocs(respostasQuery);
-                  setRespostaCount(querySnapshotRespostas.size);
-                  console.log("Resposta Count:", querySnapshotRespostas.size); // Log
-                } else {
-                  setUsername("Nome não disponível");
-                  setPerguntaCount(0);
-                  setRespostaCount(0);
-                }
-              } catch (error) {
-                console.error("Erro ao obter dados do usuário:", error);
-              }
-            });
-          
-            return () => authListener();
-          }, [db]);
-          
-          
-  
+  useEffect(() => {
+    const authListener = auth.onAuthStateChanged(async (user) => {
+      try {
+        if (user) {
+          console.log("Fdase");
+          setUsername(user.displayName || "Nome não disponível");
+          if (user.photoURL) {
+            setProfileImage(user.photoURL);
+          }
+
+          // Obtenha dados do Firestore
+          const userDocRef = doc(db, "users", user.uid);
+          const userDoc = await getDoc(userDocRef);
+
+          if (userDoc.exists()) {
+            const userData = userDoc.data();
+            setName(userData.name || '');
+            setUsername(userData.name || user.displayName || "Nome não disponível");
+            setAge(userData.age || '');
+            setLanguage(userData.language || '');
+            setEducation(userData.education || '');
+            setProfession(userData.profession || '');
+            setBiography(userData.biography || '');
+          }
+
+          // Contar perguntas
+          const perguntasQuery = query(
+            collection(db, "perguntas"),
+            where("uid", "==", user.uid)
+          );
+          const querySnapshotPerguntas = await getDocs(perguntasQuery);
+          setPerguntaCount(querySnapshotPerguntas.size);
+          console.log("Pergunta Count:", querySnapshotPerguntas.size); // Log
+
+          // Contar respostas
+          const respostasQuery = query(
+            collection(db, "respostas"),
+            where("uid", "==", user.uid)
+          );
+          const querySnapshotRespostas = await getDocs(respostasQuery);
+          setRespostaCount(querySnapshotRespostas.size);
+          console.log("Resposta Count:", querySnapshotRespostas.size); // Log
+        } else {
+          setUsername("Nome não disponível");
+          setPerguntaCount(0);
+          setRespostaCount(0);
+        }
+      } catch (error) {
+        console.error("Erro ao obter dados do usuário:", error);
+      }
+    });
+
+    return () => authListener();
+  }, [db]);
+
+
+
 
   const handleProfileImageClick = () => {
     if (fileInputRef.current) {
@@ -132,49 +132,67 @@ const Perfil = () => {
 
   const handleSaveChanges = async () => {
     if (auth.currentUser) {
-        const userRef = doc(db, "users", auth.currentUser.uid);
-        try {
-            await setDoc(userRef, {
-                name,
-                age,
-                language,
-                education,
-                profession,
-                biography,
-            }, { merge: true });
+      const userRef = doc(db, "users", auth.currentUser.uid);
+      try {
+        await setDoc(userRef, {
+          name,
+          age,
+          language,
+          education,
+          profession,
+          biography,
+        }, { merge: true });
 
-            // Atualize o estado do username com o novo nome
-            setUsername(name); // Atualiza o nome que aparece abaixo da foto de perfil
+        // Atualize o estado do username com o novo nome
+        setUsername(name); // Atualiza o nome que aparece abaixo da foto de perfil
 
-            // Atualizar o nome nas perguntas
-            await updateQuestionNames(name); // Nova função para atualizar as perguntas
+        // Atualizar o nome nas perguntas
+        await updateQuestionNames(name); // Nova função para atualizar as perguntas
 
-            alert("Informações do perfil atualizadas com sucesso!");
-            closeEditPopup();
-        } catch (error) {
-            console.error("Erro ao salvar informações do perfil: ", error);
-            alert("Erro ao salvar informações. Tente novamente.");
-        }
+        alert("Informações do perfil atualizadas com sucesso!");
+        closeEditPopup();
+      } catch (error) {
+        console.error("Erro ao salvar informações do perfil: ", error);
+        alert("Erro ao salvar informações. Tente novamente.");
+      }
     }
-};
+  };
 
-// Função para atualizar o nome nas perguntas do usuário
-const updateQuestionNames = async (newName) => {
+  // Função para atualizar o nome nas perguntas do usuário
+  const updateQuestionNames = async (newName) => {
     const perguntasQuery = query(
-        collection(db, "perguntas"),
-        where("uid", "==", auth.currentUser.uid)
+      collection(db, "perguntas"),
+      where("uid", "==", auth.currentUser.uid)
     );
-    
+
     const querySnapshot = await getDocs(perguntasQuery);
-    
+
     const updates = querySnapshot.docs.map(doc => {
-        return setDoc(doc.ref, { nome: newName }, { merge: true });
+      return setDoc(doc.ref, { nome: newName }, { merge: true });
     });
 
     await Promise.all(updates); // Aguarda todas as atualizações serem concluídas
-};
+  };
 
-  
+  // ________________________________
+  // ________________________________
+  // Código para as perguntas
+
+  const [perguntas, setPerguntas] = useState([]); // Armazena as perguntas
+  const [respostas, setRespostas] = useState([]); // Armazena as respostas
+  const [showRespostas, setShowRespostas] = useState(false); // Controla qual conteúdo mostrar
+
+  // Função para mostrar as respostas
+  const handleShowRespostas = () => {
+    setShowRespostas(true);
+  };
+
+  // Função para mostrar as perguntas
+  const handleShowPerguntas = () => {
+    setShowRespostas(false);
+  };
+
+  // ________________________________
 
   return (
     <>
@@ -269,12 +287,12 @@ const updateQuestionNames = async (newName) => {
 
                 <div className="rightColumn">
                   <div className="popupField">
-                  <label>Idade</label>
-                  <input type="text" value={age} onChange={(e) => setAge(e.target.value)} />
+                    <label>Idade</label>
+                    <input type="text" value={age} onChange={(e) => setAge(e.target.value)} />
                   </div>
 
                   <div className="popupField">
-                  <label>Idioma</label>
+                    <label>Idioma</label>
                     <select value={language} onChange={(e) => setLanguage(e.target.value)}>
                       <option value="">Selecione</option>
                       <option value="Português">Português</option>
@@ -283,23 +301,23 @@ const updateQuestionNames = async (newName) => {
                       {/* Adicione outras opções de idiomas conforme necessário */}
                     </select>
                   </div>
-                </div> 
+                </div>
               </div>
               <div className="popupField">
-                  <label>Profissão</label>
-                    <input
-                      type="text"
-                      value={profession}
-                      onChange={(e) => setProfession(e.target.value)}
-                    />
-                  </div>
-                  <div className="popupField">
-                    <label>Biografia</label>
-                    <textarea
-                      value={biography}
-                      onChange={(e) => setBiography(e.target.value)}
-                    ></textarea>
-                  </div>
+                <label>Profissão</label>
+                <input
+                  type="text"
+                  value={profession}
+                  onChange={(e) => setProfession(e.target.value)}
+                />
+              </div>
+              <div className="popupField">
+                <label>Biografia</label>
+                <textarea
+                  value={biography}
+                  onChange={(e) => setBiography(e.target.value)}
+                ></textarea>
+              </div>
 
               <button className="saveButton" onClick={handleSaveChanges}>Salvar</button>
             </div>
