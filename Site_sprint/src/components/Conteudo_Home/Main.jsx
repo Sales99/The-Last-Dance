@@ -28,12 +28,32 @@ const Main = () => {
   // PopUp de Excluir e confirmar
 
   const [ConfirmarExclusao, setExclusao] = useState(false);
-  const handleConfirmarExclusao = (question) => {
-    setExclusao(true);
-  };
+// Function to handle the confirmation of deletion
+const handleConfirmarExclusao = (questionId) => {
+  setQuestionToDelete(questionId); // Set the question ID that is to be deleted
+  setExclusao(true); // Show the confirmation popup
+};
+
   const handleCancelExclusao = () => {
     setExclusao(false)
   } ;
+
+  // State to hold the ID of the question to be deleted
+const [questionToDelete, setQuestionToDelete] = useState(null);
+
+const deleteQuestion = async () => {
+  if (questionToDelete) {
+    try {
+      await deleteDoc(doc(db, "perguntas", questionToDelete)); // Delete the question from Firestore
+      setQuestions((prevQuestions) => prevQuestions.filter(q => q.id !== questionToDelete)); // Update local state
+      setQuestionToDelete(null); // Reset the question to delete
+      setExclusao(false); // Close the confirmation popup
+    } catch (error) {
+      console.error("Error deleting question: ", error);
+      alert('Erro ao excluir a pergunta. Tente novamente.');
+    }
+  }
+};
 
   // _________________________________
 
@@ -492,7 +512,7 @@ const renderQuestions = () => {
       <h2 className='excluir-popup-title'>DESEJA APAGAR SUA PERGUNTA?</h2> {/* Título do pop-up */}
       <p>Ao clicar em confirmar, sua pergunta será apagada e terá que refazer outra para os outros poderem responder</p>
       <div className="excluir-popup-buttons"> {/* Botões do pop-up */}
-        <button>Excluir</button>
+        <button onClick={deleteQuestion}>Excluir</button> {/* Call deleteQuestion on click */}
         <button onClick={handleCancelExclusao}>Cancelar</button>
       </div>
     </div>
