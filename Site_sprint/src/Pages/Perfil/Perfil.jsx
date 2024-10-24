@@ -28,59 +28,62 @@ const Perfil = () => {
   const db = getFirestore();
           console.log("FOdase imagem")
 
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(async (user) => {
-      if (user) {
-        console.log("Fdase")
-        // Mantenha o nome salvo no Firestore, caso o displayName não esteja definido
-        setUsername(user.displayName || "Nome não disponível");
-        if (user.photoURL) {
-          setProfileImage(user.photoURL);
-        }
-  
-        // Obtenha dados do Firestore
-        const userDocRef = doc(db, "users", user.uid);
-        const userDoc = await getDoc(userDocRef);
-  
-        if (userDoc.exists()) {
-          const userData = userDoc.data();
-          // Atualize o nome do perfil com o valor do Firestore, se disponível
-          setName(userData.name || '');
-          setUsername(userData.name || user.displayName || "Nome não disponível"); // Atualiza o username com o nome do Firestore
-          setAge(userData.age || '');
-          setLanguage(userData.language || '');
-          setEducation(userData.education || '');
-          setProfession(userData.profession || '');
-          setBiography(userData.biography || '');
-        }
-
-        // ______________________________________________________
-  
-        // Código para contar perguntas e respostas
-        const perguntasQuery = query(
-          collection(db, "perguntas"),
-          where("uid", "==", user.uidid)
-        );
-        const querySnapshotPerguntas = await getDocs(perguntasQuery);
-        setPerguntaCount(querySnapshotPerguntas.size);
-  
-        const respostasQuery = query(
-          collection(db, "respostas"),
-          where("uid", "==", user.uid)
-        );
-        const querySnapshotRespostas = await getDocs(respostasQuery);
-        setRespostaCount(querySnapshotRespostas.size);
-      } else {
-        setUsername("Nome não disponível");
-        setPerguntaCount(0);
-        setRespostaCount(0);
-      }
-    });
-  
-    // ______________________________________________
-    
-    return () => unsubscribe();
-  }, [db]);
+          useEffect(() => {
+            const authListener = auth.onAuthStateChanged(async (user) => {
+              try {
+                if (user) {
+                  console.log("Fdase");
+                  setUsername(user.displayName || "Nome não disponível");
+                  if (user.photoURL) {
+                    setProfileImage(user.photoURL);
+                  }
+          
+                  // Obtenha dados do Firestore
+                  const userDocRef = doc(db, "users", user.uid);
+                  const userDoc = await getDoc(userDocRef);
+          
+                  if (userDoc.exists()) {
+                    const userData = userDoc.data();
+                    setName(userData.name || '');
+                    setUsername(userData.name || user.displayName || "Nome não disponível");
+                    setAge(userData.age || '');
+                    setLanguage(userData.language || '');
+                    setEducation(userData.education || '');
+                    setProfession(userData.profession || '');
+                    setBiography(userData.biography || '');
+                  }
+          
+                  // Contar perguntas
+                  const perguntasQuery = query(
+                    collection(db, "perguntas"),
+                    where("uid", "==", user.uid)
+                  );
+                  const querySnapshotPerguntas = await getDocs(perguntasQuery);
+                  setPerguntaCount(querySnapshotPerguntas.size);
+                  console.log("Pergunta Count:", querySnapshotPerguntas.size); // Log
+          
+                  // Contar respostas
+                  const respostasQuery = query(
+                    collection(db, "respostas"),
+                    where("uid", "==", user.uid)
+                  );
+                  const querySnapshotRespostas = await getDocs(respostasQuery);
+                  setRespostaCount(querySnapshotRespostas.size);
+                  console.log("Resposta Count:", querySnapshotRespostas.size); // Log
+                } else {
+                  setUsername("Nome não disponível");
+                  setPerguntaCount(0);
+                  setRespostaCount(0);
+                }
+              } catch (error) {
+                console.error("Erro ao obter dados do usuário:", error);
+              }
+            });
+          
+            return () => authListener();
+          }, [db]);
+          
+          
   
 
   const handleProfileImageClick = () => {
