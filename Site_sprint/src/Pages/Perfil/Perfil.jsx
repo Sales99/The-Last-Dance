@@ -26,26 +26,20 @@ const Perfil = () => {
   const fileInputRef = useRef(null);
   const navigate = useNavigate();
   const db = getFirestore();
-  console.log("FOdase imagem")
+  console.log("Imagem de Perfil")
 
   useEffect(() => {
     const authListener = auth.onAuthStateChanged(async (user) => {
-      try {
-        if (user) {
-          console.log("Fdase");
+      if (user) {
+        try {
           setUsername(user.displayName || "Nome não disponível");
-          if (user.photoURL) {
-            setProfileImage(user.photoURL);
-          }
-
-          // Obtenha dados do Firestore
+          setProfileImage(user.photoURL || DefaultProfileImage);
           const userDocRef = doc(db, "users", user.uid);
           const userDoc = await getDoc(userDocRef);
 
           if (userDoc.exists()) {
             const userData = userDoc.data();
             setName(userData.name || '');
-            setUsername(userData.name || user.displayName || "Nome não disponível");
             setAge(userData.age || '');
             setLanguage(userData.language || '');
             setEducation(userData.education || '');
@@ -53,35 +47,34 @@ const Perfil = () => {
             setBiography(userData.biography || '');
           }
 
-          // Contar perguntas
-          const perguntasQuery = query(
-            collection(db, "perguntas"),
-            where("uid", "==", user.uid)
-          );
-          const querySnapshotPerguntas = await getDocs(perguntasQuery);
-          setPerguntaCount(querySnapshotPerguntas.size);
-          console.log("Pergunta Count:", querySnapshotPerguntas.size); // Log
-
-          // Contar respostas
-          const respostasQuery = query(
-            collection(db, "respostas"),
-            where("uid", "==", user.uid)
-          );
-          const querySnapshotRespostas = await getDocs(respostasQuery);
-          setRespostaCount(querySnapshotRespostas.size);
-          console.log("Resposta Count:", querySnapshotRespostas.size); // Log
-        } else {
-          setUsername("Nome não disponível");
-          setPerguntaCount(0);
-          setRespostaCount(0);
+          // Fetch perguntas
+          fetchPerguntas(user.uid);
+        } catch (error) {
+          console.error("Erro ao obter dados do usuário:", error);
         }
-      } catch (error) {
-        console.error("Erro ao obter dados do usuário:", error);
+      } else {
+        resetUserProfile();
       }
     });
 
     return () => authListener();
-  }, [db]);
+  }, [auth, db]);
+
+  const fetchPerguntas = async (uid) => {
+    const perguntasQuery = query(collection(db, "perguntas"), where("uid", "==", uid));
+    const querySnapshot = await getDocs(perguntasQuery);
+    setPerguntas(querySnapshot.docs.map(doc => doc.data())); // Armazena as perguntas
+    setPerguntaCount(querySnapshot.size); // Contagem de perguntas
+  };
+
+  // Resetando perfil quando o usuário não está autenticado
+  const resetUserProfile = () => {
+    setUsername("Nome não disponível");
+    setPerguntaCount(0);
+    setRespostaCount(0);
+    setProfileImage(DefaultProfileImage); // Adicionando imagem padrão
+  };
+
 
 
 
@@ -180,17 +173,49 @@ const Perfil = () => {
 
   const [perguntas, setPerguntas] = useState([]); // Armazena as perguntas
   const [respostas, setRespostas] = useState([]); // Armazena as respostas
-  const [showRespostas, setShowRespostas] = useState(false); // Controla qual conteúdo mostrar
+  const [showPerguntas, setShowPerguntas] = useState(false); // Conteudo do Perguntas
+  const [showRespostas, setShowRespostas] = useState(false); // Conteudo das Respostas
+  const [showButtons, setShowButtons] = useState(true);
+  const [showFechar, setShowFechar] = useState(false);
+
+
+  // Função para mostrar as perguntas
+  const handleShowPerguntas = () => {
+    setShowPerguntas(true);
+    setShowFechar(true);
+    setShowRespostas(false);
+    setShowButtons(false);
+  };
 
   // Função para mostrar as respostas
   const handleShowRespostas = () => {
     setShowRespostas(true);
+    setShowFechar(true);
+    setShowPerguntas(false);
+    setShowButtons(false);
   };
 
-  // Função para mostrar as perguntas
-  const handleShowPerguntas = () => {
+  const handleFechar = () => {
+    setShowButtons(true);
     setShowRespostas(false);
+    setShowPerguntas(false);
+    setShowFechar(false);
+  }
+
+  // ____________________
+
+  const renderPerguntas = () => {
+    if (perguntas.length === 0) {
+      return <p>Nenhuma pergunta foi feita ainda</p>;
+    }
+
+    return perguntas.map((pergunta, index) => (
+      <div key={index} className="perguntaItem">
+        <p>{pergunta.pergunta}</p> {/* Renderiza o campo "pergunta" */}
+      </div>
+    ));
   };
+
 
   // ________________________________
 
@@ -229,17 +254,48 @@ const Perfil = () => {
             <span>Respostas: {respostaCount}</span>
             <span>Perguntas: {perguntaCount}</span>
           </div>
-
-          <div className="points">
-            <button className="pointsButton">Pontos: 0</button>
-          </div>
         </div>
+
+        {/* ______________________________________________ */}
 
         <div className="rightSection"> {/* perguntas e respostas que o usuario fez usuário */}
-          <button className='respostasbuttons'>Perguntas</button>
-          <button className='respostasbuttons'>Respostas</button>
+
+          {showButtons && ( // Deixa os botões aparecendo
+            <>
+              <button className='respostasbuttons' onClick={handleShowPerguntas}>Perguntas</button>
+              <button className='respostasbuttons' onClick={handleShowRespostas}>Respostas</button>
+            </>
+          )}
+
+          {showPerguntas && (
+            <div>
+              <div className="cima">
+                <b className='conteudo-button-tittle'>Minhas Perguntas</b>
+                <p className='fechar-x' onClick={handleFechar}>x</p>
+              </div>
+              <div className="conteudo-button">
+                {renderPerguntas()} {/* Chama a função para renderizar as perguntas */}
+              </div>
+            </div>
+          )}
+
+          {showRespostas && ( // Exibe as respostas se showRespostas for verdadeiro
+            <div>
+              <div className="cima">
+                <b className='conteudo-button-tittle'>Minhas Perguntas</b>
+                <p className='fechar-x' onClick={handleFechar}>x</p>
+                <br />
+              </div>
+              <div className="conteudo-button">
+                <p>Brubru aqui é respostas</p>
+                {/* Acima você substitui pelo código que irá aparecer as respostas */}
+              </div>
+            </div>
+          )}
+
         </div>
 
+        {/* ______________________________________________________________ */}
         <div className="aboutSection">
           <h3>Sobre</h3>
           <p><strong>Escolaridade:</strong> {education || "Não definida"}</p>
