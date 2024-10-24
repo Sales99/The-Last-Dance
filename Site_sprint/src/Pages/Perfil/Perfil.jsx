@@ -26,10 +26,12 @@ const Perfil = () => {
   const fileInputRef = useRef(null);
   const navigate = useNavigate();
   const db = getFirestore();
+          console.log("FOdase imagem")
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
       if (user) {
+        console.log("Fdase")
         // Mantenha o nome salvo no Firestore, caso o displayName não esteja definido
         setUsername(user.displayName || "Nome não disponível");
         if (user.photoURL) {
@@ -42,7 +44,6 @@ const Perfil = () => {
   
         if (userDoc.exists()) {
           const userData = userDoc.data();
-          
           // Atualize o nome do perfil com o valor do Firestore, se disponível
           setName(userData.name || '');
           setUsername(userData.name || user.displayName || "Nome não disponível"); // Atualiza o username com o nome do Firestore
