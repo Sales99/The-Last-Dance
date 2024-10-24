@@ -492,7 +492,7 @@ const renderQuestions = () => {
       <h2 className='excluir-popup-title'>DESEJA APAGAR SUA PERGUNTA?</h2> {/* Título do pop-up */}
       <p>Ao clicar em confirmar, sua pergunta será apagada e terá que refazer outra para os outros poderem responder</p>
       <div className="excluir-popup-buttons"> {/* Botões do pop-up */}
-        <button>Salvar</button>
+        <button>Excluir</button>
         <button onClick={handleCancelExclusao}>Cancelar</button>
       </div>
     </div>
