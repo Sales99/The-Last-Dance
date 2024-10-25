@@ -99,6 +99,11 @@ const deleteQuestion = async () => {
   const [showResponsePopup, setShowResponsePopup] = useState(false); // Estado para controlar o pop-up de resposta
   const [currentQuestionId, setCurrentQuestionId] = useState(null); // ID da pergunta atual no pop-up
 
+  const [isEditingResponse, setIsEditingResponse] = useState(false);
+const [editedResponse, setEditedResponse] = useState('');
+const [currentResponseId, setCurrentResponseId] = useState(null);
+
+
   const [showRespostasPopup, setShowRespostasPopup] = useState(false); // Controla a exibição do pop-up de respostas
   const [currentQuestion, setCurrentQuestion] = useState(null); // Armazena a pergunta atual selecionada
 
@@ -216,6 +221,36 @@ const deleteQuestion = async () => {
       [index]: !prevState[index], // Alterna entre expandido e contraído
     }));
   };
+
+  const saveEditedResponse = async () => {
+    if (editedResponse.trim() === '') {
+      alert('Por favor, digite uma resposta válida.');
+      return;
+    }
+  
+    try {
+      await updateDoc(doc(db, "respostas", currentResponseId), {
+        texto: editedResponse // Atualiza o texto da resposta
+      });
+      setIsEditingResponse(false);
+      setEditedResponse('');
+      setCurrentResponseId(null);
+    } catch (error) {
+      console.error("Erro ao atualizar a resposta: ", error);
+      alert('Erro ao salvar a resposta. Tente novamente.');
+    }
+  };
+
+  const deleteResponse = async (responseId) => {
+    try {
+      await deleteDoc(doc(db, "respostas", responseId));
+      setVerRespostasId(currentQuestion.id); // Atualiza as respostas visíveis
+    } catch (error) {
+      console.error("Erro ao excluir resposta: ", error);
+      alert('Erro ao excluir resposta. Tente novamente.');
+    }
+  };
+
 
   // Função para renderizar as perguntas com base na matéria selecionada
   // Dentro da função renderQuestions
@@ -476,23 +511,59 @@ const renderQuestions = () => {
             <div className="popup-meio">
               <h3>Respostas:</h3>
               {respostas[currentQuestion.id] && respostas[currentQuestion.id].length > 0 ? (
-                respostas[currentQuestion.id].slice(0, visibleResponses).map((resp, idx) => (
-                  <div key={idx} className="RespostaItem">
-                    <img
-                      src={quimica} // src={resp.fotoperfil || DefaultProgileImage}
-                      className="FotoPerfilResp"
-                      alt=""
-                    />
-                    <div className="RespostaTexto">
-                      <h3 className="NomeResp">{resp.nome}</h3>
-                      <p id='Resp'>{resp.texto}</p>
-                    </div>
+  respostas[currentQuestion.id].slice(0, visibleResponses).map((resp, idx) => (
+    <div key={idx} className="RespostaItem">
+      <img
+        src={resp.fotoPerfil || DefaultProfileImage}
+        className="FotoPerfilResp"
+        alt=""
+      />
+      <div className="RespostaTexto">
+        <h3 className="NomeResp">{resp.nome}</h3>
+        <p id='Resp'>{isEditingResponse && currentResponseId === resp.id ? (
+          <textarea
+            value={editedResponse}
+            onChange={(e) => setEditedResponse(e.target.value)}
+          />
+        ) : (
+          <span>{resp.texto}</span>
+        )}</p>
+      </div>
+      {/* Botões de editar e excluir com ícones */}
+      {auth.currentUser && auth.currentUser.uid === resp.uid && (
+        <div className="RespostaAcoes">
+          {isEditingResponse && currentResponseId === resp.id ? (
+            <button onClick={saveEditedResponse}>Salvar</button>
+          ) : (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width={28}
+              height={28}
+              viewBox="0 0 24 24"
+              className='opcao-editar'
+              onClick={() => handleEditResponse(resp)}
+            >
+              <path fill="currentColor" d="M3 21v-4.25L16.2 3.575q.3-.275.663-.425t.762-.15t.775.15t.65.45L20.425 5q.3.275.438.65T21 6.4q0 .4-.137.763t-.438.662L7.25 21zM17.6 7.8L19 6.4L17.6 5l-1.4 1.4z"></path>
+            </svg>
+          )}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={28}
+            height={28}
+            viewBox="0 0 24 24"
+            className='opcao-lixo'
+            onClick={() => deleteResponse(resp.id)}
+          >
+            <path fill="currentColor" d="M19 4h-3.5l-1-1h-5l-1 1H5v2h14M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6z"></path>
+          </svg>
+        </div>
+      )}
+    </div>
+  ))
+) : (
+  <p>Sem respostas ainda.</p>
+)}
 
-                  </div>
-                ))
-              ) : (
-                <p>Sem respostas ainda.</p>
-              )}
 
               {/* Botão "Mostrar mais" para carregar mais respostas */}
 
