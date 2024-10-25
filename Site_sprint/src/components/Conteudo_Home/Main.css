@@ -670,6 +670,10 @@ textarea {
   outline: none;
 }
 
+.expand-button {
+  background: transparent;
+}
+
 /* _______________________________ */
 /*  */
 /*  */
