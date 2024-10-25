@@ -382,7 +382,7 @@ border-radius: 8px;
 }
 
 #Resp {
-  margin-right: 240px;
+  margin-right: 22px;
 }
 
 .respostas-buttons{
@@ -431,8 +431,9 @@ border-radius: 8px;
 
 .perguntapopup{
   font-size: 20px;
-  margin-right: 200px;
+  margin-right: 0px;
   text-align: justify;
+
   margin-top: -0px;
   
 }
