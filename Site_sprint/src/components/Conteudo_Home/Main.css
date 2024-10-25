@@ -234,6 +234,12 @@
   transition: color 1s ease;
 }
 
+.RespostaAcoes {
+  margin-top: 10px;
+  width: 60px;
+  height: 30px;
+}
+
 .Responder:hover, .Respostas:hover {
   color: rgb(88, 88, 88);
 }
@@ -346,11 +352,7 @@ border-radius: 8px;
 /* _____________________________________ */
 
 
-.RespostaItem {
-  display: flex;
-  align-items: flex-start;
-  margin-bottom: 10px;
-}
+
 
 .FotoPerfilResp {
   width: 50px;
@@ -364,7 +366,11 @@ border-radius: 8px;
 .RespostaItem {
   background-color: gold;
   border-radius: 10px;
-  width: 400px;
+  max-width: 80%;
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 10px;
+  
   }
 .RespostaTexto {
   background-color: gold;
@@ -383,6 +389,7 @@ border-radius: 8px;
 
 #Resp {
   margin-right: 22px;
+  text-align: justify;
 }
 
 .respostas-buttons{
