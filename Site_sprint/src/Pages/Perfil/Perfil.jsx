@@ -49,13 +49,14 @@ const Perfil = () => {
 
           // Fetch perguntas
           fetchPerguntas(user.uid);
-        } catch (error) {
-          console.error("Erro ao obter dados do usuário:", error);
-        }
-      } else {
-        resetUserProfile();
+        fetchRespostas(user.uid); // Adiciona a contagem de respostas aqui
+      } catch (error) {
+        console.error("Erro ao obter dados do usuário:", error);
       }
-    });
+    } else {
+      resetUserProfile();
+    }
+  });
 
     return () => authListener();
   }, [auth, db]);
@@ -66,6 +67,19 @@ const Perfil = () => {
     setPerguntas(querySnapshot.docs.map(doc => doc.data())); // Armazena as perguntas
     setPerguntaCount(querySnapshot.size); // Contagem de perguntas
   };
+
+  // ___________________________________________________
+  // Fetch Respostas
+
+  // Fetch perguntas e respostas
+  
+  const fetchRespostas = async (uid) => {
+    const respostasQuery = query(collection(db, "respostas"), where("uid", "==", uid));
+    const querySnapshot = await getDocs(respostasQuery);
+    setRespostas(querySnapshot.docs.map(doc => doc.data())); // Armazena as respostas
+    setRespostaCount(querySnapshot.size); // Contagem de respostas
+  };
+  
 
   // Resetando perfil quando o usuário não está autenticado
   const resetUserProfile = () => {
@@ -282,7 +296,7 @@ const Perfil = () => {
           {showRespostas && ( // Exibe as respostas se showRespostas for verdadeiro
             <div>
               <div className="cima">
-                <b className='conteudo-button-tittle'>Minhas Perguntas</b>
+                <b className='conteudo-button-tittle'>Minhas Respostas</b>
                 <p className='fechar-x' onClick={handleFechar}>x</p>
                 <br />
               </div>
