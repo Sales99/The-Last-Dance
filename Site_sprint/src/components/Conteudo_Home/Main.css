@@ -704,10 +704,6 @@ textarea {
   justify-content: space-between; /* Espaçamento entre os botões */
 }
 
-.excluir-popup-buttons button {
-
-}
-
 .excluir-popup-buttons button:focus{
   outline: none;
 }
