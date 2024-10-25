@@ -91,7 +91,12 @@ const deleteQuestion = async () => {
     setIsEditing(false); // Fecha o popup sem salvar
   };
 
-
+  const handleEditResponse = (resp) => {
+    setEditedResponse(resp.texto); // Preenche o campo com o texto da resposta
+    setCurrentResponseId(resp.id); // Armazena o ID da resposta que está sendo editada
+    setIsEditingResponse(true); // Abre o popup de edição
+  };
+  
 
   // Estados para responder perguntas
   const [resposta, setResposta] = useState(''); // Resposta atual do usuário
@@ -229,17 +234,18 @@ const [currentResponseId, setCurrentResponseId] = useState(null);
     }
   
     try {
-      await updateDoc(doc(db, "respostas", currentResponseId), {
+      await updateDoc(doc(db, 'respostas', currentResponseId), {
         texto: editedResponse // Atualiza o texto da resposta
       });
-      setIsEditingResponse(false);
-      setEditedResponse('');
-      setCurrentResponseId(null);
+  
+      setIsEditingResponse(false); // Fecha o popup de edição
+      setEditedResponse(''); // Limpa o texto editado
     } catch (error) {
-      console.error("Erro ao atualizar a resposta: ", error);
+      console.error('Erro ao atualizar a resposta: ', error);
       alert('Erro ao salvar a resposta. Tente novamente.');
     }
   };
+  
 
   const deleteResponse = async (responseId) => {
     try {
@@ -578,6 +584,23 @@ const renderQuestions = () => {
           </div>
         </div>
       )}
+
+      {/* Popup de edição de resposta */}
+{isEditingResponse && (
+  <div className="edit-popup-overlay">
+    <div className="edit-popup-content">
+      <h2>EDITAR SUA RESPOSTA</h2>
+      <textarea
+        value={editedResponse}
+        onChange={(e) => setEditedResponse(e.target.value)} // Atualiza o texto editado
+      />
+      <div className="edit-popup-buttons">
+        <button onClick={saveEditedResponse}>Salvar</button> {/* Botão para salvar */}
+        <button onClick={() => setIsEditingResponse(false)}>Cancelar</button> {/* Botão para cancelar */}
+      </div>
+    </div>
+  </div>
+)}
 
       {/* __________________________________________ */}
       {/* PopUp Alterar pergunta */}
