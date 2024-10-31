@@ -18,20 +18,19 @@ const Quemsomos = () => {
           </div>
           <div className="description">
             <p>
-              Somos a <strong>[Nome da Empresa]</strong>, uma empresa dedicada à <strong>[área de atuação]</strong>, comprometida com a excelência e inovação em tudo o que fazemos.
+              Somos a <strong>PrimeZone</strong>, uma empresa dedicada à <strong>área da educação</strong>, comprometida com a excelência e inovação em tudo o que fazemos.
             </p>
             <p>
-              Com uma equipe de profissionais experientes e apaixonados, buscamos transformar desafios em oportunidades, sempre com foco em resultados sustentáveis e no desenvolvimento contínuo.
+            A PrimeZone é um produto recém idealizado para auxiliar o aprendizado digital e fornecer informações sobre conteúdo do ensino fundamental e ensino médio, através da implementação de tecnologias.
             </p>
             <p>
               Acreditamos que o sucesso vem de um atendimento personalizado, da utilização de tecnologias avançadas e da construção de relacionamentos de confiança.
             </p>
             <p>
-            Somos a [Nome da Empresa], uma empresa dedicada a [área de atuação], comprometida com a excelência e inovação em tudo o que fazemos. Fundada em [ano de fundação], nossa missão é oferecer soluções de alta qualidade que atendam às necessidades de nossos clientes e parceiros. 
-
-Com uma equipe de profissionais experientes e apaixonados, buscamos transformar desafios em oportunidades, sempre com foco em resultados sustentáveis e no desenvolvimento contínuo.
-
-    Acreditamos que o sucesso vem de um atendimento personalizado, da utilização de tecnologias avançadas e da construção de relacionamentos de confiança. Nosso compromisso é com a transparência, a ética e a responsabilidade, garantindo que cada projeto seja conduzido com o mais alto padrão de qualidade.
+              A Primezone foi o nome dado em conjunto ao projeto pelo grupo de seis colegas com a intenção de auxiliar a educação online, introduzindo um fórum para os utilizadores do produto poderem compartilhar as perguntas com outros usuários e assim responderem as perguntas uns dos outros, será implementado um ChatBot para auxiliar a comunidade com respostas de acordo com o que a biblioteca oferece, tanto no website quanto no aplicativo. As discussões do grupo decidiram a ideia do produto e outras definições do projeto como cor, nome, logo e tipo de produto.
+            </p>
+            <p>
+            O objetivo da PrimeZone é auxiliar os estudantes com uma plataforma de estudo online, sem nenhuma pretensão de cobrar os serviços pagos no produto. Serão projetados um fórum que, será alimentado com perguntas e respostas feitas pela comunidade e, um ChatBot desenvolvido para oferecer respostas rápidas, de acordo com a capacidade do próprio, independente do horário ou da situação. Então assim, a PrimeZone tem o propósito de contribuir no sistema educacional online de Santo André. 
             </p>
           </div>
         </div>

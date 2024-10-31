@@ -254,7 +254,7 @@ const Perfil = () => {
             style={{ display: 'none' }}
             onChange={handleFileChange}
           />
-          <h2 className='username'>{username}</h2>
+          <h2 className='username'>{name}</h2>
           <h3 className='editar-button' onClick={openEditPopup}>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 20 20" fill="4B4B4B">
               <path d="M3.944 11.79a.5.5 0 0 1 .141-.277L14.163 1.435a.5.5 0 0 1 .707 0l3.89 3.89a.5.5 0 0 1 0 .706L8.68 16.11a.5.5 0 0 1-.277.14l-4.595.706a.5.5 0 0 1-.57-.57zm.964.314l-.577 3.76l3.759-.578l9.609-9.608l-3.183-3.182z"></path>
