@@ -6,7 +6,8 @@
   align-items: center;
   padding: 12px;
   padding-top: 14px;
-  width: 1495px;
+  max-width: 1500px;
+  width: 100%;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
   margin-bottom: 32px;
 }

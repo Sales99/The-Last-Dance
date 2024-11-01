@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Mitr:wght@200;300;400;500;600;700&family=Oswald:wght@200..700&display=swap'); /* Font-family: Oswald ou Mitr  */
+@import url('https://fonts.googleapis.com/css2?family=Mitr:wght@200;300;400;500;600;700&family=Oswald:wght@200..700&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap'); /* Font-family: Oswald, Roboto Mono ou Mitr  */
 
 .Bannerzinho {
   width: 100%;
@@ -72,7 +72,9 @@ h2 {
 .rightSection {
   position: relative;
   bottom: 125px;
-  max-height: 210px;
+  max-height: 300px;
+  min-height: auto;
+  height: 100%;
   min-height: auto;
   background-color: #f0f0f0;
   padding: 20px;
@@ -80,11 +82,11 @@ h2 {
   overflow-x: hidden;
   text-align: center;
   width: 60%;
+  padding-top: 20px;
   /* margin-bottom: 20px; */
   margin-top: -60vh;
   margin-left: 180vh;
   display: flex;
-  justify-content: center;
   flex-direction: column;
   gap: 10px; /* Espaçamento entre os botões */
   border: none;
@@ -93,6 +95,9 @@ h2 {
 
 /* buttons respostas e perguntas */
 .respostasbuttons {
+  font-family: 'Oswald';
+  font-size: 18px;
+  font-weight: 600;
   display: flex;
   justify-content: center; /* Centraliza os botões */
   background-color: #97BF41;
@@ -307,10 +312,11 @@ h2 {
 .cima {
   /* margin-top: 120px; */
   display: flex;
+  font-family: 'Roboto Mono';
+  font-size: 20px;
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding-top: 120px;
 }
 
 .fechar-x {

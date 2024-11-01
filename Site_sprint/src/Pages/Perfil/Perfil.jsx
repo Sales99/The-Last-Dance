@@ -182,7 +182,7 @@ const Perfil = () => {
   };
 
   // ________________________________
-  // ________________________________
+  // ________________________________ 
   // Código para as perguntas
 
   const [perguntas, setPerguntas] = useState([]); // Armazena as perguntas
@@ -226,6 +226,20 @@ const Perfil = () => {
     return perguntas.map((pergunta, index) => (
       <div key={index} className="perguntaItem">
         <p>{pergunta.pergunta}</p> {/* Renderiza o campo "pergunta" */}
+      </div>
+    ));
+  };
+
+  // ___________________
+
+  const renderRespostas = () => {
+    if (respostas.length === 0) {
+      return <p>Nenhuma resposta foi feita ainda</p>;
+    }
+
+    return respostas.map((texto, index) => (
+      <div key={index} className="perguntaItem">
+        <p>{texto.texto}</p> {/* Renderiza o campo "pergunta" */}
       </div>
     ));
   };
@@ -284,7 +298,7 @@ const Perfil = () => {
           {showPerguntas && (
             <div>
               <div className="cima">
-                <b className='conteudo-button-tittle'>Minhas Perguntas</b>
+                <b className='conteudo-button-tittle'>MINHAS PERGUNTAS</b>
                 <p className='fechar-x' onClick={handleFechar}>x</p>
               </div>
               <div className="conteudo-button">
@@ -296,12 +310,12 @@ const Perfil = () => {
           {showRespostas && ( // Exibe as respostas se showRespostas for verdadeiro
             <div>
               <div className="cima">
-                <b className='conteudo-button-tittle'>Minhas Respostas</b>
+                <b className='conteudo-button-tittle'>MINHAS RESPOSTAS</b>
                 <p className='fechar-x' onClick={handleFechar}>x</p>
                 <br />
               </div>
               <div className="conteudo-button">
-                <p>Brubru aqui é respostas</p>
+                {renderRespostas()}
                 {/* Acima você substitui pelo código que irá aparecer as respostas */}
               </div>
             </div>
