@@ -123,13 +123,13 @@ const [currentResponseId, setCurrentResponseId] = useState(null);
 
   // Icones das materias
   const iconList = [
-    { name: 'matemática', img: matematica, label: 'Matemática' },
-    { name: 'português', img: portugues, label: 'Português' },
-    { name: 'quimíca', img: quimica, label: 'Química' },
+    { name: 'matematica', img: matematica, label: 'Matemática' },
+    { name: 'portugues', img: portugues, label: 'Português' },
+    { name: 'quimica', img: quimica, label: 'Química' },
     { name: 'biologia', img: biologia, label: 'Biologia' },
-    { name: 'física', img: fisica, label: 'Física' },
+    { name: 'fisica', img: fisica, label: 'Física' },
     { name: 'geografia', img: geografia, label: 'Geografia' },
-    { name: 'história', img: historia, label: 'História' },
+    { name: 'historia', img: historia, label: 'História' },
     { name: 'sociologia', img: sociologia, label: 'Sociologia' },
   ];
   const carouselRef = React.useRef(null);
