@@ -463,7 +463,7 @@ border-radius: 8px;
   border: 2px solid #ba9440;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  max-height: 90%;
+  max-height: auto;
 }
 
 /* _____________________________________ */
