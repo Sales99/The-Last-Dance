@@ -9,6 +9,7 @@ import { questionsData } from '../../assets/Dados/perguntas'; // Importa dados i
 import { getAuth } from 'firebase/auth';
 
 const HomePage = () => {
+  const [searchTerm, setSearchTerm] = useState("");
   // Estado para armazenar todas as perguntas, incluindo as iniciais
   const [questions, setQuestions] = useState(questionsData);
   const auth = getAuth();
@@ -32,8 +33,8 @@ const HomePage = () => {
 
   return (
     <div>
-      <Header adicionarPergunta={adicionarPergunta} />
-      <Main questions={questions} />
+      <Header adicionarPergunta={adicionarPergunta} searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
+      <Main questions={questions} searchTerm={searchTerm}/>
       <Chatbot />
       <Footer />
     </div>

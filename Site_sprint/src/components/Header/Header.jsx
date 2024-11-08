@@ -6,7 +6,7 @@ import logo from '/src/assets/images/logo.png';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getFirestore, collection, addDoc } from 'firebase/firestore'; // Firestore para salvar perguntas
 
-const Header = () => {
+const Header = ({ searchTerm, setSearchTerm }) => {
   const [showBox, setShowBox] = useState(false);
   const [showLoginPopup, setShowLoginPopup] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -17,6 +17,25 @@ const Header = () => {
 
   const auth = getAuth();
   const db = getFirestore(); // Inicializa Firestore
+
+  // ___________________________________________
+  // Estado para filtrar perguntas pela barra de pesquisa
+  // 
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value); // Atualiza o estado com o valor da pesquisa
+  };
+
+  // Função para capturar o Enter na barra de pesquisa
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      setSearchTerm(event.target.value); // Define o termo de pesquisa no estado global (HomePage)
+    }
+  };
+
+  // 
+  // 
+  // ___________________________________________
 
   // Atualiza o estado baseado no status de autenticação
   useEffect(() => {
@@ -86,11 +105,18 @@ const Header = () => {
 
   return (
     <header className="header">
-      <Link to="/"> 
+      <Link to="/">
         <img src={logo} alt="Logo" className="logo" />
       </Link>
-      
-      <input type="text" placeholder="Procurar..." className="search-bar" />
+
+      <input
+        value={searchTerm}
+        onChange={handleSearchChange}
+        onKeyPress={handleKeyPress}
+        type="text"
+        placeholder="Procurar..."
+        className="search-bar" />
+
       <h3 className="QuestionMaker" onClick={handleClickPergunta}>FAÇA SUA PERGUNTA</h3>
       <div onClick={handleProfileClick}>
         <IconHeader />
