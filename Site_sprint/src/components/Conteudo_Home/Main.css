@@ -463,6 +463,7 @@ border-radius: 8px;
   border: 2px solid #ba9440;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  max-height: 90%;
 }
 
 /* _____________________________________ */
@@ -526,6 +527,12 @@ border-radius: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  position: fixed;  
+  max-height: 100%; /* Defina a altura desejada */
+  overflow-y: auto; /* Adiciona a barra de rolagem */
+  padding-right: 0px; /* Adicione um pouco de espaço para evitar sobreposição com a barra de rolagem */
+
 }
 
 /* Estilos para o título do pop-up */
@@ -860,6 +867,25 @@ textarea {
     margin-bottom: 20px;
     border-radius: 8px;
     }
+
+    /* Popup respostas */
+  .popup-resposta {
+  background-color: white;
+  padding: 50px;
+  width: 300px;
+  border: 2px solid #ba9440;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+#nome {
+  font-size: 20px;
+  color: gold;
+  margin-right: 40px;
+  margin-top: 25px;
+}
+
+
 
   .questions-section h1 {
     margin-left: 12px;
