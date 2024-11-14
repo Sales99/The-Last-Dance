@@ -1,7 +1,7 @@
 .header {
   background-color: #FFEC5C;
   display: grid;
-  grid-template-columns: 0.6fr 1.6fr 0.55fr 0.3fr;
+  grid-template-columns: 0.6fr 1.6fr 0.55fr 0.2fr;
   gap: 60px;
   align-items: center;
   padding: 12px;
@@ -24,17 +24,23 @@
   border-radius: 12px;
   outline: none;
   border: none;
+  /* border: 1.75px solid #054C69; */
+  box-shadow: -4px 5px 8px rgba(0, 0, 0, 0.4);
 }
 
 .icon1 {
   height: 52px;
-  color: white;
+  border: 3px solid black;
+  border-radius: 100%;
+  color: black;
+  padding: 6px;
   cursor: pointer;
-  transition: color 0.8s ease;
+  transition: all 0.8s ease;
 }
 
 .icon1:hover {
-  color: rgb(0, 0, 0);
+  color: rgb(57, 57, 57);
+  border-color: rgb(57, 57, 57);
 }
 
 .QuestionMaker {
