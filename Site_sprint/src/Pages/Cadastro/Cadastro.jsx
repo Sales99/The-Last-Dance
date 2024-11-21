@@ -181,7 +181,7 @@ export function Cadastro() {
                     <div className="Login_Google">
                         <p>Cadastrar também com:</p>
                         <button type="button" onClick={handleGoogleSignIn} className="Btn_Google_SignIn">
-                            <FaGoogle /> Cadastrar com Google
+                            <FaGoogle/> Cadastrar com Google
                         </button>
                     </div>
                 </form>
