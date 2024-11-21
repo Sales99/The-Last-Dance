@@ -5,7 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 // Importando as páginas
 import HomePage from './pages/Home/Home';
-import LoginPage from './pages/Login/login'
+import LoginPage from './pages/Login/Login'
 // import CadastroPage from './pages/Cadastro/'
 
 
